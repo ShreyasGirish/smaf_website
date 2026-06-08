@@ -4,14 +4,19 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Stats from './components/Stats';
 import About from './components/About';
+import WhyChooseSMAF from './components/WhyChooseSMAF';
 import Sustainability from './components/Sustainability';
 import PrakritvaBrand from './components/PrakritvaBrand';
 import Products from './components/Products';
 import Facility from './components/Facility';
 import Quality from './components/Quality';
+import Innovation from './components/Innovation';
+import GlobalPresence from './components/GlobalPresence';
 import Investors from './components/Investors';
+import Leadership from './components/Leadership';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+
 
 function App() {
   useEffect(() => {
@@ -49,7 +54,11 @@ function App() {
         <section id="about" className="section-fade">
           <About />
         </section>
-        
+
+        <section id="why-smaf" className="section-fade">
+          <WhyChooseSMAF />
+        </section>
+
         <section id="sustainability" className="section-fade">
           <Sustainability />
         </section>
@@ -69,9 +78,21 @@ function App() {
         <section id="quality" className="section-fade">
           <Quality />
         </section>
-        
+
+        <section id="innovation" className="section-fade">
+          <Innovation />
+        </section>
+
+        <section id="global" className="section-fade">
+          <GlobalPresence />
+        </section>
+
         <section id="investors" className="section-fade">
-          <Investors />
+          <Investors/>
+        </section>
+
+        <section id="leadership" className="section-fade">
+          <Leadership />
         </section>
         
         <section id="contact" className="section-fade">
