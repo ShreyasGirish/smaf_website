@@ -158,7 +158,7 @@ const Quality = () => {
             ))}
           </div>
 
-          {/* INSPECTION IMAGE FRAME - ADJUSTED TO RECTIFY CUT BOUNDS */}
+          {/* INSPECTION IMAGE FRAME */}
           <div 
             onClick={() => setActiveImage({ src: inspectionImg, alt: "100% Manual Processing Quality Inspection" })}
             className="relative min-h-[350px] lg:h-auto rounded-[2.5rem] overflow-hidden border border-slate-800 cursor-zoom-in group/inspect"
@@ -182,7 +182,7 @@ const Quality = () => {
           </div>
         </div>
 
-        {/* LABORATORY BLOCK - ENHANCED VISIBILITY DETAILS */}
+        {/* LABORATORY BLOCK WITH UPDATED OVERLAY TEXT LABELS */}
         <div className="bg-emerald-950/30 rounded-[3.5rem] p-8 md:p-14 border border-emerald-900/50">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -200,7 +200,7 @@ const Quality = () => {
               </p>
             </div>
 
-            {/* CONTAIN CONTROL FLUID FRAME TO ESCAPE CUT ARTIFACTS */}
+            {/* UPDATED: SUBTITLE OVERLAYS APPLIED TO LAB IMAGE JUST LIKE IN THE SPECIFICATION IMAGE */}
             <div 
               onClick={() => setActiveImage({ src: labImg, alt: "Real-Time In-House Food Safety Chemical Analysis Laboratory" })}
               className="relative h-72 sm:h-80 rounded-[2.5rem] overflow-hidden border border-emerald-800/60 bg-emerald-950/50 cursor-zoom-in group/lab"
@@ -215,6 +215,11 @@ const Quality = () => {
                   <Maximize2 size={16} className="text-teal-300" />
                   <span>CLICK TO ENLARGE IMAGE</span>
                 </div>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent pointer-events-none" />
+              <div className="absolute bottom-8 left-8 z-10 pr-4">
+                <h5 className="text-white font-serif text-xl mb-1">pH Testing & Calibration</h5>
+                <p className="text-slate-400 text-xs font-light">Real-time parameters verified across production lines</p>
               </div>
             </div>
           </div>

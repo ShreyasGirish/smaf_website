@@ -142,13 +142,13 @@ const Facility = () => {
             </div>
           </div>
 
-          {/* FARMERS IMAGE CARD */}
+          {/* FARMERS IMAGE CARD - UPDATED SOURCE FILE TO farmer-network.jpg */}
           <div 
-            onClick={() => setActiveImage({ src: `${import.meta.env.BASE_URL}images/farmers.jpg`, alt: "Integrated Farmer Sourcing Network" })}
+            onClick={() => setActiveImage({ src: `${import.meta.env.BASE_URL}images/farmer-network.jpg`, alt: "Integrated Farmer Sourcing Network" })}
             className="relative h-[400px] rounded-[3rem] overflow-hidden shadow-md border border-slate-100 cursor-zoom-in group/farmers"
           >
             <img
-              src={`${import.meta.env.BASE_URL}images/farmers.jpg`}
+              src={`${import.meta.env.BASE_URL}images/farmer-network.jpg`}
               alt="Farmer sourcing network"
               className="w-full h-full object-cover transform group-hover/farmers:scale-102 transition duration-700 ease-out"
             />

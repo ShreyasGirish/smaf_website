@@ -14,6 +14,7 @@ import {
 
 const PrakritvaBrand = () => {
   /* PUBLIC ASSET PATHS (Vite-safe) */
+  const brandLogoImg = `${import.meta.env.BASE_URL}images/p-logo.jpg`;
   const gherkinPickleImg = `${import.meta.env.BASE_URL}images/gherkinpickle.jpg`;
   const babyPickleImg = `${import.meta.env.BASE_URL}images/babypickle.jpg`;
   const kokumBottleImg = `${import.meta.env.BASE_URL}images/kokumjuice.jpg`;
@@ -66,22 +67,38 @@ const PrakritvaBrand = () => {
 
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
 
-        {/* BRAND HEADER */}
+        {/* BRAND HEADER WITH SEAMLESS LOGO INTEGRATION */}
         <div className="max-w-3xl mx-auto text-center mb-24">
-          <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-800 px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest mb-6 border border-amber-200">
+          <div className="inline-flex items-center justify-center gap-2 bg-amber-100 text-amber-800 px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest mb-8 border border-amber-200 mx-auto">
             <Sparkles size={14} />
             First Introduced at Krishi Mela 2025, Bengaluru
           </div>
 
-          <h2 className="text-5xl md:text-7xl font-serif text-slate-900 mb-6">
-            Prakritva
-          </h2>
+          {/* FIXED CRITICAL ALIGNMENT BLOCK FOR IMAGE_298BF1.PNG */}
+          <div className="h-16 md:h-24 flex items-center justify-center mb-6 w-full">
+            <img 
+              src={brandLogoImg} 
+              alt="Prakritva - Pure. Natural. Sustainable." 
+              className="h-full w-auto object-contain mx-auto transform hover:scale-[1.01] transition-transform duration-300"
+              onError={(e) => {
+                // Graceful typography fallback heading if asset deployment paths ever break locally
+                e.currentTarget.style.display = 'none';
+                const parent = e.currentTarget.parentElement;
+                if (parent) {
+                  const fallbackHeading = document.createElement('h2');
+                  fallbackHeading.className = "text-5xl md:text-7xl font-serif text-slate-900 tracking-wide font-bold text-center";
+                  fallbackHeading.innerText = "Prakritva";
+                  parent.appendChild(fallbackHeading);
+                }
+              }}
+            />
+          </div>
 
-          <p className="text-amber-700 text-xl italic mb-8">
+          <p className="text-amber-700 text-xl italic mb-8 text-center">
             Taste the Natural Way
           </p>
 
-          <p className="text-slate-600 text-lg font-light leading-relaxed">
+          <p className="text-slate-600 text-lg font-light leading-relaxed text-center">
             Rooted in Karnataka’s fertile soils, Prakritva proudly debuted its flagship 
             range at "<b>Krishi Mela 2025, Bengaluru</b>". We bring traditional Indian recipes and wellness 
             blends straight from our fields to the modern table. No preservatives. No artificial colors. All products are processed in state-of-the-art certified lines.
@@ -124,14 +141,12 @@ const PrakritvaBrand = () => {
                 <div>
                   {/* FULL-BLEED PORTRAIT AMBIENT BACKDROP WRAPPER */}
                   <div className="w-full h-[320px] sm:h-[420px] relative overflow-hidden bg-slate-50">
-                    {/* Blurred Base Fill */}
                     <img
                       src={p.img}
                       alt=""
                       className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-60 scale-125 pointer-events-none transition-transform duration-700 group-hover:scale-150"
                       aria-hidden="true"
                     />
-                    {/* Non-Clipping Crisp Foreground Item Layer */}
                     <img
                       src={p.img}
                       alt={p.name}
@@ -350,7 +365,6 @@ const PrakritvaBrand = () => {
               className="w-full h-auto object-cover max-h-[520px] object-top transform group-hover/roadmap:scale-[1.01] transition duration-700 ease-out"
             />
             
-            {/* FIXED: Reconfigured overlay to feature your exact clean, centralized emerald button layout from image_440380.jpg */}
             <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover/roadmap:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
               <div className="bg-[#115e59] text-white px-7 py-4 rounded-xl flex items-center gap-3 shadow-2xl font-sans font-bold tracking-wider text-sm border border-teal-500/30 transform translate-y-3 group-hover/roadmap:translate-y-0 transition-all duration-300">
                 <Maximize2 size={18} className="text-teal-300" />
