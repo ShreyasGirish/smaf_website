@@ -10,7 +10,7 @@ import {
 
 const Sustainability = () => {
   // ✅ CORRECT ROOT-BASED PATH
-  const farmersImg = '/assets/images/farmers.jpg';
+  const farmersImg = `${import.meta.env.BASE_URL}images/farmers.jpg`;
 
   const workflowStages = [
     {

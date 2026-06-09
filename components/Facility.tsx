@@ -74,7 +74,7 @@ const Facility = () => {
           {/* FACILITY IMAGE */}
           <div className="relative h-[360px] rounded-3xl overflow-hidden shadow-xl">
             <img
-              src="/assets/images/facility.jpg"
+              src={`${import.meta.env.BASE_URL}images/facility.jpg`}
               alt="Processing facility"
               className="w-full h-full object-cover"
             />
@@ -93,7 +93,7 @@ const Facility = () => {
           {/* FARMERS IMAGE */}
           <div className="relative h-[360px] rounded-3xl overflow-hidden shadow-xl">
             <img
-              src="/assets/images/farmers.jpg"
+              src={`${import.meta.env.BASE_URL}images/farmers.jpg`}
               alt="Farmer sourcing network"
               className="w-full h-full object-cover"
             />

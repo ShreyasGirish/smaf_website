@@ -11,6 +11,8 @@ import {
 } from 'lucide-react';
 
 const Innovation = () => {
+  const awardImg = `${import.meta.env.BASE_URL}images/krishi-mela-award.jpg`;
+
   return (
     <section className="py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
@@ -34,15 +36,18 @@ const Innovation = () => {
         </div>
 
         {/* Award Section */}
-        <div className="bg-gradient-to-r from-emerald-950 to-emerald-800 rounded-[4rem] p-12 md:p-16 text-white mb-20 overflow-hidden relative">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-400/10 rounded-full blur-[100px]"></div>
+        <div className="bg-gradient-to-r from-emerald-950 to-emerald-800 rounded-[4rem] p-12 md:p-16 text-white mb-24 overflow-hidden relative">
 
-          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-400/10 rounded-full blur-[120px]" />
+
+          <div className="relative z-10 grid lg:grid-cols-2 gap-14 items-center">
+
+            {/* Award Content */}
             <div>
               <div className="inline-flex items-center gap-3 bg-white/10 px-5 py-2 rounded-full mb-6">
                 <Trophy className="text-yellow-400" size={18} />
                 <span className="text-xs font-bold uppercase tracking-widest">
-                  Recognition
+                  Award Recognition
                 </span>
               </div>
 
@@ -50,31 +55,54 @@ const Innovation = () => {
                 Best Idea Award
               </h3>
 
-              <p className="text-emerald-100 text-lg mb-3">
-                Krishi Mela 2025
+              <p className="text-yellow-300 font-semibold text-lg mb-4">
+                Krishi Mela 2025, Bengaluru
               </p>
 
-              <p className="text-emerald-100/80 max-w-2xl leading-relaxed">
-                Recognized for innovative value-added agricultural products,
-                farmer-focused processing solutions, and sustainable rural
-                development initiatives.
+              <p className="text-emerald-100/90 leading-relaxed text-lg mb-8">
+                Sri Mookambika Agro Foods LLP was recognized for its innovative
+                approach towards value-added agricultural products, farmer-centric
+                processing initiatives, and sustainable rural development.
               </p>
+
+              <div className="flex flex-wrap gap-4">
+                <div className="bg-white/10 px-5 py-3 rounded-2xl">
+                  <p className="text-xs uppercase tracking-widest text-emerald-200">
+                    Category
+                  </p>
+                  <p className="font-bold">Innovation</p>
+                </div>
+
+                <div className="bg-white/10 px-5 py-3 rounded-2xl">
+                  <p className="text-xs uppercase tracking-widest text-emerald-200">
+                    Event
+                  </p>
+                  <p className="font-bold">Krishi Mela</p>
+                </div>
+              </div>
             </div>
 
-            <div className="w-32 h-32 rounded-full bg-yellow-400/10 border border-yellow-400/30 flex items-center justify-center">
-              <Award size={60} className="text-yellow-400" />
+            {/* Award Image */}
+            <div>
+              <img
+                src={awardImg}
+                alt="Krishi Mela Award"
+                className="w-full rounded-[2.5rem] shadow-2xl border border-white/10 object-cover"
+              />
             </div>
+
           </div>
         </div>
 
         {/* Innovation Pillars */}
-        <div className="mb-20">
+        <div className="mb-24">
           <h3 className="text-sm font-bold uppercase tracking-[0.3em] text-slate-400 mb-10">
             Innovation Pillars
           </h3>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="p-10 rounded-[3rem] bg-slate-50 border border-slate-100 hover:shadow-xl transition-all">
+
+            <div className="p-10 rounded-[3rem] bg-slate-50 border border-slate-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
               <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-6">
                 <Lightbulb size={28} />
               </div>
@@ -89,7 +117,7 @@ const Innovation = () => {
               </p>
             </div>
 
-            <div className="p-10 rounded-[3rem] bg-slate-50 border border-slate-100 hover:shadow-xl transition-all">
+            <div className="p-10 rounded-[3rem] bg-slate-50 border border-slate-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
               <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-6">
                 <FlaskConical size={28} />
               </div>
@@ -104,7 +132,7 @@ const Innovation = () => {
               </p>
             </div>
 
-            <div className="p-10 rounded-[3rem] bg-slate-50 border border-slate-100 hover:shadow-xl transition-all">
+            <div className="p-10 rounded-[3rem] bg-slate-50 border border-slate-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
               <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-6">
                 <Sprout size={28} />
               </div>
@@ -118,11 +146,13 @@ const Innovation = () => {
                 through innovation-driven agriculture.
               </p>
             </div>
+
           </div>
         </div>
 
         {/* Future Roadmap */}
         <div className="bg-slate-950 rounded-[4rem] p-12 md:p-16 text-white">
+
           <div className="mb-10">
             <span className="text-emerald-500 font-bold uppercase tracking-widest text-xs">
               Future Roadmap
@@ -134,6 +164,7 @@ const Innovation = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
             <div className="bg-white/5 rounded-3xl p-8">
               <Rocket className="text-emerald-500 mb-5" size={28} />
               <h4 className="font-bold mb-2">Retail Expansion</h4>
@@ -165,6 +196,7 @@ const Innovation = () => {
                 Strengthening sustainable sourcing and farmer partnerships.
               </p>
             </div>
+
           </div>
         </div>
 
