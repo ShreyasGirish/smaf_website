@@ -3,7 +3,6 @@ import { createPortal } from "react-dom";
 import {
   Droplet,
   Layers,
-  ChevronRight,
   CheckCircle2,
   Sparkles,
   ShieldCheck,
@@ -84,36 +83,41 @@ const Products: React.FC = () => {
 
   const mediaTypes = [
     {
-      name: "Natural Vinegar (NV)",
+      name: "Natural Vinegar (NV) Product",
       desc: "Food-grade vinegar media for burgers, condiments, and snacks.",
       specs: [
-        "Acidity Range: 2.0% – 3.5% (as Acetic Acid)",
+        "Acidity Range: 2.0% – 3.8% (as Acetic Acid)",
         "Salt Content: 2.5% – 4.5% NaCl max",
-        "pH Threshold: Below 3.5 ensuring maximum stability",
-        "Preservatives: 100% Clean Label • Zero Artificial Preservatives",
-        "Ideal For: European retail private labels, premium condiments, burger quick-service chains."
+        "pH Threshold: Below 3.3 ensuring maximum stability",
+        "Preservatives: Custom specific. Industrial product will have sulfites as preservative. We can offer preservative free also.",
+        "Packaging Solutions: 260 ltrs / 240 ltrs HDPE food grade drums or Food Grade Pails. Palletized / Non-Palletized.",
+        "Ideal For: Retail private labels, premium condiments, burger quick-service chains."
       ]
     },
     {
-      name: "Acetic Acid (AA)",
+      name: "Acetic Acid (AA) Product",
       desc: "Precisely acidified solution ensuring long-haul stability.",
       specs: [
         "Acidity Range: 1.5% – 4.0% (Customizable tolerances)",
         "Salt Content: 2.0% – 5.0% depending on customer spec sheets",
-        "Drained Weight Verification: Validated at pack-time and pre-shipment",
+        "pH Threshold: Below 3.3 ensuring product safety and stability",
         "Heavy Metals / Defect Tolerance: Strictly compliant with US-FDA & EU standard criteria",
+        "Preservatives: Both with preservative or without preservative products are available",
+        "Packaging Solutions: 260 ltr / 240 ltr HDPE food grade drums or in food grade Pails",
         "Ideal For: High-volume industrial food processors, global sauce manufacturers."
       ]
     },
     {
-      name: "Salt Brine (BR)",
-      desc: "Traditional fermentation for European-style profiles.",
+      name: "Fermented Product",
+      desc: "Traditional fermentation calibrated to suit customer profiles.",
       specs: [
         "Lactic Acid Level: Min 0.6% generated via natural active fermentation",
-        "Salt Base: 6.0% – 8.0% NaCl (high brine barrier for bulk raw transport)",
-        "Texture / Crispness Retention: Verified using internal firmness testers",
-        "Microbial Baseline: Controlled lactic acid bacteria, zero active coliform path blocks",
-        "Ideal For: Traditional European-style salt pickles, re-packing facilities."
+        "Salt Base: 6.0% – 14.0% NaCl (high brine barrier for bulk raw transport)",
+        "pH Threshold: Below 3.8 ensuring product safety and stability",
+        "Texture and Firmness: Verified by bite test parameters",
+        "Microbial Baseline: Controlled lactic acid bacteria, zero active coliform",
+        "Packaging Solutions: 260 ltrs / 240 ltrs HDPE food grade drums or Food Grade Pails",
+        "Ideal For: Traditional American-style salt pickles, re-packing facilities."
       ]
     }
   ];
@@ -126,7 +130,7 @@ const Products: React.FC = () => {
     },
     {
       title: "Custom Labels",
-      desc: "Full assistance with international regulatory compliance layout formatting and print-ready bespoke labeling.",
+      desc: "Full assistance with international regulatory compliance layout formatting and print-ready tailored labeling.",
       icon: <FileText className="w-6 h-6 text-emerald-600" />
     },
     {
@@ -164,7 +168,8 @@ const Products: React.FC = () => {
               <p className="text-[10px] font-bold uppercase tracking-widest text-emerald-300">
                 Grade Range Calibrations
               </p>
-              <p className="text-2xl font-bold mt-0.5">150/300 → 5/8</p>
+              {/* FIXED: Calibrations corrected */}
+              <p className="text-2xl font-bold mt-0.5">300/450 → 5/10</p>
             </div>
           </div>
         </div>
@@ -186,9 +191,11 @@ const Products: React.FC = () => {
                     alt={card.name} 
                     className="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
                   />
-                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="bg-white/90 p-3 rounded-full shadow-lg text-emerald-800 transform translate-y-2 group-hover/img:translate-y-0 transition-transform duration-300">
-                      <Maximize2 size={20} />
+                  {/* UNIFIED ENLARGE HOVER OVERLAY */}
+                  <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
+                    <div className="bg-[#115e59] text-white px-5 py-3 rounded-xl flex items-center gap-2.5 shadow-2xl font-sans font-bold tracking-wider text-xs border border-teal-500/30 transform translate-y-2 group-hover/img:translate-y-0 transition-all duration-300">
+                      <Maximize2 size={16} className="text-teal-300" />
+                      <span>CLICK TO ENLARGE IMAGE</span>
                     </div>
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
@@ -228,12 +235,12 @@ const Products: React.FC = () => {
                 </div>
               </div>
 
+              {/* FIXED: Removed chevron arrow icon line */}
               <div className="px-8 pb-8 pt-2">
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-slate-400 text-xs">
                   <span className="flex items-center gap-1">
                     <ShieldCheck size={14} className="text-emerald-700" /> Global Standards
                   </span>
-                  <ChevronRight size={16} className="text-slate-300 group-hover:text-emerald-700 group-hover:translate-x-1 transition-all" />
                 </div>
               </div>
             </div>
@@ -253,9 +260,10 @@ const Products: React.FC = () => {
             <h3 className="text-3xl md:text-4xl font-serif mb-4">
               Private Label Manufacturing
             </h3>
+            {/* FIXED: Removed OEM phrasing */}
             <p className="text-emerald-100/80 font-light text-sm md:text-base leading-relaxed">
-              We provide end-to-end original equipment manufacturing pipelines tailored cleanly 
-              to match your direct brand specifications, commercial volumes, and distribution metrics.
+              We provide end-to-end processing execution setups tailored cleanly 
+              to match your brand specifications, commercial volumes, and distribution metrics.
             </p>
           </div>
 
@@ -300,7 +308,7 @@ const Products: React.FC = () => {
                   onClick={() => setActiveSpecs({ name: m.name, desc: m.desc, specs: m.specs })}
                   className="flex items-center text-emerald-700 font-bold text-[10px] uppercase tracking-wider cursor-pointer hover:text-emerald-900 transition-colors"
                 >
-                  Technical Specs <ChevronRight size={14} className="ml-1 group-hover:translate-x-0.5 transition-transform" />
+                  Technical Specs <Maximize2 size={12} className="ml-1.5 group-hover:scale-110 transition-transform" />
                 </div>
               </div>
             ))}
@@ -309,7 +317,7 @@ const Products: React.FC = () => {
 
       </div>
 
-      {/* FIXED PORTAL OVERLAYS (Guarantees perfect center position regardless of scroll) */}
+      {/* FIXED PORTAL OVERLAYS */}
       {mounted && activeImage && createPortal(
         <div 
           className="fixed inset-0 z-[99999] flex items-center justify-center p-4 backdrop-blur-md cursor-zoom-out animate-fade-in"
