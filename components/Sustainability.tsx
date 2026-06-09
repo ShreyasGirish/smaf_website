@@ -16,7 +16,7 @@ const Sustainability = () => {
     {
       id: '01',
       title: 'Community Selection',
-      desc: 'Sourcing produce from 1,200+ verified smallholder families within a 100km radius.',
+      desc: 'Sourcing produce from 1,200+ verified smallholding families within a 50–200km concentrated radius.',
       icon: <Users size={24} />,
     },
     {
@@ -28,7 +28,7 @@ const Sustainability = () => {
     {
       id: '03',
       title: 'Fresh Harvest & Arrival',
-      desc: 'Logistics optimized to ensure raw material reaches the facility within 2 hours of harvest.',
+      desc: 'Logistics optimized to ensure raw material reaches the facility within 8 hours of harvest.',
       icon: <Clock size={24} />,
     },
     {
@@ -45,8 +45,8 @@ const Sustainability = () => {
     },
     {
       id: '06',
-      title: 'Community Impact',
-      desc: 'Ethical fair-wage distribution and health initiatives for 12,000+ rural laborers.',
+      title: 'Socio-Economic Impact',
+      desc: 'Generating substantial rural employment opportunities and fostering community development across farming belts.',
       icon: <CheckCircle size={24} />,
     },
   ];
@@ -65,7 +65,7 @@ const Sustainability = () => {
             <span className="text-emerald-500 italic">Operational Integrity.</span>
           </h2>
           <p className="text-slate-400 text-lg font-light max-w-2xl">
-            Our proprietary model ensures full traceability from sowing to export,
+            Our sustainable model ensures full traceability from area of cultivation to export,
             supporting rural livelihoods while meeting global food safety standards.
           </p>
         </div>
@@ -100,7 +100,7 @@ const Sustainability = () => {
               
               <img
                 src={farmersImg}
-                alt="Smallholder farmers associated with Sri Mookambika Agro Foods"
+                alt="Smallholding farmers associated with Sri Mookambika Agro Foods"
                 className="w-full h-[420px] object-cover"
               />
 
@@ -144,4 +144,4 @@ const Sustainability = () => {
   );
 };
 
-export default Sustainability;
+  export default Sustainability;

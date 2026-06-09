@@ -14,7 +14,7 @@ const Stats: React.FC = () => {
       icon: <Users className="text-emerald-600" size={28} />,
       value: "1,200+",
       label: "Contract Farmers",
-      description: "Sustainably supported within a 100km radius."
+      description: "Sustainably supported within a 50-200km radius."
     },
     {
       icon: <Briefcase className="text-emerald-600" size={28} />,
@@ -26,7 +26,7 @@ const Stats: React.FC = () => {
       icon: <Globe className="text-emerald-600" size={28} />,
       value: "75%",
       label: "Export Focus",
-      description: "Primary supply to USA & Russian markets."
+      description: "Primary supply to USA & European markets."
     }
   ];
 

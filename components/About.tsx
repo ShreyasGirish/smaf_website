@@ -48,7 +48,7 @@ const About = () => {
               {/* Ultra-subtle clear gradient overlay protecting detail */}
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-transparent to-black/10 pointer-events-none" />
 
-              {/* ENHANCED REFINED FLOATING CARD */}
+              {/* REFINED FLOATING CARD WITH <8HRS LOGISTICS */}
               <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur-md px-5 py-3.5 rounded-2xl shadow-lg border border-white/20 max-w-sm transform transition duration-300">
                 <p className="text-[10px] font-bold text-emerald-700 uppercase tracking-widest mb-0.5 flex items-center gap-1">
                   <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full animate-pulse" />
@@ -58,7 +58,7 @@ const About = () => {
                   Ranebennur, Karnataka
                 </h4>
                 <p className="text-[11px] text-slate-500 mt-1 font-light">
-                  &lt;2 Hours Farm-to-Plant Processing Window
+                  &lt;8 Hours Farm-to-Plant Processing Window
                 </p>
               </div>
             </div>
@@ -79,9 +79,10 @@ const About = () => {
               </span>
             </h2>
 
+            {/* FIXED: Rephrased copy to eliminate the duplicate "enterprise" mentions cleanly */}
             <p className="text-slate-600 text-lg font-light leading-relaxed mb-10 max-w-xl">
               Sri Mookambika Agro Foods LLP bridges dedicated Indian agricultural networks 
-              with enterprise international brands through enterprise scale, rapid logistics, and 
+              with global international brands through commercial scale, rapid logistics, and 
               uncompromising traceability.
             </p>
 

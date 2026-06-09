@@ -1,14 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import {
   Leaf,
   Factory,
   FlaskConical,
   Globe2,
   CheckCircle2,
-  Sparkles
+  Sparkles,
+  Maximize2,
+  X
 } from 'lucide-react';
 
 const WhyChooseSMAF = () => {
+  // Lightbox view state for Prakritva Image
+  const [activeImage, setActiveImage] = useState<{ src: string; alt: string } | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Freeze window tracking on view state activation
+  useEffect(() => {
+    if (activeImage) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [activeImage]);
+
   const pillars = [
     {
       title: 'Farm Network',
@@ -31,6 +54,8 @@ const WhyChooseSMAF = () => {
       icon: <Globe2 size={24} />
     }
   ];
+
+  const innovationImg = `${import.meta.env.BASE_URL}images/prakritva-innovation.jpg`;
 
   return (
     <section
@@ -84,7 +109,7 @@ const WhyChooseSMAF = () => {
             <p className="text-slate-600 leading-relaxed font-light text-base">
               Our sourcing ecosystem is built around close farmer engagement,
               field-level quality monitoring and traceable procurement
-              practices across Karnataka’s gherkin-growing regions.
+              practices across **Karnataka and Andhra Pradesh’s** gherkin-growing regions.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4">
@@ -135,13 +160,25 @@ const WhyChooseSMAF = () => {
         </div>
 
         {/* SECTION 3: INNOVATION */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-32 group">
-          <div className="overflow-hidden rounded-[3rem] shadow-md border border-slate-200/60 bg-white relative">
+        <div className="grid lg:grid-cols-2 gap-16 items-center mb-32 group/section">
+          <div 
+            onClick={() => setActiveImage({ src: innovationImg, alt: "Prakritva Product Value-Added Innovation" })}
+            className="overflow-hidden rounded-[3rem] shadow-md border border-slate-200/60 bg-white relative cursor-zoom-in group/img h-[460px]"
+          >
             <img
-              src={`${import.meta.env.BASE_URL}images/prakritva-innovation.jpg`}
+              src={innovationImg}
               alt="Innovation"
-              className="w-full h-[460px] object-cover transform group-hover:scale-102 transition duration-700 ease-out"
+              className="w-full h-full object-cover transform group-hover/section:scale-102 transition duration-700 ease-out"
             />
+            
+            {/* Interactive User Instruction Prompt Sheet Overlay */}
+            <div className="absolute inset-0 bg-slate-950/30 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center text-white p-4">
+              <div className="bg-emerald-800/90 backdrop-blur-sm px-5 py-3 rounded-2xl flex items-center gap-2.5 shadow-lg border border-emerald-500/30 transform translate-y-2 group-hover/img:translate-y-0 transition-transform duration-300">
+                <Maximize2 size={16} className="text-emerald-300 animate-pulse" />
+                <span className="text-xs font-bold tracking-wider uppercase">Click to enlarge image</span>
+              </div>
+            </div>
+
             <div className="absolute inset-0 bg-gradient-to-tr from-slate-950/40 via-transparent to-transparent pointer-events-none" />
           </div>
 
@@ -170,7 +207,6 @@ const WhyChooseSMAF = () => {
               className="bg-white border border-slate-100 rounded-[2.5rem] p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
-                {/* Icon Circle */}
                 <div className="w-12 h-12 bg-emerald-50 text-emerald-700 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-700 group-hover:text-white transition-colors duration-300">
                   {pillar.icon}
                 </div>
@@ -188,6 +224,40 @@ const WhyChooseSMAF = () => {
         </div>
 
       </div>
+
+      {/* FIXED PORTAL OVERLAY - OPTIMIZED FOR MAX WIDTH LANDSCAPE GRAPHICS */}
+      {mounted && activeImage && createPortal(
+        <div 
+          className="fixed inset-0 z-[99999] flex items-center justify-center p-4 backdrop-blur-md cursor-zoom-out animate-fade-in"
+          style={{ width: '100vw', height: '100vh', top: 0, left: 0 }}
+          onClick={() => setActiveImage(null)}
+        >
+          <div className="absolute inset-0 bg-slate-950/90 pointer-events-none" />
+          
+          <button 
+            className="absolute top-6 right-6 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-3 rounded-full transition-all duration-200 z-[100000] active:scale-95"
+            onClick={() => setActiveImage(null)}
+          >
+            <X size={24} />
+          </button>
+          
+          {/* FIXED: Changed from max-w-4xl to max-w-6xl so detailed infographics spread wide and look clear */}
+          <div 
+            className="w-full max-w-6xl relative z-10 flex flex-col items-center justify-center cursor-default"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img 
+              src={activeImage.src} 
+              alt={activeImage.alt} 
+              className="w-full max-h-[85vh] rounded-2xl object-contain shadow-2xl border border-white/10"
+            />
+            <p className="text-white/90 font-serif text-sm md:text-base mt-6 bg-slate-900/80 px-6 py-2 rounded-full shadow-md border border-white/5">
+              {activeImage.alt}
+            </p>
+          </div>
+        </div>,
+        document.body
+      )}
     </section>
   );
 };

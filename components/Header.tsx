@@ -79,12 +79,12 @@ const Header = () => {
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         isScrolled
           ? 'glass-header shadow-xl py-3 text-slate-900'
-          : 'bg-transparent py-6 text-white'
+          : 'bg-transparent py-5 text-white'
       }`}
     >
       <div className="w-full max-w-none px-6 md:px-12 flex justify-between items-center">
 
-        {/* Brand / Logo Group */}
+        {/* Integrated Brand / Logo Horizontal Layout */}
         <div
           className="flex items-center space-x-4 group cursor-pointer"
           onClick={() =>
@@ -94,52 +94,42 @@ const Header = () => {
             })
           }
         >
-          {/* OUT-OF-THE-BOX VISUAL LAYERED LOGO ECOSYSTEM */}
+          {/* Circular Frame fully optimized to preserve entire image boundaries without cutting edges */}
           <div className="relative w-12 h-12 md:w-14 md:h-14 flex items-center justify-center flex-shrink-0">
-            
-            {/* Outer Decorative Pulses/Rings */}
             <span className="absolute inset-0 rounded-full border border-emerald-500/20 scale-110 group-hover:scale-125 group-hover:border-emerald-500/40 transition-all duration-700 pointer-events-none" />
-            <span className="absolute inset-0 rounded-full border-2 border-dashed border-emerald-400/10 group-hover:rotate-45 transition-all duration-1000 ease-out pointer-events-none" />
             
-            {/* Main Circle Housing Layer */}
-            <div className="w-full h-full rounded-full p-1 bg-white shadow-[0_4px_20px_rgba(16,185,129,0.15)] group-hover:shadow-[0_4px_25px_rgba(16,185,129,0.4)] border border-emerald-500/30 group-hover:border-emerald-500 transition-all duration-500 relative z-10 flex items-center justify-center overflow-hidden">
-              
-              {/* Inner Blend Mask Container to blend away blocky white edges */}
+            {/* White masking circle to seamlessly hold the graphic emblem */}
+            <div className="w-full h-full rounded-full bg-white shadow-[0_4px_20px_rgba(16,185,129,0.12)] group-hover:shadow-[0_4px_25px_rgba(16,185,129,0.35)] border border-slate-200/60 group-hover:border-emerald-500 transition-all duration-500 overflow-hidden flex items-center justify-center p-0.5">
               <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center bg-white mix-blend-multiply">
                 <img 
                   src={logoImg} 
-                  alt="Sri Mookambika Logo" 
-                  className="w-11 h-11 md:w-12 md:h-12 object-contain transform group-hover:scale-110 group-hover:rotate-6 transition duration-500 p-0.5"
+                  alt="Sri Mookambika Leaf Symbol" 
+                  className="w-full h-full object-contain p-0.5 transform group-hover:scale-105 transition duration-500"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
                   }}
                 />
               </div>
-
-              {/* Dynamic Inner Hover Overlay Sheet */}
-              <div className="absolute inset-0 bg-emerald-950/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none mix-blend-overlay" />
             </div>
           </div>
 
-          {/* Label Typography block */}
-          <div className="flex flex-col">
-            <span
-              className={`font-bold leading-none text-lg md:text-xl transition-colors duration-300 tracking-wide ${
-                isScrolled ? 'text-slate-900' : 'text-white'
-              }`}
-            >
-              Sri Mookambika
-            </span>
+          {/* Typography Stack matching image_45d845.png layout perfectly */}
+          <div className="flex flex-col justify-center">
+            {/* Combined main name on a single consistent horizontal line */}
+            <h1 className="font-serif font-bold text-lg md:text-xl tracking-wide leading-none transition-colors duration-300">
+              <span className={isScrolled ? 'text-slate-900' : 'text-white'}>SRI MOOKAMBIKA AGRO FOODS LLP</span>
+            </h1>
 
-            <span
-              className={`text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] mt-1 transition-colors duration-300 ${
-                isScrolled
-                  ? 'text-emerald-700'
-                  : 'text-emerald-400'
-              }`}
-            >
-              Agro Foods LLP
-            </span>
+            {/* Tagline text neatly distributed underneath */}
+            <div className="flex items-center gap-1.5 mt-1.5">
+              <span
+                className={`text-[9px] font-sans font-semibold uppercase tracking-[0.22em] transition-colors duration-300 whitespace-nowrap ${
+                  isScrolled ? 'text-slate-500' : 'text-emerald-100/70'
+                }`}
+              >
+                <span className={isScrolled ? 'text-emerald-800' : 'text-emerald-400'}>Natural • Nutritious • Trusted</span>
+              </span>
+            </div>
           </div>
         </div>
 
