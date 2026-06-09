@@ -6,16 +6,17 @@ import {
   ShieldCheck,
   Briefcase,
   User,
-  Globe
+  Globe,
+  Phone
 } from 'lucide-react';
 
 const Contact = () => {
-  // PASTE YOUR COPIED "SRC" LINKS FROM GOOGLE MAPS HERE:
-  const corporateOfficeMapsEmbedSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3847.3820296767556!2d75.11186707592476!3d15.355799958229986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f131!3m3!1m2!1s0x3bb8d7211bf70001%3A0xe44ec2b810d7a049!2sGokul%20Rd%2C%20Hubballi%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1717930000000!5m2!1sen!2sin";
-  const factoryMapsEmbedSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.123456789012!2d75.61234567890123!3d14.71234567890123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f131!3m3!1m2!1s0x0%3A0x0!2sRanebennur!5e0!3m2!1sen!2sin!4v1717930000000!5m2!1sen!2sin";
+  // DIRECT DESKTOP FRAME MAP POINTERS PARSED FROM SHARED COORDINATE NODES
+  const corporateOfficeMapsEmbedSrc = "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3847.514170008911!2d75.09620877512096!3d15.348615385231282!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTXCsDIwJzU1LjAiTiA3NcKwMDUnNTUuNiJF!5e0!3m2!1sen!2sin!4v1781016958073!5m2!1sen!2sin";
+  const factoryMapsEmbedSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1930.6402910046677!2d75.68077153634091!3d14.58308131134496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbbd50004bb6705%3A0x7ebf1080eaf93693!2sSri%20Mookambika%20Agro%20Foods%2C!5e0!3m2!1sen!2sin!4v1781016911924!5m2!1sen!2sin";
 
   return (
-    <section id="contact" className="py-24 bg-slate-50 border-t border-slate-100">
+    <section id="contact" className="py-24 bg-[#FCFBF7] border-t border-slate-100">
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         <div className="bg-white rounded-[4rem] overflow-hidden shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] border border-slate-100">
           <div className="flex flex-col lg:flex-row">
@@ -24,7 +25,7 @@ const Contact = () => {
             <div className="lg:w-5/12 p-12 md:p-16 bg-emerald-950 text-white flex flex-col justify-between space-y-12">
               <div>
                 <h2 className="text-4xl font-serif mb-14 leading-tight">
-                  Connect with <br />Sri Mookambika & Prakritva
+                  Connect with <br />Shri Mookambika Agro Foods Pvt Ltd.
                 </h2>
 
                 <div className="space-y-12">
@@ -44,7 +45,7 @@ const Contact = () => {
                         Hubballi - 580030, Karnataka, India
                       </p>
                       
-                      {/* Interactive Map Iframe */}
+                      {/* Interactive Corporate Map Iframe */}
                       <div className="w-full h-40 rounded-2xl overflow-hidden mt-4 border border-emerald-800/60 shadow-inner opacity-80 hover:opacity-100 transition-opacity duration-300">
                         <iframe
                           src={corporateOfficeMapsEmbedSrc}
@@ -58,14 +59,14 @@ const Contact = () => {
                     </div>
                   </div>
 
-                  {/* FACTORY ADDRESS */}
+                  {/* PROCESSING UNIT */}
                   <div className="flex items-start gap-5">
                     <div className="w-11 h-11 bg-emerald-900/50 rounded-xl flex items-center justify-center border border-emerald-800 shrink-0">
                       <MapPin className="text-emerald-400" size={20} />
                     </div>
                     <div className="w-full">
                       <p className="text-emerald-500 text-[10px] uppercase font-bold tracking-widest mb-1.5">
-                        Factory Unit
+                        Processing Unit
                       </p>
                       <p className="text-sm leading-relaxed text-emerald-100/80 font-light">
                         R S No. 64/1, 64/2 Hunasekatte Road,<br />
@@ -76,7 +77,7 @@ const Contact = () => {
                         GSTIN: 29AFDFS4584H1ZI
                       </p>
 
-                      {/* Interactive Map Iframe */}
+                      {/* Interactive Processing Unit Map Iframe */}
                       <div className="w-full h-40 rounded-2xl overflow-hidden mt-4 border border-emerald-800/60 shadow-inner opacity-80 hover:opacity-100 transition-opacity duration-300">
                         <iframe
                           src={factoryMapsEmbedSrc}
@@ -84,7 +85,7 @@ const Contact = () => {
                           allowFullScreen={false}
                           loading="lazy"
                           referrerPolicy="no-referrer-when-downgrade"
-                          title="Factory Location"
+                          title="Processing Unit Location"
                         />
                       </div>
                     </div>
@@ -108,18 +109,23 @@ const Contact = () => {
                     </div>
                   </div>
 
-                  {/* EXPORT CONTACT */}
+                  {/* DIRECT CONTACT LINES */}
                   <div className="flex items-start gap-5">
                     <div className="w-11 h-11 bg-emerald-900/50 rounded-xl flex items-center justify-center border border-emerald-800 shrink-0">
-                      <User className="text-emerald-400" size={20} />
+                      <Phone className="text-emerald-400" size={20} />
                     </div>
-                    <div>
-                      <p className="text-emerald-500 text-[10px] uppercase font-bold tracking-widest mb-1.5">
-                        Export Contact Person
+                    <div className="space-y-4">
+                      <p className="text-emerald-500 text-[10px] uppercase font-bold tracking-widest mb-0.5">
+                        Direct Partnership Lines
                       </p>
-                      <p className="text-lg font-serif text-emerald-100">
-                        Girish Manjunath
-                      </p>
+                      <div>
+                        <p className="text-xs font-mono uppercase tracking-wider text-emerald-400/60">Girish Manjunath</p>
+                        <a href="tel:+919845320088" className="text-sm font-medium hover:text-emerald-400 transition">+91 98453 20088</a>
+                      </div>
+                      <div>
+                        <p className="text-xs font-mono uppercase tracking-wider text-emerald-400/60">Prakash Nayak</p>
+                        <a href="tel:+919686671145" className="text-sm font-medium hover:text-emerald-400 transition">+91 96866 71145</a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -169,10 +175,26 @@ const Contact = () => {
                     >
                       <option value="" disabled>Select category...</option>
                       <option value="export">Export / Bulk Supply</option>
-                      <option value="oem">Private Label / OEM</option>
+                      <option value="contract">Private Label / Contract Manufacturing</option>
                       <option value="retail">Retail / Distribution</option>
-                      <option value="Prakritva">Prakritva Brand Related</option>
+                      <option value="prakritva">Prakritva Brand Related</option>
                       <option value="general">General Inquiry</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">
+                      Prakritva Product Range (If Applicable)
+                    </label>
+                    <select
+                      defaultValue=""
+                      className="w-full px-6 py-4 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:border-emerald-600 outline-none text-sm transition"
+                    >
+                      <option value="" disabled>Select Prakritva range...</option>
+                      <option value="pickles">Traditional Pickles (Gherkin / Babycorn)</option>
+                      <option value="beverages">Natural Beverages (Kokum Zest / Vinegar Elixir)</option>
+                      <option value="powders">Wellness Powders (ABC / Rosella)</option>
+                      <option value="all">Complete Brand Portfolio</option>
                     </select>
                   </div>
 
@@ -180,7 +202,7 @@ const Contact = () => {
 
                   <button
                     type="submit"
-                    className="w-full bg-emerald-600 text-white py-5 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-emerald-700 transition shadow-lg"
+                    className="w-full bg-emerald-600 text-white py-5 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-emerald-700 transition shadow-lg active:scale-[0.99]"
                   >
                     Submit Inquiry
                     <Send size={18} />

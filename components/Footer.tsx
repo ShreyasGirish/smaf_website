@@ -3,6 +3,7 @@ import {
   Globe, 
   Instagram, 
   Linkedin, 
+  Facebook,
   ShieldCheck, 
   Award,
   ChevronRight 
@@ -70,24 +71,49 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* COLUMN 2: BRAND PILLARS (4 Cols) */}
+          {/* COLUMN 2: BRAND PILLARS / QUICK NAVIGATION LINKS (4 Cols) */}
           <div className="md:col-span-4">
-            <h5 className="text-xs uppercase tracking-widest text-emerald-500 font-bold mb-5 relative pl-3">
+            <h5 className="text-xs uppercase tracking-widest text-emerald-500 font-bold mb-6 relative pl-3">
               <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-3 bg-emerald-600 rounded-full" />
               Core Excellence
             </h5>
+            
             <ul className="space-y-3 text-sm text-slate-400 font-light">
-              <li className="flex items-center gap-2.5 group">
-                <ChevronRight size={14} className="text-emerald-600 group-hover:translate-x-0.5 transition-transform" />
-                <span className="group-hover:text-slate-200 transition-colors">Premium Agricultural Products</span>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('brand')}
+                  className="flex items-center gap-2.5 group text-left hover:text-slate-100 transition-colors duration-200"
+                >
+                  <ChevronRight size={14} className="text-emerald-600 group-hover:translate-x-0.5 transition-transform" />
+                  <span>Prakritva Product Portfolio</span>
+                </button>
               </li>
-              <li className="flex items-center gap-2.5 group">
-                <ChevronRight size={14} className="text-emerald-600 group-hover:translate-x-0.5 transition-transform" />
-                <span className="group-hover:text-slate-200 transition-colors">Global Export Solutions</span>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('facility')}
+                  className="flex items-center gap-2.5 group text-left hover:text-slate-100 transition-colors duration-200"
+                >
+                  <ChevronRight size={14} className="text-emerald-600 group-hover:translate-x-0.5 transition-transform" />
+                  <span>Processing Hub Capabilities</span>
+                </button>
               </li>
-              <li className="flex items-center gap-2.5 group">
-                <ChevronRight size={14} className="text-emerald-600 group-hover:translate-x-0.5 transition-transform" />
-                <span className="group-hover:text-slate-200 transition-colors">Food Safety Excellence</span>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('quality')}
+                  className="flex items-center gap-2.5 group text-left hover:text-slate-100 transition-colors duration-200"
+                >
+                  <ChevronRight size={14} className="text-emerald-600 group-hover:translate-x-0.5 transition-transform" />
+                  <span>Quality & Global Compliance</span>
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('partnerships')}
+                  className="flex items-center gap-2.5 group text-left hover:text-slate-100 transition-colors duration-200"
+                >
+                  <ChevronRight size={14} className="text-emerald-600 group-hover:translate-x-0.5 transition-transform" />
+                  <span>Private Label Partnerships</span>
+                </button>
               </li>
             </ul>
           </div>
@@ -95,13 +121,13 @@ const Footer: React.FC = () => {
           {/* COLUMN 3: DIGITAL FOOTPRINT (3 Cols) */}
           <div className="md:col-span-3 flex flex-col justify-between">
             <div>
-              <h5 className="text-xs uppercase tracking-widest text-emerald-500 font-bold mb-5 relative pl-3">
+              <h5 className="text-xs uppercase tracking-widest text-emerald-500 font-bold mb-6 relative pl-3">
                 <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-3 bg-emerald-600 rounded-full" />
                 Digital Presence
               </h5>
               
-              {/* Social Icons Row */}
-              <div className="flex gap-3">
+              {/* Social Icons Row - UPGRADED WITH FACEBOOK ICON */}
+              <div className="flex flex-wrap gap-3">
                 <a 
                   href="https://linkedin.com" 
                   target="_blank"
@@ -121,6 +147,15 @@ const Footer: React.FC = () => {
                   <Instagram size={18} />
                 </a>
                 <a 
+                  href="https://facebook.com" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-11 h-11 rounded-xl bg-slate-900 border border-slate-800/40 flex items-center justify-center text-slate-400 hover:text-white hover:bg-emerald-800 hover:border-emerald-700 transition-all duration-300"
+                  aria-label="Facebook Page"
+                >
+                  <Facebook size={18} />
+                </a>
+                <a 
                   href="#" 
                   onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                   className="w-11 h-11 rounded-xl bg-slate-900 border border-slate-800/40 flex items-center justify-center text-slate-400 hover:text-white hover:bg-emerald-800 hover:border-emerald-700 transition-all duration-300"
@@ -135,9 +170,10 @@ const Footer: React.FC = () => {
             <div className="pt-6 md:pt-0">
               <button 
                 onClick={() => scrollToSection('contact')}
-                className="text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-emerald-400 transition-colors flex items-center gap-1.5"
+                className="text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-emerald-400 transition-colors flex items-center gap-1.5 group"
               >
-                Trade Inquiry Desk <ChevronRight size={14} />
+                Trade Inquiry Desk 
+                <ChevronRight size={14} className="text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-0.5 transition-all" />
               </button>
             </div>
           </div>
