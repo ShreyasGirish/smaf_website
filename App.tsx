@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -10,6 +9,10 @@ import PrakritvaBrand from './components/PrakritvaBrand';
 import Products from './components/Products';
 import Facility from './components/Facility';
 import Quality from './components/Quality';
+
+// 🟢 MOUNT REQUIREMENT 1: Dynamic Dummy Reviews Grid Loaded Cleanly
+import Reviews from './components/Reviews';
+
 import Innovation from './components/Innovation';
 import GlobalPresence from './components/GlobalPresence';
 import Investors from './components/Investors';
@@ -17,12 +20,14 @@ import Leadership from './components/Leadership';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
+// 🟢 MOUNT REQUIREMENT 2: Standalone Floating Lab Telemetry Assistant Widget
+import LabAssistant from './components/LabAssistant.tsx';
 
 function App() {
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -10% 0px'
+      threshold: 0.05, // Lowered threshold guarantees activation on smaller viewports
+      rootMargin: '0px 0px -5% 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -33,6 +38,7 @@ function App() {
       });
     }, observerOptions);
 
+    // Dynamic safe selector checks for standard fading classes across nodes
     const sections = document.querySelectorAll('.section-fade');
     sections.forEach(section => observer.observe(section));
 
@@ -40,8 +46,12 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white selection:bg-emerald-600 selection:text-white">
+    <div className="min-h-screen bg-white selection:bg-emerald-600 selection:text-white overflow-x-hidden">
+      
+      {/* 1. Global Navigation Module */}
       <Header />
+      
+      {/* Main Structural Flow Stack */}
       <main>
         <section id="home">
           <Hero />
@@ -79,6 +89,11 @@ function App() {
           <Quality />
         </section>
 
+        {/* 🟢 FIXED PLACEMENT: Reviews Section mounted clean with structural layout visibility */}
+        <section id="reviews" className="w-full bg-white relative block">
+          <Reviews />
+        </section>
+
         <section id="innovation" className="section-fade">
           <Innovation />
         </section>
@@ -88,27 +103,34 @@ function App() {
         </section>
 
         <section id="investors" className="section-fade">
-          <Investors/>
+          <Investors />
         </section>
 
         <section id="leadership" className="section-fade">
           <Leadership />
         </section>
         
-        <section id="contact" className="section-fade">
+        {/* Pinned Contact section with fallback layout stability */}
+        <section id="contact" className="w-full relative block">
           <Contact />
         </section>
       </main>
+      
+      {/* Footer Area */}
       <Footer />
       
-      {/* Scroll to top button */}
+      {/* Scroll to Top UI Trigger */}
       <button 
         onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
         aria-label="Scroll to top"
-        className="fixed bottom-8 right-8 z-40 bg-emerald-600 shadow-2xl p-4 rounded-full text-white hover:bg-emerald-700 transition-all duration-300 hidden md:flex items-center justify-center transform hover:scale-110 active:scale-95 border border-white/20"
+        className="fixed bottom-8 right-24 z-40 bg-emerald-600 shadow-2xl p-4 rounded-full text-white hover:bg-emerald-700 transition-all duration-300 hidden md:flex items-center justify-center transform hover:scale-110 active:scale-95 border border-white/20"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6"/></svg>
       </button>
+
+      {/* 🔬 Translucent Glowing Lab Assistant Module */}
+      <LabAssistant />
+
     </div>
   );
 }
