@@ -207,7 +207,7 @@ const Quality = () => {
           </div>
         </div>
 
-        {/* STRUCTURAL SECTION HEADER PLACEMENT */}
+        {/* NEW QUALITY PROCESS INTRODUCTION SECTION HEADER */}
         <div className="max-w-4xl mb-10 mt-20 border-l-2 border-emerald-500 pl-6 text-left">
           <span className="text-emerald-500 tracking-[0.2em] uppercase text-[10px] font-bold mb-2 block flex items-center gap-2">
             <Layers size={12} /> Sourcing Rigor & Operations

@@ -9,12 +9,13 @@ const Header = () => {
   /* PUBLIC ASSET PATH (Vite & Base-URL Safe for public/images/) */
   const logoImg = `${import.meta.env.BASE_URL}images/smaf-logo.jpg`;
 
+  // Repositioned 'Prakritva ✦' to sit perfectly after 'Facility' inside the layout sequence
   const navLinks = [
     { name: 'SMAF', id: 'home' },
     { name: 'Sustainability', id: 'sustainability' },
-    { name: 'Prakritva ✦', id: 'brand', special: true },
     { name: 'Products', id: 'products' },
     { name: 'Facility', id: 'facility' },
+    { name: 'Prakritva ✦', id: 'brand', special: true },
     { name: 'Investors', id: 'investors' }
   ];
 
@@ -25,9 +26,9 @@ const Header = () => {
       const sections = [
         'home',
         'sustainability',
-        'brand',
         'products',
         'facility',
+        'brand',
         'investors',
         'contact'
       ];
@@ -113,7 +114,7 @@ const Header = () => {
             </div>
           </div>
 
-          {/* Typography Stack matching image_45d845.png layout perfectly */}
+          {/* Typography Stack */}
           <div className="flex flex-col justify-center">
             {/* Combined main name on a single consistent horizontal line */}
             <h1 className="font-serif font-bold text-lg md:text-xl tracking-wide leading-none transition-colors duration-300">
