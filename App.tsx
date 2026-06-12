@@ -1,14 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import Admin from './components/Admin.tsx';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Stats from './components/Stats';
 import About from './components/About';
 import WhyChooseSMAF from './components/WhyChooseSMAF';
 import Sustainability from './components/Sustainability';
-import PrakritvaBrand from './components/PrakritvaBrand';
 import Products from './components/Products';
 import Facility from './components/Facility';
 import Quality from './components/Quality';
+
+// ✦ Prakritva Brand repositioned to align perfectly with the updated sequence requirements
+import PrakritvaBrand from './components/PrakritvaBrand';
 
 // 🟢 MOUNT REQUIREMENT 1: Dynamic Dummy Reviews Grid Loaded Cleanly
 import Reviews from './components/Reviews';
@@ -24,7 +27,17 @@ import Footer from './components/Footer';
 import LabAssistant from './components/LabAssistant.tsx';
 
 function App() {
+  // Tracks the active URL route string natively
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
   useEffect(() => {
+    // Listen for browser navigation changes smoothly
+    const handleLocationChange = () => {
+      setCurrentPath(window.location.pathname);
+    };
+
+    window.addEventListener('popstate', handleLocationChange);
+    
     const observerOptions = {
       threshold: 0.05, // Lowered threshold guarantees activation on smaller viewports
       rootMargin: '0px 0px -5% 0px'
@@ -42,7 +55,10 @@ function App() {
     const sections = document.querySelectorAll('.section-fade');
     sections.forEach(section => observer.observe(section));
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('popstate', handleLocationChange);
+    };
   }, []);
 
   return (
@@ -72,10 +88,6 @@ function App() {
         <section id="sustainability" className="section-fade">
           <Sustainability />
         </section>
-
-        <section id="brand" className="section-fade">
-          <PrakritvaBrand />
-        </section>
         
         <section id="products" className="section-fade">
           <Products />
@@ -87,6 +99,11 @@ function App() {
         
         <section id="quality" className="section-fade">
           <Quality />
+        </section>
+
+        {/* ✦ REPOSITIONED: Prakritva section mounted immediately after Quality and before Reviews */}
+        <section id="brand" className="section-fade">
+          <PrakritvaBrand />
         </section>
 
         {/* 🟢 FIXED PLACEMENT: Reviews Section mounted clean with structural layout visibility */}

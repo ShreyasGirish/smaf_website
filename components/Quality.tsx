@@ -21,11 +21,9 @@ import {
 } from 'lucide-react';
 
 const Quality = () => {
-  // Core Section Image Assets
   const labImg = `${import.meta.env.BASE_URL}images/quality-lab.jpg`;
   const inspectionImg = `${import.meta.env.BASE_URL}images/quality-inspection.jpg`;
 
-  // Structured Core 6 Global Clearance Ledger with Exact Registry Number Fidelity
   const complianceLedger = [
     {
       name: 'FSSC 22000 Version 6',
@@ -162,17 +160,13 @@ const Quality = () => {
                 key={i}
                 className="bg-slate-950/40 border border-slate-800/60 p-6 rounded-2xl flex flex-col justify-between hover:border-emerald-500/40 transition-all duration-300 group/card relative overflow-hidden shadow-xl"
               >
-                {/* Ambient Card Background Glow */}
                 <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 rounded-full blur-xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-300" />
                 
                 <div>
-                  {/* Card Badge & Vector Icon Layout Row */}
                   <div className="flex items-start justify-between gap-4 mb-5">
                     <span className="bg-emerald-950 text-emerald-400 font-mono text-[10px] uppercase font-bold px-2.5 py-1 rounded-md border border-emerald-900/40 tracking-wider">
                       {cert.badge}
                     </span>
-                    
-                    {/* Native Vector Icon Box Container */}
                     <div className="w-12 h-12 bg-emerald-950/20 rounded-xl border border-emerald-900/40 flex items-center justify-center shadow-inner transition-colors duration-300 group-hover/card:border-emerald-500/30">
                       {cert.icon}
                     </div>
@@ -190,7 +184,6 @@ const Quality = () => {
                   </p>
                 </div>
 
-                {/* Secure Target Registry Numbers Section */}
                 <div className="mt-6 pt-4 border-t border-slate-800/60 flex flex-col gap-1.5">
                   <span className="font-mono text-xs text-emerald-400 font-bold tracking-wider select-all break-all">
                     {cert.regNo}
@@ -216,7 +209,7 @@ const Quality = () => {
             Our Quality Assurance Framework
           </h3>
           <p className="text-slate-400 text-sm font-light mt-2 max-w-xl">
-            From critical field analytics to precise threshold checking, our structural pipeline rules out defects down to the individual crop level.
+            From critical field analytics and 10-barrel composition tracking to external independent trace element monitoring, our structural pipeline checks everything down to the individual crop level.
           </p>
         </div>
 
@@ -276,7 +269,7 @@ const Quality = () => {
                 </h3>
               </div>
               <p className="text-emerald-100/70 font-light leading-relaxed text-base">
-                Real-time 100% inspection for acidity, salt, and pH levels to ensure that every batch meets
+                Real-time 100% inspection for acidity, salt, and pH levels to ensure that every batch meets 
                 strict international safety thresholds and batch-formulated specifications before export clearance.
               </p>
             </div>
