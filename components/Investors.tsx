@@ -70,7 +70,7 @@ const Investors: React.FC = () => {
               { title: "Processing Line Scaling", desc: "Scaling annual factory capacity limits toward 3000+ MT to manage growing container trade metrics.", icon: <Factory size={22} /> },
               { title: "Agritech Buy-Back Sourcing", desc: "Direct coordination with 1200+ localized family farmers across strict non-GMO contract frameworks.", icon: <TrendingUp size={22} /> },
               { title: "Certified Global Safety", desc: "Full international trade transparency anchored by FSSC 22000 Version 6 and USFDA compliance audits.", icon: <ShieldCheck size={22} /> },
-              { title: "Cold-Chain Logistics Infrastructure", desc: "Building centralized pre-cooling networks and temperature-locked logistics matrices to safeguard raw crop arrivals.", icon: <CheckCircle size={22} /> }
+              { title: "Supply-Chain Logistics Infrastructure", desc: "Building centralized pre-cooling networks and temperature-locked logistics matrices to safeguard raw crop arrivals.", icon: <CheckCircle size={22} /> }
             ].map((card, index) => (
               <div key={index} className="bg-white border border-slate-100 p-8 rounded-[2.5rem] shadow-sm flex flex-col hover:border-emerald-200 transition-all duration-300">
                 <div className="w-11 h-11 bg-emerald-50 text-emerald-700 rounded-xl flex items-center justify-center mb-5 border border-emerald-100/40">{card.icon}</div>

@@ -108,7 +108,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => scrollToSection('partnerships')}
+                  onClick={() => scrollToSection('contact')}
                   className="flex items-center gap-2.5 group text-left hover:text-slate-100 transition-colors duration-200"
                 >
                   <ChevronRight size={14} className="text-emerald-600 group-hover:translate-x-0.5 transition-transform" />
@@ -129,7 +129,7 @@ const Footer: React.FC = () => {
               {/* Social Icons Row - UPGRADED WITH FACEBOOK ICON */}
               <div className="flex flex-wrap gap-3">
                 <a 
-                  href="https://linkedin.com" 
+                  href="https://www.linkedin.com/company/sri-mookambika-agro-foods-llp/" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-11 h-11 rounded-xl bg-slate-900 border border-slate-800/40 flex items-center justify-center text-slate-400 hover:text-white hover:bg-emerald-800 hover:border-emerald-700 transition-all duration-300"

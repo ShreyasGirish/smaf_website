@@ -7,9 +7,12 @@ import {
   Utensils,
   Leaf,
   Download,
-  Award,
   Maximize2,
-  X
+  X,
+  Eye,
+  Instagram,
+  MessageSquareShare,
+  LockOpen
 } from 'lucide-react';
 
 const PrakritvaBrand = () => {
@@ -21,9 +24,10 @@ const PrakritvaBrand = () => {
   const vinegarBottleImg = `${import.meta.env.BASE_URL}images/vinegar.jpg`;
   const abcPowderImg = `${import.meta.env.BASE_URL}images/abcpowder.jpg`;
   const rosellaPowderImg = `${import.meta.env.BASE_URL}images/rosellapowder.jpg`;
-  const innovationImg = `${import.meta.env.BASE_URL}images/prakritva2.jpg`;
+  const newProductImg = `${import.meta.env.BASE_URL}images/new-product.jpg`;
 
-  // Lightbox view state for Future Innovation Infographic
+  // Interactive Reveal Engine States
+  const [isRevealed, setIsRevealed] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -31,7 +35,7 @@ const PrakritvaBrand = () => {
     setMounted(true);
   }, []);
 
-  // Freeze background window scrolling when infographic lightbox is active
+  // Freeze background window scrolling when product layout lightbox is active
   useEffect(() => {
     if (isModalOpen) {
       document.body.style.overflow = "hidden";
@@ -63,6 +67,13 @@ const PrakritvaBrand = () => {
         .group:hover .animate-led-border {
           animation-duration: 1.5s;
         }
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.15; transform: scale(1); }
+          50% { opacity: 0.3; transform: scale(1.03); }
+        }
+        .animate-pulse-slow {
+          animation: pulse-slow 4s ease-in-out infinite;
+        }
       `}</style>
 
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
@@ -74,14 +85,12 @@ const PrakritvaBrand = () => {
             First Introduced at Krishi Mela 2025, Bengaluru
           </div>
 
-          {/* FIXED CRITICAL ALIGNMENT BLOCK FOR IMAGE_298BF1.PNG */}
           <div className="h-16 md:h-24 flex items-center justify-center mb-6 w-full">
             <img 
               src={brandLogoImg} 
               alt="Prakritva - Pure. Natural. Sustainable." 
               className="h-full w-auto object-contain mx-auto transform hover:scale-[1.01] transition-transform duration-300"
               onError={(e) => {
-                // Graceful typography fallback heading if asset deployment paths ever break locally
                 e.currentTarget.style.display = 'none';
                 const parent = e.currentTarget.parentElement;
                 if (parent) {
@@ -139,7 +148,6 @@ const PrakritvaBrand = () => {
                 className="bg-white rounded-[2.5rem] overflow-hidden flex flex-col justify-between shadow-sm border border-slate-100 transition-all duration-500 group"
               >
                 <div>
-                  {/* FULL-BLEED PORTRAIT AMBIENT BACKDROP WRAPPER */}
                   <div className="w-full h-[320px] sm:h-[420px] relative overflow-hidden bg-slate-50">
                     <img
                       src={p.img}
@@ -161,7 +169,6 @@ const PrakritvaBrand = () => {
                   </div>
                 </div>
                 
-                {/* UNIFORM REGULATORY BADGE ROW */}
                 <div className="px-8 md:px-10 pb-8 pt-4 border-t border-slate-50 bg-white relative z-20 flex items-center gap-2">
                   <span className="text-[9px] uppercase tracking-wider text-slate-400 font-bold bg-slate-100 px-2.5 py-1 rounded-full">
                     FSSAI Standard
@@ -188,16 +195,11 @@ const PrakritvaBrand = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-10">
-            
-            {/* Kokum Zest - PROMINENT LED BESTSELLER CARD */}
+            {/* Kokum Zest */}
             <div className="relative rounded-[2.5rem] p-[5px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group flex flex-col justify-between bg-white border border-slate-100 hover:-translate-y-1 z-10">
-              
-              {/* Vibrant LED Conic Beam Tracking Matrix */}
               <div className="absolute inset-[-500%] bg-[conic-gradient(from_0deg,transparent_20%,#f59e0b_40%,#10b981_50%,#f59e0b_60%,transparent_80%)] animate-led-border pointer-events-none" />
 
               <div className="relative z-10 w-full h-full bg-white rounded-[2.2rem] overflow-hidden flex flex-col justify-between flex-grow">
-                
-                {/* Gated Glassmorphic Bestseller Live Tag */}
                 <div className="absolute top-5 right-5 z-30 bg-emerald-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-2 shadow-xl border border-emerald-400/40 backdrop-blur-md">
                   <span className="w-2.5 h-2.5 bg-amber-400 rounded-full animate-ping" />
                   🔥 Bestseller • Krishi Mela 2025
@@ -218,9 +220,7 @@ const PrakritvaBrand = () => {
                     />
                   </div>
                   <div className="p-8 md:p-10 relative z-20 bg-white">
-                    <h4 className="text-2xl font-serif text-slate-800 mb-3 flex items-center gap-2">
-                      Kokum Zest 
-                    </h4>
+                    <h4 className="text-2xl font-serif text-slate-800 mb-3">Kokum Zest</h4>
                     <p className="text-slate-500 text-sm font-light leading-relaxed">
                       Cooling digestive drink made from sun-dried kokum and spices. The undisputed crowd favorite and highest-selling beverage choice.
                     </p>
@@ -339,78 +339,159 @@ const PrakritvaBrand = () => {
           </div>
         </div>
 
-        {/* FUTURE INNOVATION - INCORPORATING EMBEDDED MODAL LIGHTBOX TOGGLE */}
+        {/* 🔬 🟢 THE INTERACTIVE MYSTERY PRODUCT REVEAL HATCH */}
         <div className="mb-28">
           <div className="text-center mb-12">
-            <span className="text-amber-700 font-bold uppercase tracking-widest text-xs">
-              Future Innovation
+            <span className="text-amber-700 font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2">
+              <Sparkles size={14} className="text-amber-600" />
+              New Innovation
             </span>
-            <h3 className="text-4xl md:text-5xl font-serif mt-4 mb-6">
-              Beyond Traditional Products
+            <h3 className="text-4xl md:text-5xl font-serif mt-3 mb-4 text-slate-900 tracking-tight">
+              The Future of Natural Flavors
             </h3>
-            <p className="text-slate-600 max-w-3xl mx-auto text-lg">
-              Building on the tremendous validation received at <b>Krishi Mela 2025, Bengaluru</b>, Prakritva 
-              continues to explore sustainable ingredients, vegetable powders, and value-added 
-              innovations that convert raw agriculture into future-ready solutions.
+            <p className="text-slate-600 max-w-2xl mx-auto text-base font-light">
+              Our production labs have locked down a secret value-added blueprint. Tap the containment matrix below to crack open our latest field-to-table breakthrough.
             </p>
           </div>
 
-          <div 
-            onClick={() => setIsModalOpen(true)}
-            className="bg-white rounded-[3rem] overflow-hidden shadow-2xl border border-amber-100 relative cursor-zoom-in group/roadmap"
-          >
-            <img
-              src={innovationImg}
-              alt="Prakritva Future Products Roadmap and Dehydrated Powders Ecosystem"
-              className="w-full h-auto object-cover max-h-[520px] object-top transform group-hover/roadmap:scale-[1.01] transition duration-700 ease-out"
-            />
-            
-            <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover/roadmap:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
-              <div className="bg-[#115e59] text-white px-7 py-4 rounded-xl flex items-center gap-3 shadow-2xl font-sans font-bold tracking-wider text-sm border border-teal-500/30 transform translate-y-3 group-hover/roadmap:translate-y-0 transition-all duration-300">
-                <Maximize2 size={18} className="text-teal-300" />
-                <span>CLICK TO ENLARGE IMAGE</span>
+          {/* DYNAMIC SHUTTER HUB CONTAINER */}
+          <div className="max-w-5xl mx-auto">
+            <div 
+              className={`bg-slate-900 rounded-[3.5rem] border overflow-hidden shadow-2xl transition-all duration-700 relative flex flex-col md:flex-row items-stretch min-h-[460px] ${isRevealed ? 'border-emerald-500/30 ring-1 ring-emerald-500/10' : 'border-amber-200/60'}`}
+            >
+              {/* Left Side: Media Window */}
+              <div className="md:w-1/2 relative bg-[#F7F6F0] overflow-hidden flex items-center justify-center min-h-[380px] md:min-h-0">
+                {isRevealed ? (
+                  <div className="w-full h-full p-8 flex items-center justify-center relative animate-fade-in">
+                    {/* Fixed Contain: object-contain preserves high-res bounds without clipping labels */}
+                    <img
+                      src={newProductImg}
+                      alt="Prakritva New Product Breakthrough Sensation"
+                      className="w-full h-full max-h-[420px] object-contain relative z-10"
+                    />
+                    <button 
+                      onClick={(e) => { e.stopPropagation(); setIsModalOpen(true); }}
+                      className="absolute bottom-6 right-6 bg-slate-950/80 hover:bg-slate-950 text-white p-3.5 rounded-xl border border-white/10 shadow-xl transition active:scale-95 z-20 flex items-center gap-2 text-xs font-mono font-bold tracking-wider"
+                      title="Enlarge Spec Image"
+                    >
+                      <Maximize2 size={14} className="text-emerald-400" />
+                      <span>EXPAND VIEW</span>
+                    </button>
+                  </div>
+                ) : (
+                  /* Sealed Holographic Shutter Plate Layer - Catch click ONLY here */
+                  <div 
+                    onClick={() => setIsRevealed(true)}
+                    className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-emerald-950 flex flex-col items-center justify-center text-center p-8 select-none cursor-pointer group/hatch"
+                  >
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.08)_0%,transparent_70%)] animate-pulse-slow" />
+                    <div className="w-16 h-16 bg-amber-500/10 border border-amber-500/20 text-amber-500 rounded-full flex items-center justify-center mb-5 animate-bounce shadow-lg group-hover/hatch:scale-105 transition-transform">
+                      <Eye size={26} />
+                    </div>
+                    <span className="text-[10px] font-mono font-bold tracking-[0.3em] text-amber-500 uppercase">Vault State: Sealed</span>
+                    <h4 className="text-xl font-serif text-slate-100 mt-2 max-w-xs transition-colors group-hover/hatch:text-amber-400">Tap to Reveal Our New Product</h4>
+                  </div>
+                )}
               </div>
+
+              {/* Right Side: Copy Telemetry Window */}
+              <div className="md:w-1/2 p-10 md:p-14 flex flex-col justify-between bg-gradient-to-br from-slate-900 to-slate-950 text-white relative">
+                {isRevealed ? (
+                  <div className="space-y-6 animate-fade-in">
+                    <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-3.5 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-widest">
+                      <LockOpen size={12} /> Ready to taste it?
+                    </div>
+                    <h4 className="text-3xl md:text-4xl font-serif tracking-wide text-slate-100 leading-tight">
+                      Kokum Jeera <br />
+                      <span className="text-emerald-400">Sharbat Concentrate</span>
+                    </h4>
+                    <p className="text-slate-400 text-sm font-light leading-relaxed">
+                      Made to deliver an absolute botanical refresh. We have infused our signature premium sun-dried kokum base with carefully roasted cumin extractions, creating a balanced tangy digestif concentrate. Built directly inside our certified food systems for retail scale.
+                    </p>
+                    <div className="space-y-2.5 font-mono text-[10px] tracking-wider text-slate-500">
+                      <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-emerald-400 rounded-full" /> Crafted with 60% Pure Fruit Juice</p>
+                      <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-emerald-400 rounded-full" /> No Synthetic Colorants or Preservatives</p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="h-full flex flex-col justify-center space-y-4 opacity-40 select-none">
+                    <h4 className="text-3xl font-serif tracking-wide text-slate-400">Hidden Breakthrough...</h4>
+                    <p className="text-slate-500 text-sm font-light">
+                      A complete sensory evolution crafted directly out of specialized harvest nodes from Karnataka. Complete validation parameters will stream on-screen upon vault actuation.
+                    </p>
+                  </div>
+                )}
+
+                {/* 🔒 Footnote block without close/reset toggles so it locks down permanently */}
+                <div className="border-t border-slate-800/80 pt-6 mt-8 flex items-center justify-between font-mono text-[9px] font-black text-slate-500 uppercase tracking-widest">
+                  <span>Prakritva Product Matrix</span>
+                  {isRevealed && <span className="text-emerald-400 animate-pulse">✓ Product Unlocked</span>}
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
 
-        {/* BROCHURE CTA */}
-        <div className="bg-gradient-to-br from-amber-50 to-white rounded-[4rem] p-16 text-center border border-amber-200">
-          <h4 className="text-4xl font-serif mb-4">
+        {/* 🟢 UP-SCALED BROCHURE CTA & PROMINENT ACTION BUTTON HUB */}
+        <div className="bg-gradient-to-br from-amber-50 to-white rounded-[4rem] p-12 md:p-20 text-center border border-amber-200 shadow-sm">
+          <h4 className="text-4xl md:text-5xl font-serif mb-6 text-slate-900 leading-tight">
             Explore the Complete Prakritva Range
           </h4>
-          <p className="text-slate-600 mb-10 max-w-2xl mx-auto">
+          <p className="text-slate-600 mb-12 max-w-2xl mx-auto font-light text-base md:text-lg leading-relaxed">
             Discover our award-winning traditional pickles, highest-selling natural beverages, 
-            and foundational wellness powders launched on the farm fields.
+            and foundational wellness powders launched directly from the fields.
           </p>
 
-          <a
-            href={`${import.meta.env.BASE_URL}brochures/Prakritva_Product_Brochure.pdf`}
-            download
-            className="inline-flex items-center gap-3 bg-amber-800 hover:bg-amber-900 text-white px-10 py-5 rounded-2xl font-bold transition-all shadow-xl active:scale-95"
-          >
-            <Download size={20} />
-            Download Product Brochure
-          </a>
+          {/* Up-scaled Main Action Buttons with larger height and text scaling */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 max-w-3xl mx-auto mb-16">
+            <a
+              href={`${import.meta.env.BASE_URL}brochures/Prakritva_Product_Brochure.pdf`}
+              download
+              className="w-full sm:w-1/2 inline-flex items-center justify-center gap-4 bg-amber-800 hover:bg-amber-900 text-white px-10 py-6 rounded-2xl font-bold text-base tracking-wide transition-all shadow-xl hover:shadow-amber-900/10 active:scale-95"
+            >
+              <Download size={20} strokeWidth={2.5} />
+              Download Product Brochure
+            </a>
 
-          <p className="text-[11px] text-amber-700 mt-4 uppercase tracking-widest">
-            Retail • Export • Distribution • Krishi Mela Collection
-          </p>
-
-          <div className="mt-10">
             <button
               onClick={() => scrollToSection('contact')}
-              className="inline-flex items-center gap-3 text-amber-800 font-bold text-lg hover:text-amber-900 transition-colors"
+              className="w-full sm:w-1/2 inline-flex items-center justify-center gap-4 bg-white hover:bg-slate-50 text-slate-800 px-10 py-6 rounded-2xl font-bold text-base tracking-wide border-2 border-slate-200 transition-all shadow-md active:scale-95"
             >
-              <ShoppingBag size={20} />
-              Bulk Retail Inquiry
+              <ShoppingBag size={20} className="text-amber-800" strokeWidth={2.5} />
+              Bulk Sourcing Inquiry
             </button>
+          </div>
+
+          {/* INSTAGRAM DM LINK CONVERSION TIER MODULE */}
+          <div className="border-t border-slate-200/60 pt-12 max-w-3xl mx-auto">
+            <p className="text-xs font-mono uppercase tracking-[0.2em] text-slate-400 font-bold mb-5">
+              Instant Order Routing Dispatch
+            </p>
+            {/* Up-scaled prominent direct Instagram messenger pipeline */}
+            <a
+              href="https://instagram.com/direct/t/prakritva" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-4 bg-gradient-to-r from-purple-600 via-pink-600 to-amber-600 hover:opacity-98 text-white px-14 py-6 rounded-2xl font-black text-base tracking-widest uppercase shadow-2xl hover:shadow-pink-600/20 transition-all active:scale-[0.99] group/insta"
+            >
+              <img 
+                src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" 
+                alt="Instagram" 
+                className="w-5 h-5 invert brightness-200 group-hover:rotate-12 transition-transform duration-300"
+              />
+              <span>Order now to taste our latest products</span>
+              <MessageSquareShare size={18} className="text-white/80" strokeWidth={2.5} />
+            </a>
+            <p className="text-[11px] text-slate-400 mt-4 font-medium leading-relaxed max-w-md mx-auto">
+              Clicking activates a direct pipeline connection to send an immediate message to our DM channel.
+            </p>
           </div>
         </div>
 
       </div>
 
-      {/* INFOGRAPHIC LIGHTBOX MODAL CONTAINER PORTAL LAYER */}
+      {/* PRODUCT SPEC LIGHTBOX MODAL CONTAINER */}
       {mounted && isModalOpen && createPortal(
         <div 
           className="fixed inset-0 z-[99999] flex items-center justify-center p-4 backdrop-blur-md cursor-zoom-out animate-fade-in"
@@ -427,16 +508,16 @@ const PrakritvaBrand = () => {
           </button>
           
           <div 
-            className="w-full max-w-6xl relative z-10 flex flex-col items-center justify-center cursor-default"
+            className="w-full max-w-5xl relative z-10 flex flex-col items-center justify-center cursor-default"
             onClick={(e) => e.stopPropagation()}
           >
             <img 
-              src={innovationImg} 
-              alt="Prakritva Future Products Roadmap and Dehydrated Powders Ecosystem" 
-              className="w-full h-auto max-h-[85vh] rounded-2xl object-contain shadow-2xl border border-white/10 bg-white p-1"
+              src={newProductImg} 
+              alt="Prakritva New Product Breakthrough Sensation Blueprint" 
+              className="max-w-full max-h-[82vh] rounded-2xl object-contain shadow-2xl border border-white/10 bg-slate-950 p-1"
             />
-            <p className="text-white/90 font-serif text-sm md:text-base mt-4 bg-slate-900/80 px-6 py-2 rounded-full shadow-md border border-white/5">
-              Prakritva Future Products Roadmap and Vegetable Powders Ecosystem
+            <p className="text-white/90 font-serif text-sm mt-4 bg-slate-900/80 px-6 py-2 rounded-full shadow-md border border-white/5">
+              Prakritva - Kokum Jeera Sharbat Concentrate Overview
             </p>
           </div>
         </div>,
