@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 
 const WhyChooseSMAF = () => {
-  // Lightbox view state for Prakritva Image
+  // Lightbox view state for Image Portal
   const [activeImage, setActiveImage] = useState<{ src: string; alt: string } | null>(null);
   const [mounted, setMounted] = useState(false);
 
@@ -54,8 +54,6 @@ const WhyChooseSMAF = () => {
       icon: <Globe2 size={24} />
     }
   ];
-
-  const innovationImg = `${import.meta.env.BASE_URL}images/prakritva-innovation.jpg`;
 
   return (
     <section
@@ -132,7 +130,7 @@ const WhyChooseSMAF = () => {
         </div>
 
         {/* SECTION 2: RELIABLE SUPPLY */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-28 group">
+        <div className="grid lg:grid-cols-2 gap-16 items-center mb-32 group">
           <div className="order-2 lg:order-1 space-y-6">
             <span className="bg-emerald-50 text-emerald-800 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-emerald-100/60">
               Reliable Raw Material Supply
@@ -156,46 +154,6 @@ const WhyChooseSMAF = () => {
               className="w-full h-[460px] object-cover transform group-hover:scale-102 transition duration-700 ease-out"
             />
             <div className="absolute inset-0 bg-gradient-to-tl from-slate-950/40 via-transparent to-transparent pointer-events-none" />
-          </div>
-        </div>
-
-        {/* SECTION 3: INNOVATION */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-32 group/section">
-          <div 
-            onClick={() => setActiveImage({ src: innovationImg, alt: "Prakritva Product Value-Added Innovation" })}
-            className="overflow-hidden rounded-[3rem] shadow-md border border-slate-200/60 bg-white relative cursor-zoom-in group/img h-[460px]"
-          >
-            <img
-              src={innovationImg}
-              alt="Innovation"
-              className="w-full h-full object-cover transform group-hover/section:scale-102 transition duration-700 ease-out"
-            />
-            
-            {/* Interactive User Instruction Prompt Sheet Overlay */}
-            <div className="absolute inset-0 bg-slate-950/30 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center text-white p-4">
-              <div className="bg-emerald-800/90 backdrop-blur-sm px-5 py-3 rounded-2xl flex items-center gap-2.5 shadow-lg border border-emerald-500/30 transform translate-y-2 group-hover/img:translate-y-0 transition-transform duration-300">
-                <Maximize2 size={16} className="text-emerald-300 animate-pulse" />
-                <span className="text-xs font-bold tracking-wider uppercase">Click to enlarge image</span>
-              </div>
-            </div>
-
-            <div className="absolute inset-0 bg-gradient-to-tr from-slate-950/40 via-transparent to-transparent pointer-events-none" />
-          </div>
-
-          <div className="space-y-6">
-            <span className="bg-emerald-50 text-emerald-800 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-emerald-100/60">
-              Innovation & Value Creation
-            </span>
-
-            <h3 className="text-3xl md:text-4xl font-serif text-slate-900 leading-tight">
-              Beyond Traditional Processing
-            </h3>
-
-            <p className="text-slate-600 leading-relaxed font-light text-base">
-              Through Prakritva, we explore value-added products, ingredient
-              concepts and sustainable utilization opportunities that transform
-              agricultural resources into future-ready solutions.
-            </p>
           </div>
         </div>
 
@@ -241,7 +199,6 @@ const WhyChooseSMAF = () => {
             <X size={24} />
           </button>
           
-          {/* FIXED: Changed from max-w-4xl to max-w-6xl so detailed infographics spread wide and look clear */}
           <div 
             className="w-full max-w-6xl relative z-10 flex flex-col items-center justify-center cursor-default"
             onClick={(e) => e.stopPropagation()}
@@ -249,7 +206,7 @@ const WhyChooseSMAF = () => {
             <img 
               src={activeImage.src} 
               alt={activeImage.alt} 
-              className="w-full max-h-[85vh] rounded-2xl object-contain shadow-2xl border border-white/10"
+              className="w-full max-h-[85vh] rounded-2xl object-contain shadow-2xl border border-white/10 bg-white"
             />
             <p className="text-white/90 font-serif text-sm md:text-base mt-6 bg-slate-900/80 px-6 py-2 rounded-full shadow-md border border-white/5">
               {activeImage.alt}

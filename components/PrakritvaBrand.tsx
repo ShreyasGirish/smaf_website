@@ -25,10 +25,11 @@ const PrakritvaBrand = () => {
   const abcPowderImg = `${import.meta.env.BASE_URL}images/abcpowder.jpg`;
   const rosellaPowderImg = `${import.meta.env.BASE_URL}images/rosellapowder.jpg`;
   const newProductImg = `${import.meta.env.BASE_URL}images/new-product.jpg`;
+  const vegetablePowdersImg = `${import.meta.env.BASE_URL}images/prakritva2.jpg`;
 
   // Interactive Reveal Engine States
   const [isRevealed, setIsRevealed] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeModalImg, setActiveModalImg] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -37,7 +38,7 @@ const PrakritvaBrand = () => {
 
   // Freeze background window scrolling when product layout lightbox is active
   useEffect(() => {
-    if (isModalOpen) {
+    if (activeModalImg) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -45,7 +46,7 @@ const PrakritvaBrand = () => {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [isModalOpen]);
+  }, [activeModalImg]);
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
@@ -339,7 +340,7 @@ const PrakritvaBrand = () => {
           </div>
         </div>
 
-        {/* 🔬 🟢 THE INTERACTIVE MYSTERY PRODUCT REVEAL HATCH */}
+        {/* 🔬 🟢 THE INTERACTIVE MYSTERY PRODUCT REVEAL HATCH WITH UNIFIED GLASSMORPHISM */}
         <div className="mb-28">
           <div className="text-center mb-12">
             <span className="text-amber-700 font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2">
@@ -354,82 +355,113 @@ const PrakritvaBrand = () => {
             </p>
           </div>
 
-          {/* DYNAMIC SHUTTER HUB CONTAINER */}
-          <div className="max-w-5xl mx-auto">
-            <div 
-              className={`bg-slate-900 rounded-[3.5rem] border overflow-hidden shadow-2xl transition-all duration-700 relative flex flex-col md:flex-row items-stretch min-h-[460px] ${isRevealed ? 'border-emerald-500/30 ring-1 ring-emerald-500/10' : 'border-amber-200/60'}`}
-            >
-              {/* Left Side: Media Window */}
-              <div className="md:w-1/2 relative bg-[#F7F6F0] overflow-hidden flex items-center justify-center min-h-[380px] md:min-h-0">
-                {isRevealed ? (
-                  <div className="w-full h-full p-8 flex items-center justify-center relative animate-fade-in">
-                    {/* Fixed Contain: object-contain preserves high-res bounds without clipping labels */}
+          {/* DYNAMIC SHUTTER HUB GRID CONTAINER */}
+          <div className="max-w-6xl mx-auto">
+            {!isRevealed ? (
+              /* Sealed Shutter Gate (Tapping triggers irreversible permanent reveal state) */
+              <div 
+                onClick={() => setIsRevealed(true)}
+                className="bg-slate-900 rounded-[3.5rem] border border-amber-200/60 min-h-[480px] relative overflow-hidden flex flex-col items-center justify-center text-center p-8 select-none cursor-pointer group/hatch shadow-2xl transition-all duration-500 hover:scale-[1.005]"
+              >
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.08)_0%,transparent_70%)] animate-pulse-slow" />
+                <div className="w-16 h-16 bg-amber-500/10 border border-amber-500/20 text-amber-500 rounded-full flex items-center justify-center mb-5 animate-bounce shadow-lg group-hover/hatch:scale-105 transition-transform">
+                  <Eye size={26} />
+                </div>
+                <span className="text-[10px] font-mono font-bold tracking-[0.3em] text-amber-500 uppercase">Catalogue Status: Locked</span>
+                <h4 className="text-2xl font-serif text-slate-100 mt-2 max-w-md transition-colors group-hover/hatch:text-amber-400">Tap to explore the new range of products</h4>
+              </div>
+            ) : (
+              /* Revealed Dual Card Layout - Displays both Concentrate and Powders with matched glass effects */
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch animate-fade-in">
+                
+                {/* 🟢 RANGE ITEM 1: KOKUM JEERA SHARBAT CONCENTRATE */}
+                <div className="bg-slate-900 rounded-[3.5rem] border border-emerald-500/30 overflow-hidden flex flex-col justify-between shadow-2xl relative">
+                  {/* Media Frame with mirror glass blurred back-layer texture */}
+                  <div className="w-full h-[360px] relative bg-slate-950 flex items-center justify-center p-6">
                     <img
                       src={newProductImg}
-                      alt="Prakritva New Product Breakthrough Sensation"
-                      className="w-full h-full max-h-[420px] object-contain relative z-10"
+                      alt=""
+                      className="w-full h-full object-cover absolute inset-0 blur-3xl opacity-40 scale-125 pointer-events-none"
+                      aria-hidden="true"
+                    />
+                    <div className="absolute inset-0 bg-slate-950/20 backdrop-blur-sm pointer-events-none" />
+                    <img
+                      src={newProductImg}
+                      alt="Kokum Jeera Sharbat Concentrate"
+                      className="w-full h-full max-h-[320px] object-contain relative z-10 transition-transform duration-500 hover:scale-103"
                     />
                     <button 
-                      onClick={(e) => { e.stopPropagation(); setIsModalOpen(true); }}
-                      className="absolute bottom-6 right-6 bg-slate-950/80 hover:bg-slate-950 text-white p-3.5 rounded-xl border border-white/10 shadow-xl transition active:scale-95 z-20 flex items-center gap-2 text-xs font-mono font-bold tracking-wider"
-                      title="Enlarge Spec Image"
+                      onClick={() => setActiveModalImg(newProductImg)}
+                      className="absolute bottom-5 right-5 bg-slate-950/80 hover:bg-slate-950 text-white p-3 rounded-xl border border-white/10 shadow-md transition active:scale-95 z-20 flex items-center gap-2 text-xs font-mono font-bold"
                     >
-                      <Maximize2 size={14} className="text-emerald-400" />
+                      <Maximize2 size={13} className="text-emerald-400" />
                       <span>EXPAND VIEW</span>
                     </button>
                   </div>
-                ) : (
-                  /* Sealed Holographic Shutter Plate Layer - Catch click ONLY here */
-                  <div 
-                    onClick={() => setIsRevealed(true)}
-                    className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-emerald-950 flex flex-col items-center justify-center text-center p-8 select-none cursor-pointer group/hatch"
-                  >
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.08)_0%,transparent_70%)] animate-pulse-slow" />
-                    <div className="w-16 h-16 bg-amber-500/10 border border-amber-500/20 text-amber-500 rounded-full flex items-center justify-center mb-5 animate-bounce shadow-lg group-hover/hatch:scale-105 transition-transform">
-                      <Eye size={26} />
+                  
+                  {/* Information Panel with rich Glassmorphism */}
+                  <div className="p-8 flex-grow flex flex-col justify-between bg-white/[0.03] backdrop-blur-md border-t border-white/10 text-white">
+                    <div className="space-y-4">
+                      <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest">
+                        <LockOpen size={10} /> Concentrate Element
+                      </div>
+                      <h4 className="text-2xl font-serif text-slate-100">Kokum Jeera Sharbat Concentrate</h4>
+                      <p className="text-slate-400 text-xs font-light leading-relaxed">
+                        Engineered to deliver an absolute botanical refresh. We have infused our signature premium sun-dried kokum base with carefully roasted cumin extractions, creating a balanced tangy digestif concentrate.
+                      </p>
                     </div>
-                    <span className="text-[10px] font-mono font-bold tracking-[0.3em] text-amber-500 uppercase">Vault State: Sealed</span>
-                    <h4 className="text-xl font-serif text-slate-100 mt-2 max-w-xs transition-colors group-hover/hatch:text-amber-400">Tap to Reveal Our New Product</h4>
-                  </div>
-                )}
-              </div>
-
-              {/* Right Side: Copy Telemetry Window */}
-              <div className="md:w-1/2 p-10 md:p-14 flex flex-col justify-between bg-gradient-to-br from-slate-900 to-slate-950 text-white relative">
-                {isRevealed ? (
-                  <div className="space-y-6 animate-fade-in">
-                    <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-3.5 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-widest">
-                      <LockOpen size={12} /> Ready to taste it?
-                    </div>
-                    <h4 className="text-3xl md:text-4xl font-serif tracking-wide text-slate-100 leading-tight">
-                      Kokum Jeera <br />
-                      <span className="text-emerald-400">Sharbat Concentrate</span>
-                    </h4>
-                    <p className="text-slate-400 text-sm font-light leading-relaxed">
-                      Made to deliver an absolute botanical refresh. We have infused our signature premium sun-dried kokum base with carefully roasted cumin extractions, creating a balanced tangy digestif concentrate. Built directly inside our certified food systems for retail scale.
-                    </p>
-                    <div className="space-y-2.5 font-mono text-[10px] tracking-wider text-slate-500">
-                      <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-emerald-400 rounded-full" /> Crafted with 60% Pure Fruit Juice</p>
-                      <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-emerald-400 rounded-full" /> No Synthetic Colorants or Preservatives</p>
+                    <div className="border-t border-white/10 pt-4 mt-6 font-mono text-[9px] text-slate-500 uppercase tracking-widest flex justify-between">
+                      <span>Ready to taste it?</span>
+                      <span className="text-emerald-400">60% Fruit Juice</span>
                     </div>
                   </div>
-                ) : (
-                  <div className="h-full flex flex-col justify-center space-y-4 opacity-40 select-none">
-                    <h4 className="text-3xl font-serif tracking-wide text-slate-400">Hidden Breakthrough...</h4>
-                    <p className="text-slate-500 text-sm font-light">
-                      A complete sensory evolution crafted directly out of specialized harvest nodes from Karnataka. Complete validation parameters will stream on-screen upon vault actuation.
-                    </p>
-                  </div>
-                )}
-
-                {/* 🔒 Footnote block without close/reset toggles so it locks down permanently */}
-                <div className="border-t border-slate-800/80 pt-6 mt-8 flex items-center justify-between font-mono text-[9px] font-black text-slate-500 uppercase tracking-widest">
-                  <span>Prakritva Product Matrix</span>
-                  {isRevealed && <span className="text-emerald-400 animate-pulse">✓ Product Unlocked</span>}
                 </div>
-              </div>
 
-            </div>
+                {/* 🟢 RANGE ITEM 2: DEHYDRATED VEGETABLE POWDERS (prakritva2.jpg) */}
+                <div className="bg-slate-900 rounded-[3.5rem] border border-emerald-500/30 overflow-hidden flex flex-col justify-between shadow-2xl relative">
+                  {/* Media Frame with mirror glass blurred back-layer texture matching layout 1 */}
+                  <div className="w-full h-[360px] relative bg-slate-950 flex items-center justify-center p-6">
+                    <img
+                      src={vegetablePowdersImg}
+                      alt=""
+                      className="w-full h-full object-cover absolute inset-0 blur-3xl opacity-40 scale-125 pointer-events-none"
+                      aria-hidden="true"
+                    />
+                    <div className="absolute inset-0 bg-slate-950/20 backdrop-blur-sm pointer-events-none" />
+                    <img
+                      src={vegetablePowdersImg}
+                      alt="Advanced Vegetable Powders Portfolio"
+                      className="w-full h-full max-h-[320px] object-contain relative z-10 transition-transform duration-500 hover:scale-103"
+                    />
+                    <button 
+                      onClick={() => setActiveModalImg(vegetablePowdersImg)}
+                      className="absolute bottom-5 right-5 bg-slate-950/80 hover:bg-slate-950 text-white p-3 rounded-xl border border-white/10 shadow-md transition active:scale-95 z-20 flex items-center gap-2 text-xs font-mono font-bold"
+                    >
+                      <Maximize2 size={13} className="text-emerald-400" />
+                      <span>EXPAND VIEW</span>
+                    </button>
+                  </div>
+                  
+                  {/* Information Panel with identical Glassmorphism matching layout 1 */}
+                  <div className="p-8 flex-grow flex flex-col justify-between bg-white/[0.03] backdrop-blur-md border-t border-white/10 text-white">
+                    <div className="space-y-4">
+                      <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest">
+                        <LockOpen size={10} /> Dehydrated Matrix
+                      </div>
+                      <h4 className="text-2xl font-serif text-slate-100">Advanced Vegetable Powders</h4>
+                      <p className="text-slate-400 text-xs font-light leading-relaxed">
+                        Sustainable goodness dehydrated to absolute perfection. Our infrastructure line locks down highly concentrated Cucumber, Spinach, Carrot, Beetroot, Tomato, Onion, and Garlic powders processed for long shelf-life export networks.
+                      </p>
+                    </div>
+                    <div className="border-t border-white/10 pt-4 mt-6 font-mono text-[9px] text-slate-500 uppercase tracking-widest flex justify-between">
+                      <span>Ready to taste it?</span>
+                      <span className="text-emerald-400">FSSC 22000 Certified</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            )}
           </div>
         </div>
 
@@ -443,7 +475,6 @@ const PrakritvaBrand = () => {
             and foundational wellness powders launched directly from the fields.
           </p>
 
-          {/* Up-scaled Main Action Buttons with larger height and text scaling */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 max-w-3xl mx-auto mb-16">
             <a
               href={`${import.meta.env.BASE_URL}brochures/Prakritva_Product_Brochure.pdf`}
@@ -468,12 +499,11 @@ const PrakritvaBrand = () => {
             <p className="text-xs font-mono uppercase tracking-[0.2em] text-slate-400 font-bold mb-5">
               Instant Order Routing Dispatch
             </p>
-            {/* Up-scaled prominent direct Instagram messenger pipeline */}
             <a
               href="https://instagram.com/direct/t/prakritva" 
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-4 bg-gradient-to-r from-purple-600 via-pink-600 to-amber-600 hover:opacity-98 text-white px-14 py-6 rounded-2xl font-black text-base tracking-widest uppercase shadow-2xl hover:shadow-pink-600/20 transition-all active:scale-[0.99] group/insta"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-4 bg-gradient-to-r from-purple-600 via-pink-600 to-amber-600 hover:opacity-98 text-white px-14 py-6 rounded-2xl font-black text-sm tracking-widest uppercase shadow-2xl hover:shadow-pink-600/20 transition-all active:scale-[0.99] group/insta"
             >
               <img 
                 src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" 
@@ -491,18 +521,18 @@ const PrakritvaBrand = () => {
 
       </div>
 
-      {/* PRODUCT SPEC LIGHTBOX MODAL CONTAINER */}
-      {mounted && isModalOpen && createPortal(
+      {/* FULL COGNITIVE FRAMEWORK LIGHTBOX MODAL CONTAINER */}
+      {mounted && activeModalImg && createPortal(
         <div 
           className="fixed inset-0 z-[99999] flex items-center justify-center p-4 backdrop-blur-md cursor-zoom-out animate-fade-in"
           style={{ width: '100vw', height: '100vh', top: 0, left: 0 }}
-          onClick={() => setIsModalOpen(false)}
+          onClick={() => setActiveModalImg(null)}
         >
           <div className="absolute inset-0 bg-slate-950/90 pointer-events-none" />
           
           <button 
             className="absolute top-6 right-6 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-3 rounded-full transition-all duration-200 z-[100000] active:scale-95"
-            onClick={() => setIsModalOpen(false)}
+            onClick={() => setActiveModalImg(null)}
           >
             <X size={24} />
           </button>
@@ -512,12 +542,12 @@ const PrakritvaBrand = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <img 
-              src={newProductImg} 
-              alt="Prakritva New Product Breakthrough Sensation Blueprint" 
-              className="max-w-full max-h-[82vh] rounded-2xl object-contain shadow-2xl border border-white/10 bg-slate-950 p-1"
+              src={activeModalImg} 
+              alt="Prakritva Product Range Expanded Sheet" 
+              className="max-w-full max-h-[82vh] rounded-2xl object-contain shadow-2xl border border-white/10 bg-white p-2"
             />
             <p className="text-white/90 font-serif text-sm mt-4 bg-slate-900/80 px-6 py-2 rounded-full shadow-md border border-white/5">
-              Prakritva - Kokum Jeera Sharbat Concentrate Overview
+              {activeModalImg === newProductImg ? 'Prakritva - Kokum Jeera Sharbat Concentrate Overview' : 'Prakritva - Dehydrated Premium Vegetable Powders Array'}
             </p>
           </div>
         </div>,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   Globe, 
   Instagram, 
@@ -6,12 +6,18 @@ import {
   Facebook,
   ShieldCheck, 
   Award,
-  ChevronRight 
+  ChevronRight,
+  X,
+  Scale,
+  ShieldAlert
 } from 'lucide-react';
 
 const Footer: React.FC = () => {
   /* PUBLIC ASSET PATH (Vite & Base-URL Safe for public/images/) */
   const logoImg = `${import.meta.env.BASE_URL}images/smaf-logo.jpg`;
+
+  // Modal display management states
+  const [legalModal, setLegalModal] = useState<'privacy' | 'terms' | null>(null);
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
@@ -126,7 +132,7 @@ const Footer: React.FC = () => {
                 Digital Presence
               </h5>
               
-              {/* Social Icons Row - UPGRADED WITH FACEBOOK ICON */}
+              {/* Social Icons Row */}
               <div className="flex flex-wrap gap-3">
                 <a 
                   href="https://www.linkedin.com/company/sri-mookambika-agro-foods-llp/" 
@@ -184,12 +190,109 @@ const Footer: React.FC = () => {
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
           <p>© 2026 Sri Mookambika Agro Foods LLP. All rights reserved.</p>
           <div className="flex gap-6 font-light">
-            <a href="#privacy" className="hover:text-slate-300 transition-colors">Privacy Policy</a>
-            <a href="#terms" className="hover:text-slate-300 transition-colors">Terms of Service</a>
+            <button 
+              onClick={() => setLegalModal('privacy')} 
+              className="hover:text-slate-300 transition-colors bg-transparent border-0 cursor-pointer outline-none"
+            >
+              Privacy Policy
+            </button>
+            <button 
+              onClick={() => setLegalModal('terms')} 
+              className="hover:text-slate-300 transition-colors bg-transparent border-0 cursor-pointer outline-none"
+            >
+              Terms of Service
+            </button>
           </div>
         </div>
 
       </div>
+
+      {/* 🟢 NATIVE MODAL POPUP LAYER FOR PRIVACY POLICY & TERMS OF SERVICE */}
+      {legalModal && (
+        <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 backdrop-blur-md animate-fade-in">
+          <div className="absolute inset-0 bg-slate-950/80" onClick={() => setLegalModal(null)} />
+          
+          <div className="bg-white text-slate-900 rounded-[2.5rem] w-full max-w-3xl max-h-[80vh] overflow-hidden relative shadow-2xl flex flex-col border border-slate-100">
+            
+            {/* Modal Header Panel */}
+            <div className="p-6 md:p-8 border-b border-slate-100 flex items-center justify-between shrink-0 bg-slate-50 rounded-t-[2.5rem]">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-700">
+                  {legalModal === 'privacy' ? <ShieldAlert size={20} /> : <Scale size={20} />}
+                </div>
+                <div>
+                  <h3 className="text-xl font-serif font-bold text-slate-900">
+                    {legalModal === 'privacy' ? 'Privacy Policy' : 'Terms of Service'}
+                  </h3>
+                  <p className="text-[10px] font-mono text-slate-400 uppercase tracking-wider mt-0.5">
+                    Sri Mookambika Agro Foods LLP • Last Updated: June 2026
+                  </p>
+                </div>
+              </div>
+              <button 
+                onClick={() => setLegalModal(null)}
+                className="text-slate-400 hover:text-slate-600 bg-white border border-slate-200 p-2.5 rounded-full shadow-sm transition active:scale-95"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            {/* Modal Body Content (Scrollable Framework) */}
+            <div className="p-6 md:p-8 overflow-y-auto font-sans text-sm text-slate-600 space-y-6 leading-relaxed">
+              {legalModal === 'privacy' ? (
+                <>
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-base mb-2">1. Information Collection & Intent</h4>
+                    <p>We collect corporate credentials, including name, corporate email domain, and business classification, strictly when submitted through our trade inquiry or gated investor pitch deck modules. This information is used exclusively to evaluate commercial specifications and establish secure business-to-business communications.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-base mb-2">2. Data Security & Storage Transparency</h4>
+                    <p>All data captured natively through this platform is recorded into secure database tables utilizing industry-standard cryptographic access protocols. We do not sell, rent, or lease our corporate communication sheets or client procurement parameters to third-party brokers or external marketing lists.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-base mb-2">3. Gated Document Control</h4>
+                    <p>By inputting credentials to ungate the Corporate Portfolio Deck, you acknowledge that access metrics and timestamps are securely logged on our server to preserve the confidentiality of our facility metrics and commercial projections.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-base mb-2">4. Regulatory Inquiries</h4>
+                    <p>For data rectification queries or to modify active procurement logs on our servers, please contact our administrative suite directly at <a href="mailto:smafoodsindia@gmail.com" className="text-emerald-600 font-bold hover:underline">smafoodsindia@gmail.com</a>.</p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-base mb-2">1. Commercial Limitations & Scope</h4>
+                    <p>The technical specifications, grading thresholds, and processing data shared on this portal are for preliminary commercial procurement evaluation only. Official delivery parameters, chemical brining matrices, and contract packing obligations are established exclusively through signed standard legal bills of lading and purchase orders.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-base mb-2">2. Verification Ledger Usage</h4>
+                    <p>The license and registration numbers posted inside our Quality suite (FSSC 22000, USFDA, FSSAI) are displayed solely to demonstrate legitimate trade transparency. Any unauthorized copying, mirroring, or fraudulent reproduction of these regulatory assets is strictly prohibited and subject to legal enforcement under Indian trade laws.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-base mb-2">3. Digital Order Routing Channels</h4>
+                    <p>When utilizing our direct Instagram DM pipeline linkage for retail ranges or submitting wholesale data through Supabase data forms, you agree to submit legitimate business metrics and accurate corporate credentials.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-base mb-2">4. Legal Jurisdiction</h4>
+                    <p>These terms of digital interaction are governed by and construed in accordance with the regulatory frame laws of the State of Karnataka, India. Any disputes arising from the usage of this digital domain fall under the exclusive jurisdiction of the corporate registries in Hubballi.</p>
+                  </div>
+                </>
+              )}
+            </div>
+
+            {/* Modal Footer */}
+            <div className="p-4 bg-slate-50 border-t border-slate-100 text-center shrink-0 rounded-b-[2.5rem]">
+              <button 
+                onClick={() => setLegalModal(null)}
+                className="bg-slate-900 hover:bg-slate-950 text-white text-xs font-bold uppercase tracking-wider px-6 py-2.5 rounded-xl transition"
+              >
+                Acknowledge Framework
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
     </footer>
   );
 };

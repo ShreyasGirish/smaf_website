@@ -154,7 +154,7 @@ const fetchData = useCallback(async () => {
 
   // ── admin auth ────────────────────────────────────────────────────────────
   const verifyAdmin = () => {
-    if (adminKey === 'smaf2026') {
+    if (adminKey === 'admin@smaf') {
       setShowAdminPortal(true);
       setIsOpen(false);
       setShowLogin(false);

@@ -52,7 +52,7 @@ const Innovation = () => {
               </div>
 
               <h3 className="text-3xl md:text-5xl font-serif mb-4">
-                Best Idea Award
+                Best Innovation Award
               </h3>
 
               <p className="text-yellow-300 font-semibold text-lg mb-4">
