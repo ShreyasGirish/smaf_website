@@ -144,7 +144,7 @@ const Footer: React.FC = () => {
                   <Linkedin size={18} />
                 </a>
                 <a 
-                  href="https://instagram.com" 
+                  href="https://www.instagram.com/smafoodsindia?igsh=MWNxenA4d2s4NGdocg==" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-11 h-11 rounded-xl bg-slate-900 border border-slate-800/40 flex items-center justify-center text-slate-400 hover:text-white hover:bg-emerald-800 hover:border-emerald-700 transition-all duration-300"
@@ -153,7 +153,7 @@ const Footer: React.FC = () => {
                   <Instagram size={18} />
                 </a>
                 <a 
-                  href="https://facebook.com" 
+                  href="https://www.facebook.com/share/1aXFRNLyiq/" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-11 h-11 rounded-xl bg-slate-900 border border-slate-800/40 flex items-center justify-center text-slate-400 hover:text-white hover:bg-emerald-800 hover:border-emerald-700 transition-all duration-300"
