@@ -17,6 +17,7 @@ import PrakritvaBrand from './components/PrakritvaBrand';
 import Reviews from './components/Reviews';
 
 import Innovation from './components/Innovation';
+import Events from './components/Events';
 import GlobalPresence from './components/GlobalPresence';
 import Investors from './components/Investors';
 import Leadership from './components/Leadership';
@@ -113,6 +114,10 @@ function App() {
 
         <section id="innovation" className="section-fade">
           <Innovation />
+        </section>
+
+        <section id="events" className="section-fade">
+          <Events />
         </section>
 
         <section id="global" className="section-fade">

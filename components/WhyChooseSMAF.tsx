@@ -107,7 +107,7 @@ const WhyChooseSMAF = () => {
             <p className="text-slate-600 leading-relaxed font-light text-base">
               Our sourcing ecosystem is built around close farmer engagement,
               field-level quality monitoring and traceable procurement
-              practices across **Karnataka and Andhra Pradesh’s** gherkin-growing regions.
+              practices across <b>Karnataka and Andhra Pradesh’s</b> gherkin-growing regions.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4">

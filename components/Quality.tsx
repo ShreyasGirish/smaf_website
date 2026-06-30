@@ -12,7 +12,6 @@ import {
   Maximize2,
   X,
   Award,
-  Lock,
   Globe,
   CheckSquare,
   FileText,
@@ -23,6 +22,22 @@ import {
 const Quality = () => {
   const labImg = `${import.meta.env.BASE_URL}images/quality-lab.jpg`;
   const inspectionImg = `${import.meta.env.BASE_URL}images/quality-inspection.jpg`;
+
+  // Resolved Runtime Asset Path Pipeline mapping seamlessly to public/images/logos/
+  const logoPath = `${import.meta.env.BASE_URL}images/logos/`;
+  const fsscLogo = `${logoPath}fssc-logo.png`;
+  const fssaiLogo = `${logoPath}fssai-logo.png`;
+  const usfdaLogo = `${logoPath}usfda-logo.png`;
+  const kosherLogo = `${logoPath}stark-kosher-logo.png`;
+  const apedaLogo = `${logoPath}apeda-logo.png`;
+  const dgftLogo = `${logoPath}dgft-iec-logo.png`;
+
+  // Self-healing fail-safe system if local operating system paths mismatch
+  const [brokenLogos, setBrokenLogos] = useState<{ [key: string]: boolean }>({});
+
+  const handleLogoError = (id: string) => {
+    setBrokenLogos((prev) => ({ ...prev, [id]: true }));
+  };
 
   const complianceLedger = [
     {
@@ -74,7 +89,7 @@ const Quality = () => {
       name: 'IEC Export Certified',
       authority: 'Directorate General of Foreign Trade (Ministry of Commerce)',
       regNo: 'IE Code: AFDFS4584H',
-      scope: 'File Ref: BNGIECPAMEND00026971AM26 • Operating Authorization',
+      scope: 'Operating Authorization • Active Import Export Registration Pass',
       badge: 'DGFT Clearance',
       expiry: 'Active Trade Status',
       icon: <FileText size={26} className="text-emerald-400 group-hover/card:scale-110 transition-transform duration-300" />
@@ -135,7 +150,7 @@ const Quality = () => {
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
 
         {/* SECTION HEADER */}
-        <div className="max-w-4xl mb-16">
+        <div className="max-w-4xl mb-12">
           <span className="text-emerald-500 tracking-[0.2em] uppercase text-xs font-semibold mb-4 block">
             Compliance Portfolio
           </span>
@@ -149,10 +164,51 @@ const Quality = () => {
           </p>
         </div>
 
+        {/* ── PRESTIGE LED-LIT GLOBAL BANNER SECTION ── */}
+        <div className="mb-24 bg-slate-950/60 border border-emerald-500/20 shadow-[0_0_30px_-5px_rgba(16,185,129,0.15)] rounded-[2.5rem] p-8 lg:p-10 relative overflow-hidden backdrop-blur-md">
+          {/* Subtle Corner Glow Accentuation */}
+          <div className="absolute -top-12 -left-12 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
+          
+          <p className="text-xs font-mono font-bold uppercase tracking-[0.25em] text-emerald-400 mb-8 text-center lg:text-left">
+            ACCREDITED GLOBAL GATEWAY FRAMEWORKS
+          </p>
+          
+          <div className="flex flex-wrap lg:flex-nowrap items-center justify-center lg:justify-between gap-5">
+            {[
+              { id: 'fssc', src: fsscLogo, text: 'FSSC 22000', label: 'Certified' },
+              { id: 'usfda', src: usfdaLogo, text: 'USFDA', label: 'Registered' },
+              { id: 'fssai', src: fssaiLogo, text: 'FSSAI License', label: 'Holder' },
+              { id: 'kosher', src: kosherLogo, text: 'STAR-K', label: 'Kosher Standard' },
+              { id: 'apeda', src: apedaLogo, text: 'APEDA', label: 'Registered' },
+              { id: 'dgft', src: dgftLogo, text: 'DGFT Import', label: 'Export Code' }
+            ].map((logo) => (
+              <div 
+                key={logo.id} 
+                className="h-20 w-[45%] sm:w-[30%] lg:w-full flex items-center justify-center group/logo transition-all duration-300 p-3 rounded-2xl bg-white/[0.02] border border-slate-800/60 hover:border-emerald-500/40 hover:bg-slate-900/90 hover:shadow-[0_0_20px_rgba(16,185,129,0.1)]"
+                title={`${logo.text} ${logo.label}`}
+              >
+                {brokenLogos[logo.id] ? (
+                  <div className="text-center font-mono select-none pointer-events-none">
+                    <span className="block text-xs font-black text-emerald-400 tracking-wider uppercase">{logo.text}</span>
+                    <span className="block text-[8px] font-bold text-slate-500 tracking-widest uppercase mt-0.5">{logo.label}</span>
+                  </div>
+                ) : (
+                  <img 
+                    src={logo.src} 
+                    alt={`${logo.text} ${logo.label}`} 
+                    onError={() => handleLogoError(logo.id)}
+                    className="max-h-full max-w-full object-contain opacity-80 group-hover/logo:opacity-100 transition-all duration-300 scale-95 group-hover/logo:scale-105" 
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* AUDITED COMPLIANCE LEDGER GRID */}
         <div className="mb-24">
-          <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-500 mb-8 flex items-center gap-2">
-            <Award size={14} className="text-slate-500" /> Secure Regulatory Clearance Ledger
+          <h3 className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-slate-500 mb-8 flex items-center gap-2">
+            <Award size={14} className="text-slate-500" /> SECURE REGULATORY CLEARANCE LEDGER
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {complianceLedger.map((cert, i) => (
@@ -200,7 +256,7 @@ const Quality = () => {
           </div>
         </div>
 
-        {/* NEW QUALITY PROCESS INTRODUCTION SECTION HEADER */}
+        {/* QUALITY PROCESS INTRODUCTION SECTION HEADER */}
         <div className="max-w-4xl mb-10 mt-20 border-l-2 border-emerald-500 pl-6 text-left">
           <span className="text-emerald-500 tracking-[0.2em] uppercase text-[10px] font-bold mb-2 block flex items-center gap-2">
             <Layers size={12} /> Sourcing Rigor & Operations
@@ -243,7 +299,7 @@ const Quality = () => {
               className="w-full h-full object-cover object-center transform group-hover/inspect:scale-[1.02] transition duration-700 ease-out"
             />
             <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover/inspect:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
-              <div className="bg-[#115e59] text-white px-6 py-3.5 rounded-xl flex items-center gap-2.5 shadow-2xl font-sans font-bold tracking-wider text-xs border border-teal-500/30">
+              <div className="bg-emerald-800 text-white px-6 py-3.5 rounded-xl flex items-center gap-2.5 shadow-2xl font-sans font-bold tracking-wider text-xs border border-teal-500/30">
                 <Maximize2 size={16} className="text-teal-300" />
                 <span>CLICK TO ENLARGE IMAGE</span>
               </div>
@@ -284,7 +340,7 @@ const Quality = () => {
                 className="w-full h-full object-cover transform group-hover/lab:scale-[1.02] transition duration-700 ease-out"
               />
               <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover/lab:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
-                <div className="bg-[#115e59] text-white px-6 py-3.5 rounded-xl flex items-center gap-2.5 shadow-2xl font-sans font-bold tracking-wider text-xs border border-teal-500/30">
+                <div className="bg-emerald-800 text-white px-6 py-3.5 rounded-xl flex items-center gap-2.5 shadow-2xl font-sans font-bold tracking-wider text-xs border border-teal-500/30">
                   <Maximize2 size={16} className="text-teal-300" />
                   <span>CLICK TO ENLARGE IMAGE</span>
                 </div>

@@ -379,7 +379,7 @@ const LabAssistant = () => {
                           target="_blank" rel="noreferrer"
                           className="flex items-center justify-center gap-3 w-full bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 py-3 rounded-xl text-xs font-mono font-bold text-emerald-400 transition-all active:scale-[0.98]"
                         >
-                          <FileSpreadsheet size={15} /> Open Verified Spreadsheet <ExternalLink size={12} className="opacity-70" />
+                          <FileSpreadsheet size={15} /> Open Verified Report <ExternalLink size={12} className="opacity-70" />
                         </a>
                       </div>
                     )}
@@ -428,7 +428,7 @@ const LabAssistant = () => {
                         target="_blank" rel="noreferrer"
                         className="mt-1 flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-md active:scale-[0.98]"
                       >
-                        <FileText size={13} /> Open Official Intertek PDF <ExternalLink size={11} />
+                        <FileText size={13} /> Open Official Lab Report <ExternalLink size={11} />
                       </a>
                     )}
                   </>

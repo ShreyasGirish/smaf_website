@@ -112,19 +112,18 @@ const Facility = () => {
         </div>
 
         {/* IMAGES WITH UNIFIED CLICK TO ENLARGE FEATURE OVERLAYS */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-          {/* FACILITY IMAGE CARD */}
+          {/* CARD 1: FACILITY IMAGE */}
           <div 
             onClick={() => setActiveImage({ src: `${import.meta.env.BASE_URL}images/facility.jpg`, alt: "Advanced Processing Facility" })}
-            className="relative h-[400px] rounded-[3rem] overflow-hidden shadow-md border border-slate-100 cursor-zoom-in group/facility"
+            className="relative h-[380px] rounded-[3rem] overflow-hidden shadow-md border border-slate-100 cursor-zoom-in group/facility"
           >
             <img
               src={`${import.meta.env.BASE_URL}images/facility.jpg`}
               alt="Processing facility"
               className="w-full h-full object-cover transform group-hover/facility:scale-102 transition duration-700 ease-out"
             />
-            {/* Standardized Emerald Button Centered Interaction Sheet */}
             <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover/facility:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
               <div className="bg-[#115e59] text-white px-7 py-4 rounded-xl flex items-center gap-3 shadow-2xl font-sans font-bold tracking-wider text-sm border border-teal-500/30 transform translate-y-3 group-hover/facility:translate-y-0 transition-all duration-300">
                 <Maximize2 size={18} className="text-teal-300" />
@@ -142,17 +141,16 @@ const Facility = () => {
             </div>
           </div>
 
-          {/* FARMERS IMAGE CARD - UPDATED SOURCE FILE TO farmer-network.jpg */}
+          {/* CARD 2: FARMERS IMAGE */}
           <div 
             onClick={() => setActiveImage({ src: `${import.meta.env.BASE_URL}images/farmer-network.jpg`, alt: "Integrated Farmer Sourcing Network" })}
-            className="relative h-[400px] rounded-[3rem] overflow-hidden shadow-md border border-slate-100 cursor-zoom-in group/farmers"
+            className="relative h-[380px] rounded-[3rem] overflow-hidden shadow-md border border-slate-100 cursor-zoom-in group/farmers"
           >
             <img
               src={`${import.meta.env.BASE_URL}images/farmer-network.jpg`}
               alt="Farmer sourcing network"
               className="w-full h-full object-cover transform group-hover/farmers:scale-102 transition duration-700 ease-out"
             />
-            {/* Standardized Emerald Button Centered Interaction Sheet */}
             <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover/farmers:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
               <div className="bg-[#115e59] text-white px-7 py-4 rounded-xl flex items-center gap-3 shadow-2xl font-sans font-bold tracking-wider text-sm border border-teal-500/30 transform translate-y-3 group-hover/farmers:translate-y-0 transition-all duration-300">
                 <Maximize2 size={18} className="text-teal-300" />
@@ -166,6 +164,60 @@ const Facility = () => {
               </h5>
               <p className="text-emerald-300/90 text-sm font-light">
                 Direct sourcing from 1,200+ smallholder farmers
+              </p>
+            </div>
+          </div>
+
+          {/* CARD 3: BRINE TANKS (NEW) */}
+          <div 
+            onClick={() => setActiveImage({ src: `${import.meta.env.BASE_URL}images/brinetanks.jpg`, alt: "Industrial Brine Tank Infrastructure" })}
+            className="relative h-[380px] rounded-[3rem] overflow-hidden shadow-md border border-slate-100 cursor-zoom-in group/brinetanks"
+          >
+            <img
+              src={`${import.meta.env.BASE_URL}images/brinetanks.jpg`}
+              alt="Industrial brine storage infrastructure"
+              className="w-full h-full object-cover transform group-hover/brinetanks:scale-102 transition duration-700 ease-out"
+            />
+            <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover/brinetanks:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
+              <div className="bg-[#115e59] text-white px-7 py-4 rounded-xl flex items-center gap-3 shadow-2xl font-sans font-bold tracking-wider text-sm border border-teal-500/30 transform translate-y-3 group-hover/brinetanks:translate-y-0 transition-all duration-300">
+                <Maximize2 size={18} className="text-teal-300" />
+                <span>CLICK TO ENLARGE IMAGE</span>
+              </div>
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+            <div className="absolute bottom-8 left-8 z-10">
+              <h5 className="text-white font-serif text-2xl mb-1">
+                Brine Storage Infrastructure
+              </h5>
+              <p className="text-emerald-300/90 text-sm font-light">
+                High-capacity food-grade processing and curing tanks
+              </p>
+            </div>
+          </div>
+
+          {/* CARD 4: BRINE FERMENTATION PROCESS (NEW) */}
+          <div 
+            onClick={() => setActiveImage({ src: `${import.meta.env.BASE_URL}images/brinetank-clean.jpg`, alt: "Brine Tank Fermentation Process Quality Control" })}
+            className="relative h-[380px] rounded-[3rem] overflow-hidden shadow-md border border-slate-100 cursor-zoom-in group/fermentation"
+          >
+            <img
+              src={`${import.meta.env.BASE_URL}images/brinetank-clean.jpg`}
+              alt="Brine tank fermentation verification process"
+              className="w-full h-full object-cover transform group-hover/fermentation:scale-102 transition duration-700 ease-out"
+            />
+            <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover/fermentation:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
+              <div className="bg-[#115e59] text-white px-7 py-4 rounded-xl flex items-center gap-3 shadow-2xl font-sans font-bold tracking-wider text-sm border border-teal-500/30 transform translate-y-3 group-hover/fermentation:translate-y-0 transition-all duration-300">
+                <Maximize2 size={18} className="text-teal-300" />
+                <span>CLICK TO ENLARGE IMAGE</span>
+              </div>
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+            <div className="absolute bottom-8 left-8 z-10">
+              <h5 className="text-white font-serif text-2xl mb-1">
+                Fermentation Quality Management
+              </h5>
+              <p className="text-emerald-300/90 text-sm font-light">
+                Direct oversight and validation of equilibrium brine curing parameters
               </p>
             </div>
           </div>

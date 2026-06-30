@@ -11,7 +11,8 @@ import {
   Tags,
   FileText,
   Settings,
-  Scale
+  Scale,
+  ArrowRight
 } from "lucide-react";
 
 const Products: React.FC = () => {
@@ -160,17 +161,28 @@ const Products: React.FC = () => {
             </p>
           </div>
 
-          <div className="bg-emerald-800 text-white p-8 rounded-[2.5rem] shadow-xl flex items-center gap-6 min-w-[280px]">
-            <div className="w-14 h-14 bg-emerald-700/50 rounded-2xl flex items-center justify-center text-emerald-300">
-              <Layers size={28} />
+          {/* RIGHT SIDE DATA BADGE & SAMPLE BUTTON CONTAINER */}
+          <div className="flex flex-col gap-4 min-w-[280px] w-full lg:w-auto">
+            <div className="bg-emerald-800 text-white p-8 rounded-[2.5rem] shadow-xl flex items-center gap-6">
+              <div className="w-14 h-14 bg-emerald-700/50 rounded-2xl flex items-center justify-center text-emerald-300">
+                <Layers size={28} />
+              </div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-emerald-300">
+                  Grade Range Calibrations
+                </p>
+                <p className="text-2xl font-bold mt-0.5">300/450 → 5/10</p>
+              </div>
             </div>
-            <div>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-emerald-300">
-                Grade Range Calibrations
-              </p>
-              {/* FIXED: Calibrations corrected */}
-              <p className="text-2xl font-bold mt-0.5">300/450 → 5/10</p>
-            </div>
+
+            {/* INTEGRATED SAMPLES ORDER BUTTON */}
+            <a 
+              href="#contact" 
+              className="inline-flex items-center justify-center gap-2 bg-white hover:bg-emerald-50 text-emerald-800 font-sans font-bold text-xs uppercase tracking-wider py-4 px-6 rounded-2xl border border-emerald-100 shadow-sm transition-all duration-200 active:scale-95 group/btn"
+            >
+              <span>Order Our Latest Samples</span>
+              <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
+            </a>
           </div>
         </div>
 
@@ -179,7 +191,7 @@ const Products: React.FC = () => {
           {productCards.map((card, idx) => (
             <div 
               key={idx}
-              className="bg-white rounded-[3.5rem] overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+              className="bg-white rounded-[3.5rem] overflow-hidden shadow-sm border border-slate-100 border-b-2 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
                 <div 
@@ -193,7 +205,7 @@ const Products: React.FC = () => {
                   />
                   {/* UNIFIED ENLARGE HOVER OVERLAY */}
                   <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
-                    <div className="bg-[#115e59] text-white px-5 py-3 rounded-xl flex items-center gap-2.5 shadow-2xl font-sans font-bold tracking-wider text-xs border border-teal-500/30 transform translate-y-2 group-hover/img:translate-y-0 transition-all duration-300">
+                    <div className="bg-emerald-800 text-white px-5 py-3 rounded-xl flex items-center gap-2.5 shadow-2xl font-sans font-bold tracking-wider text-xs border border-teal-500/30 transform translate-y-2 group-hover/img:translate-y-0 transition-all duration-300">
                       <Maximize2 size={16} className="text-teal-300" />
                       <span>CLICK TO ENLARGE IMAGE</span>
                     </div>
@@ -235,7 +247,6 @@ const Products: React.FC = () => {
                 </div>
               </div>
 
-              {/* FIXED: Removed chevron arrow icon line */}
               <div className="px-8 pb-8 pt-2">
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-slate-400 text-xs">
                   <span className="flex items-center gap-1">
@@ -260,7 +271,6 @@ const Products: React.FC = () => {
             <h3 className="text-3xl md:text-4xl font-serif mb-4">
               Private Label Manufacturing
             </h3>
-            {/* FIXED: Removed OEM phrasing */}
             <p className="text-emerald-100/80 font-light text-sm md:text-base leading-relaxed">
               We provide end-to-end processing execution setups tailored cleanly 
               to match your brand specifications, commercial volumes, and distribution metrics.
@@ -317,7 +327,7 @@ const Products: React.FC = () => {
 
       </div>
 
-      {/* FIXED PORTAL OVERLAYS */}
+      {/* PORTAL OVERLAYS */}
       {mounted && activeImage && createPortal(
         <div 
           className="fixed inset-0 z-[99999] flex items-center justify-center p-4 backdrop-blur-md cursor-zoom-out animate-fade-in"
