@@ -55,7 +55,7 @@ const GlobalPresence: React.FC = () => {
     },
     {
       id: 'IN',
-      name: 'Hubballi, India',
+      name: 'Karnataka, India',
       top: 56.67,
       left: 51.66,
       size: 40,
