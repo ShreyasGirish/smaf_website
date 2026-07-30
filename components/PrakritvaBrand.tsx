@@ -10,8 +10,6 @@ import {
   Maximize2,
   X,
   Eye,
-  Instagram,
-  MessageSquareShare,
   LockOpen
 } from 'lucide-react';
 
@@ -388,7 +386,7 @@ const PrakritvaBrand = () => {
                     <img
                       src={newProductImg}
                       alt="Kokum Jeera Sharbat Concentrate"
-                      className="w-full h-full max-h-[320px] object-contain relative z-10 transition-transform duration-500 hover:scale-103"
+                      className="w-full h-full max-h-[320px] object-contain relative z-10 transition-transform duration-500 hover:scale-[1.03]"
                     />
                     <button 
                       onClick={() => setActiveModalImg(newProductImg)}
@@ -431,7 +429,7 @@ const PrakritvaBrand = () => {
                     <img
                       src={vegetablePowdersImg}
                       alt="Advanced Vegetable Powders Portfolio"
-                      className="w-full h-full max-h-[320px] object-contain relative z-10 transition-transform duration-500 hover:scale-103"
+                      className="w-full h-full max-h-[320px] object-contain relative z-10 transition-transform duration-500 hover:scale-[1.03]"
                     />
                     <button 
                       onClick={() => setActiveModalImg(vegetablePowdersImg)}
@@ -493,33 +491,9 @@ const PrakritvaBrand = () => {
               Bulk Sourcing Inquiry
             </button>
           </div>
-
-          {/* INSTAGRAM DM LINK CONVERSION TIER MODULE */}
-          <div className="border-t border-slate-200/60 pt-12 max-w-3xl mx-auto">
-            <p className="text-xs font-mono uppercase tracking-[0.2em] text-slate-400 font-bold mb-5">
-              Instant Order Routing Dispatch
-            </p>
-            <a
-              href="https://instagram.com/direct/t/prakritva" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-4 bg-gradient-to-r from-purple-600 via-pink-600 to-amber-600 hover:opacity-98 text-white px-14 py-6 rounded-2xl font-black text-sm tracking-widest uppercase shadow-2xl hover:shadow-pink-600/20 transition-all active:scale-[0.99] group/insta"
-            >
-              <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" 
-                alt="Instagram" 
-                className="w-5 h-5 invert brightness-200 group-hover:rotate-12 transition-transform duration-300"
-              />
-              <span>Order now to taste our latest products</span>
-              <MessageSquareShare size={18} className="text-white/80" strokeWidth={2.5} />
-            </a>
-            <p className="text-[11px] text-slate-400 mt-4 font-medium leading-relaxed max-w-md mx-auto">
-              Clicking activates a direct pipeline connection to send an immediate message to our DM channel.
-            </p>
-          </div>
         </div>
 
-      </div>
+      </div> {/* <-- ADDED THIS MISSING CLOSING TAG FOR THE CONTAINER WRAPPER */}
 
       {/* FULL COGNITIVE FRAMEWORK LIGHTBOX MODAL CONTAINER */}
       {mounted && activeModalImg && createPortal(

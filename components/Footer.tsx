@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { 
   Globe, 
   Instagram, 
   Linkedin, 
   Facebook,
+  MessageCircle,
   ShieldCheck, 
   Award,
   ChevronRight,
@@ -26,7 +28,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-slate-950 text-white pt-20 pb-10 border-t border-slate-900">
+    <footer className="bg-slate-950 text-white pt-20 pb-10 border-t border-slate-900 text-left">
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         
         {/* MAIN FOOTER GRID */}
@@ -37,7 +39,7 @@ const Footer: React.FC = () => {
             <div className="flex items-center gap-4">
               {/* Premium Blended Logo Container */}
               <div className="w-12 h-12 rounded-full p-1 bg-white border border-emerald-500/30 shadow-[0_4px_12px_rgba(16,185,129,0.1)] flex items-center justify-center overflow-hidden flex-shrink-0">
-                <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center bg-white mix-blend-multiply">
+                <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center bg-white">
                   <img 
                     src={logoImg} 
                     alt="Sri Mookambika Logo" 
@@ -88,7 +90,7 @@ const Footer: React.FC = () => {
               <li>
                 <button 
                   onClick={() => scrollToSection('brand')}
-                  className="flex items-center gap-2.5 group text-left hover:text-slate-100 transition-colors duration-200"
+                  className="flex items-center gap-2.5 group text-left hover:text-slate-100 transition-colors duration-200 bg-transparent border-none cursor-pointer"
                 >
                   <ChevronRight size={14} className="text-emerald-600 group-hover:translate-x-0.5 transition-transform" />
                   <span>Prakritva Product Portfolio</span>
@@ -97,7 +99,7 @@ const Footer: React.FC = () => {
               <li>
                 <button 
                   onClick={() => scrollToSection('facility')}
-                  className="flex items-center gap-2.5 group text-left hover:text-slate-100 transition-colors duration-200"
+                  className="flex items-center gap-2.5 group text-left hover:text-slate-100 transition-colors duration-200 bg-transparent border-none cursor-pointer"
                 >
                   <ChevronRight size={14} className="text-emerald-600 group-hover:translate-x-0.5 transition-transform" />
                   <span>Processing Hub Capabilities</span>
@@ -106,7 +108,7 @@ const Footer: React.FC = () => {
               <li>
                 <button 
                   onClick={() => scrollToSection('quality')}
-                  className="flex items-center gap-2.5 group text-left hover:text-slate-100 transition-colors duration-200"
+                  className="flex items-center gap-2.5 group text-left hover:text-slate-100 transition-colors duration-200 bg-transparent border-none cursor-pointer"
                 >
                   <ChevronRight size={14} className="text-emerald-600 group-hover:translate-x-0.5 transition-transform" />
                   <span>Quality & Global Compliance</span>
@@ -115,7 +117,7 @@ const Footer: React.FC = () => {
               <li>
                 <button 
                   onClick={() => scrollToSection('contact')}
-                  className="flex items-center gap-2.5 group text-left hover:text-slate-100 transition-colors duration-200"
+                  className="flex items-center gap-2.5 group text-left hover:text-slate-100 transition-colors duration-200 bg-transparent border-none cursor-pointer"
                 >
                   <ChevronRight size={14} className="text-emerald-600 group-hover:translate-x-0.5 transition-transform" />
                   <span>Private Label Partnerships</span>
@@ -144,6 +146,24 @@ const Footer: React.FC = () => {
                   <Linkedin size={18} />
                 </a>
                 <a 
+  href={`https://wa.me/918762628968?text=${encodeURIComponent(
+    "Welcome to Sri Mookambika Agro Foods (SMAF)! How can we assist you today?"
+  )}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="w-11 h-11 rounded-xl bg-slate-900 border border-slate-800/40 flex items-center justify-center text-slate-400 hover:text-white hover:bg-emerald-800 hover:border-emerald-700 transition-all duration-300"
+  aria-label="WhatsApp Chat"
+>
+  <svg 
+    width="18" 
+    height="18" 
+    viewBox="0 0 24 24" 
+    fill="currentColor"
+  >
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.99c-.002 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c-.001 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+                <a 
                   href="https://www.instagram.com/smafoodsindia?igsh=MWNxenA4d2s4NGdocg==" 
                   target="_blank"
                   rel="noopener noreferrer"
@@ -161,14 +181,13 @@ const Footer: React.FC = () => {
                 >
                   <Facebook size={18} />
                 </a>
-                <a 
-                  href="#" 
-                  onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className="w-11 h-11 rounded-xl bg-slate-900 border border-slate-800/40 flex items-center justify-center text-slate-400 hover:text-white hover:bg-emerald-800 hover:border-emerald-700 transition-all duration-300"
+                <button 
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  className="w-11 h-11 rounded-xl bg-slate-900 border border-slate-800/40 flex items-center justify-center text-slate-400 hover:text-white hover:bg-emerald-800 hover:border-emerald-700 transition-all duration-300 bg-transparent cursor-pointer"
                   aria-label="Website Home"
                 >
                   <Globe size={18} />
-                </a>
+                </button>
               </div>
             </div>
 
@@ -176,7 +195,7 @@ const Footer: React.FC = () => {
             <div className="pt-6 md:pt-0">
               <button 
                 onClick={() => scrollToSection('contact')}
-                className="text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-emerald-400 transition-colors flex items-center gap-1.5 group"
+                className="text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-emerald-400 transition-colors flex items-center gap-1.5 group bg-transparent border-none cursor-pointer"
               >
                 Trade Inquiry Desk 
                 <ChevronRight size={14} className="text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-0.5 transition-all" />
@@ -208,11 +227,11 @@ const Footer: React.FC = () => {
       </div>
 
       {/* 🟢 NATIVE MODAL POPUP LAYER FOR PRIVACY POLICY & TERMS OF SERVICE */}
-      {legalModal && (
+      {legalModal && createPortal(
         <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 backdrop-blur-md animate-fade-in">
           <div className="absolute inset-0 bg-slate-950/80" onClick={() => setLegalModal(null)} />
           
-          <div className="bg-white text-slate-900 rounded-[2.5rem] w-full max-w-3xl max-h-[80vh] overflow-hidden relative shadow-2xl flex flex-col border border-slate-100">
+          <div className="bg-white text-slate-900 rounded-[2.5rem] w-full max-w-3xl max-h-[80vh] overflow-hidden relative shadow-2xl flex flex-col border border-slate-100 z-10">
             
             {/* Modal Header Panel */}
             <div className="p-6 md:p-8 border-b border-slate-100 flex items-center justify-between shrink-0 bg-slate-50 rounded-t-[2.5rem]">
@@ -231,14 +250,14 @@ const Footer: React.FC = () => {
               </div>
               <button 
                 onClick={() => setLegalModal(null)}
-                className="text-slate-400 hover:text-slate-600 bg-white border border-slate-200 p-2.5 rounded-full shadow-sm transition active:scale-95"
+                className="text-slate-400 hover:text-slate-600 bg-white border border-slate-200 p-2.5 rounded-full shadow-sm transition active:scale-95 cursor-pointer"
               >
                 <X size={18} />
               </button>
             </div>
 
-            {/* Modal Body Content (Scrollable Framework) */}
-            <div className="p-6 md:p-8 overflow-y-auto font-sans text-sm text-slate-600 space-y-6 leading-relaxed">
+            {/* Modal Body Content */}
+            <div className="p-6 md:p-8 overflow-y-auto font-sans text-sm text-slate-600 space-y-6 leading-relaxed text-left">
               {legalModal === 'privacy' ? (
                 <>
                   <div>
@@ -284,14 +303,15 @@ const Footer: React.FC = () => {
             <div className="p-4 bg-slate-50 border-t border-slate-100 text-center shrink-0 rounded-b-[2.5rem]">
               <button 
                 onClick={() => setLegalModal(null)}
-                className="bg-slate-900 hover:bg-slate-950 text-white text-xs font-bold uppercase tracking-wider px-6 py-2.5 rounded-xl transition"
+                className="bg-slate-900 hover:bg-slate-950 text-white text-xs font-bold uppercase tracking-wider px-6 py-2.5 rounded-xl transition cursor-pointer"
               >
                 Acknowledge Framework
               </button>
             </div>
 
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </footer>
   );

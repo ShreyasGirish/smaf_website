@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Sparkles, HeartHandshake, Award, Users, Milestone, Maximize2, X, Clock } from 'lucide-react';
+import { 
+  Sparkles, 
+  HeartHandshake, 
+  Award, 
+  Users, 
+  Milestone, 
+  Maximize2, 
+  X, 
+  Clock,
+  ShieldAlert 
+} from 'lucide-react';
 
 const Events: React.FC = () => {
   // States for handling popups & layout locking
@@ -23,12 +33,12 @@ const Events: React.FC = () => {
 
   const eventSlides = [
     {
-      title: "Labor Welfare & Encouragement Day",
-      date: "June 2026",
-      category: "Worker Empowerment",
-      desc: "Annual worker recognition and incentive ceremonies celebrating the baseline foundation of our processing lines, ensuring safe, supportive, and fair workplace encouragement.",
-      img: `${import.meta.env.BASE_URL}images/events-labor-welfare.jpg`,
-      icon: <HeartHandshake size={18} />
+      title: "Fire Safety & Emergency Training",
+      date: "July 2026",
+      category: "Workplace Safety",
+      desc: "Hands-on fire extinguisher training and emergency preparedness drills for workers and community members, reinforcing a secure and safety-first operational environment.",
+      img: `${import.meta.env.BASE_URL}images/events-fire-safety.jpg`,
+      icon: <ShieldAlert size={18} />
     },
     {
       title: "World Food Safety Day Workshops",
@@ -57,7 +67,7 @@ const Events: React.FC = () => {
   ];
 
   return (
-    <section id="events" className="py-24 bg-[#FCFBF7] overflow-hidden border-t border-slate-100">
+    <section id="events" className="py-24 bg-[#FCFBF7] overflow-hidden border-t border-slate-100 text-left">
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         
         <style>{`
@@ -157,7 +167,7 @@ const Events: React.FC = () => {
           <div className="absolute inset-0 bg-slate-950/95 pointer-events-none animate-fade-in" />
           
           <button 
-            className="absolute top-6 right-6 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-3 rounded-full transition-all duration-200 z-[100000] active:scale-95 shadow-lg"
+            className="absolute top-6 right-6 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-3 rounded-full transition-all duration-200 z-[100000] active:scale-95 shadow-lg cursor-pointer"
             onClick={() => setActiveImage(null)}
           >
             <X size={24} />

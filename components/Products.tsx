@@ -92,7 +92,7 @@ const Products: React.FC = () => {
         "pH Threshold: Below 3.3 ensuring maximum stability",
         "Preservatives: Custom specific. Industrial product will have sulfites as preservative. We can offer preservative free also.",
         "Packaging Solutions: 260 ltrs / 240 ltrs HDPE food grade drums or Food Grade Pails. Palletized / Non-Palletized.",
-        "Ideal For: Retail private labels, premium condiments, burger quick-service chains."
+        "Ideal For: Ideal for industrial food processing, Retail private labels, premium condiments, burger quick-service chains."
       ]
     },
     {

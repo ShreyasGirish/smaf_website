@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*?*key=
+
+Sitemap: https://smafoodsindia.com/sitemap.xml
