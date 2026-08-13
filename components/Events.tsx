@@ -49,19 +49,19 @@ const Events: React.FC = () => {
       icon: <Award size={18} />
     },
     {
-      title: "Grower Support & Farmer Meet",
-      date: "May 2026",
-      category: "Sourcing Security",
-      desc: "Bringing together our regional smallholder grower network to coordinate agro-technical processing workshops, sustainable farming loops, and crop pricing safety layers.",
-      img: `${import.meta.env.BASE_URL}images/events-farmer-meet.jpg`,
-      icon: <Users size={18} />
+      title: "Taluk-Level Groundwater Awareness Art Initiative",
+      date: "August 2026",
+      category: "Sustainability & Conservation",
+      desc: "A collaborative student drawing competition organized by the Karnataka Government and Sri Mookambika Agro Foods at Ranebennur to drive regional groundwater conservation awareness through youth creativity.",
+      img: `${import.meta.env.BASE_URL}images/events-csr-activity.jpg`,
+      icon: <Milestone size={18} />
     },
     {
-      title: "EHS Safety & Health Drills",
-      date: "March 2026",
-      category: "Risk Mitigation",
-      desc: "Comprehensive environment, health, and occupational safety cross-training setups across the workspace layout to maintain bulletproof facility workflows.",
-      img: `${import.meta.env.BASE_URL}images/events-safety-drill.jpg`,
+      title: "Food Safety Compliance & Whistleblower Protocol Briefing",
+      date: "July 2026",
+      category: "Compliance & Governance",
+      desc: "An internal facility-wide briefing session training operational staff on rigorous food safety standards and corporate whistleblower protection policies to ensure absolute production integrity.",
+      img: `${import.meta.env.BASE_URL}images/events-food-safety-whistle.jpg`,
       icon: <Milestone size={18} />
     }
   ];
