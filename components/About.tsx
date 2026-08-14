@@ -3,10 +3,11 @@ import {
   Target,
   Zap,
   Heart,
-  Sparkles
+  Sparkles,
+  CheckCircle2
 } from 'lucide-react';
 
-const About = () => {
+const About: React.FC = () => {
   /* ROOT-BASED PUBLIC ASSET PATH */
   const aboutFacilityImg = `${import.meta.env.BASE_URL}images/about-facility.jpg`;
 
@@ -14,22 +15,22 @@ const About = () => {
     {
       title: 'Customer Centric',
       description: 'Custom-graded solutions meeting safe, legal, and premium global food standards.',
-      icon: <Target className="w-5 h-5 transition-colors duration-300 text-emerald-600 group-hover:text-emerald-300" />,
+      icon: <Target className="w-5 h-5 text-emerald-700" />,
     },
     {
       title: 'Agile Production',
       description: 'Investing in sustainable infrastructure for quality, volume, and cost efficiency.',
-      icon: <Zap className="w-5 h-5 transition-colors duration-300 text-emerald-600 group-hover:text-emerald-300" />,
+      icon: <Zap className="w-5 h-5 text-emerald-700" />,
     },
     {
       title: 'Social Impact',
-      description: 'Zero child labor, community health checks, and a carbon-conscious footprint.',
-      icon: <Heart className="w-5 h-5 transition-colors duration-300 text-emerald-600 group-hover:text-emerald-400" />,
+      description: 'Zero child labor, community health checks, and a carbon-conscious green footprint.',
+      icon: <Heart className="w-5 h-5 text-emerald-700" />,
     },
   ];
 
   return (
-    <section id="about" className="py-28 bg-[#FCFBF7] relative overflow-hidden">
+    <section id="about" className="py-28 bg-[#FCFBF7] relative overflow-hidden text-left border-t border-slate-100">
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-20 items-center">
 
@@ -43,22 +44,25 @@ const About = () => {
                 src={aboutFacilityImg}
                 alt="Sri Mookambika Agro Foods processing facility"
                 className="w-full aspect-[4/3] object-cover transform scale-100 group-hover/img:scale-102 transition duration-700 ease-out"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                }}
               />
 
-              {/* Ultra-subtle clear gradient overlay protecting detail */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-transparent to-black/10 pointer-events-none" />
+              {/* Clear gradient overlay protecting detail */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />
 
               {/* REFINED FLOATING CARD WITH <8HRS LOGISTICS */}
-              <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur-md px-5 py-3.5 rounded-2xl shadow-lg border border-white/20 max-w-sm transform transition duration-300">
-                <p className="text-[10px] font-bold text-emerald-700 uppercase tracking-widest mb-0.5 flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full animate-pulse" />
+              <div className="absolute bottom-6 left-6 right-6 sm:right-auto bg-white/95 backdrop-blur-md px-6 py-4 rounded-2xl shadow-xl border border-white/40 max-w-sm transform transition duration-300">
+                <p className="text-[10px] font-mono font-bold text-emerald-800 uppercase tracking-widest mb-1 flex items-center gap-1.5">
+                  <span className="w-2 h-2 bg-emerald-600 rounded-full animate-pulse" />
                   Strategic Advantage
                 </p>
-                <h4 className="font-serif text-slate-900 font-medium text-base">
+                <h4 className="font-serif text-slate-900 font-bold text-base leading-snug">
                   Ranebennur, Karnataka
                 </h4>
-                <p className="text-[11px] text-slate-500 mt-1 font-light">
-                  &lt;8 Hours Farm-to-Plant Processing Window
+                <p className="text-xs text-slate-600 mt-1 font-light leading-relaxed">
+                  &lt; 8 Hours Farm-to-Plant Processing Window
                 </p>
               </div>
             </div>
@@ -66,12 +70,12 @@ const About = () => {
 
           {/* TEXT CONTENT & VALUES SIDE */}
           <div className="w-full lg:w-1/2">
-            <span className="text-emerald-700 font-bold tracking-widest uppercase text-xs mb-4 block flex items-center gap-2">
+            <span className="text-emerald-700 font-mono font-bold tracking-widest uppercase text-xs mb-3 flex items-center gap-2">
               <Sparkles size={14} className="text-emerald-600" />
               Corporate Ecosystem
             </span>
             
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-slate-900 mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-serif text-slate-900 mb-6 leading-tight">
               The Backbone of <br />
               <span className="text-emerald-600 relative inline-block">
                 Premium Exports
@@ -79,34 +83,40 @@ const About = () => {
               </span>
             </h2>
 
-            {/* FIXED: Rephrased copy to eliminate the duplicate "enterprise" mentions cleanly */}
-            <p className="text-slate-600 text-lg font-light leading-relaxed mb-10 max-w-xl">
+            <p className="text-slate-600 text-base md:text-lg font-light leading-relaxed mb-10 max-w-xl">
               Sri Mookambika Agro Foods LLP bridges dedicated Indian agricultural networks 
               with global international brands through commercial scale, rapid logistics, and 
               uncompromising traceability.
             </p>
 
-            {/* UNIFORM RESPONSIVE GRID BOXES */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {/* HIGH-CONTRAST RESPONSIVE VALUES CARDS */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {values.map((v, i) => (
                 <div
                   key={i}
-                  className="group p-6 md:p-5 lg:p-6 rounded-3xl bg-white border border-slate-100 shadow-sm hover:bg-emerald-800 hover:border-emerald-700 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+                  className="group p-6 rounded-3xl bg-white border border-slate-100 shadow-sm hover:border-emerald-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
                 >
                   <div>
-                    {/* Icon Container with state reactions */}
-                    <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 mb-5 flex items-center justify-center group-hover:bg-emerald-700/50 transition-colors duration-300">
-                      {v.icon}
+                    {/* Icon Container with subtle active state */}
+                    <div className="w-11 h-11 rounded-2xl bg-[#F7FAF4] border border-emerald-100/60 flex items-center justify-center mb-5 group-hover:bg-emerald-700 group-hover:text-white transition-colors duration-300">
+                      {React.cloneElement(v.icon, {
+                        className: "w-5 h-5 text-emerald-700 group-hover:text-white transition-colors duration-300"
+                      })}
                     </div>
                     
-                    <h5 className="font-bold text-xs uppercase tracking-widest text-slate-800 group-hover:text-emerald-100 mb-2 transition-colors duration-300">
+                    <h5 className="font-bold text-xs font-mono uppercase tracking-wider text-slate-800 mb-2">
                       {v.title}
                     </h5>
+
+                    <p className="text-xs text-slate-500 leading-relaxed font-light">
+                      {v.description}
+                    </p>
                   </div>
-                  
-                  <p className="text-[12px] text-slate-500 group-hover:text-emerald-100/80 leading-relaxed font-light transition-colors duration-300">
-                    {v.description}
-                  </p>
+
+                  <div className="pt-4 mt-4 border-t border-slate-50 flex items-center gap-1 text-[10px] font-mono text-emerald-700">
+                    <CheckCircle2 size={11} className="text-emerald-600" />
+                    <span>Core Pillar</span>
+                  </div>
                 </div>
               ))}
             </div>

@@ -28,6 +28,14 @@ const Footer: React.FC = () => {
     window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
   };
 
+  const getDirectGmailLink = (email: string, subject: string) => {
+    const isMobile = typeof window !== 'undefined' && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      return `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+    }
+    return `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}`;
+  };
+
   return (
     <footer className="bg-slate-950 text-white pt-20 pb-10 border-t border-slate-900 text-left">
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
@@ -214,9 +222,14 @@ const Footer: React.FC = () => {
         <div className="pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-4">
           <p>© 2026 Sri Mookambika Agro Foods LLP. All rights reserved.</p>
 
-          {/* TECH TEAM CREDITS BADGE */}
+          {/* TECH TEAM CREDITS BADGE (Direct Gmail Web Launch) */}
           <a
-            href="mailto:techteam@smafoodsindia.com?subject=Technical%20Inquiry%20-%20SMAF%20Web%20Portal"
+            href={getDirectGmailLink(
+              'techteam@smafoodsindia.com',
+              'Technical Inquiry - SMAF Web Portal'
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group flex items-center gap-2 bg-slate-900/80 hover:bg-emerald-950/60 border border-slate-800 hover:border-emerald-500/40 px-3.5 py-1.5 rounded-full transition-all duration-300 text-slate-400 hover:text-emerald-300"
           >
             <Code2 size={13} className="text-emerald-500 group-hover:rotate-12 transition-transform duration-300" />
@@ -262,7 +275,7 @@ const Footer: React.FC = () => {
                     {legalModal === 'privacy' ? 'Privacy Policy' : 'Terms of Service'}
                   </h3>
                   <p className="text-[10px] font-mono text-slate-400 uppercase tracking-wider mt-0.5">
-                    Sri Mookambika Agro Foods LLP • Last Updated: June 2026
+                    Sri Mookambika Agro Foods LLP • Last Updated: August 2026
                   </p>
                 </div>
               </div>
@@ -292,7 +305,17 @@ const Footer: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900 text-base mb-2">4. Regulatory Inquiries</h4>
-                    <p>For data rectification queries or to modify active procurement logs on our servers, please contact our administrative suite directly at <a href="mailto:smafoodsindia@gmail.com" className="text-emerald-600 font-bold hover:underline">smafoodsindia@gmail.com</a>.</p>
+                    <p>
+                      For data rectification queries or to modify active procurement logs on our servers, please contact our administrative suite directly at{' '}
+                      <a 
+                        href={getDirectGmailLink('info@smafoodsindia.com', 'Data & Privacy Inquiry')}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-emerald-600 font-bold hover:underline"
+                      >
+                        info@smafoodsindia.com
+                      </a>.
+                    </p>
                   </div>
                 </>
               ) : (

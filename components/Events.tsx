@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { 
   Sparkles, 
-  HeartHandshake, 
   Award, 
-  Users, 
-  Milestone, 
   Maximize2, 
   X, 
-  Clock,
-  ShieldAlert 
+  Clock, 
+  ShieldAlert,
+  Droplets,
+  FileCheck
 } from 'lucide-react';
 
 const Events: React.FC = () => {
@@ -38,7 +37,7 @@ const Events: React.FC = () => {
       category: "Workplace Safety",
       desc: "Hands-on fire extinguisher training and emergency preparedness drills for workers and community members, reinforcing a secure and safety-first operational environment.",
       img: `${import.meta.env.BASE_URL}images/events-fire-safety.jpg`,
-      icon: <ShieldAlert size={18} />
+      icon: <ShieldAlert size={16} />
     },
     {
       title: "World Food Safety Day Workshops",
@@ -46,7 +45,7 @@ const Events: React.FC = () => {
       category: "Global Compliance",
       desc: "Conducting dynamic safety roundtables and structural hygiene milestone awards for our dedicated on-floor processing teams and management squads.",
       img: `${import.meta.env.BASE_URL}images/events-food-safety.jpg`,
-      icon: <Award size={18} />
+      icon: <Award size={16} />
     },
     {
       title: "Taluk-Level Groundwater Awareness Art Initiative",
@@ -54,7 +53,7 @@ const Events: React.FC = () => {
       category: "Sustainability & Conservation",
       desc: "A collaborative student drawing competition organized by the Karnataka Government and Sri Mookambika Agro Foods at Ranebennur to drive regional groundwater conservation awareness through youth creativity.",
       img: `${import.meta.env.BASE_URL}images/events-csr-activity.jpg`,
-      icon: <Milestone size={18} />
+      icon: <Droplets size={16} />
     },
     {
       title: "Food Safety Compliance & Whistleblower Protocol Briefing",
@@ -62,7 +61,7 @@ const Events: React.FC = () => {
       category: "Compliance & Governance",
       desc: "An internal facility-wide briefing session training operational staff on rigorous food safety standards and corporate whistleblower protection policies to ensure absolute production integrity.",
       img: `${import.meta.env.BASE_URL}images/events-food-safety-whistle.jpg`,
-      icon: <Milestone size={18} />
+      icon: <FileCheck size={16} />
     }
   ];
 
@@ -118,12 +117,15 @@ const Events: React.FC = () => {
                     src={event.img} 
                     alt={event.title} 
                     className="w-full h-full object-cover transform group-hover/ev:scale-[1.03] transition duration-700 ease-out"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                    }}
                   />
                   
                   {/* Category Chip Badge decoration */}
-                  <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm text-slate-900 font-mono text-[9px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-xl shadow-sm border border-emerald-500/10 flex items-center gap-1.5">
-                    <span className="text-emerald-700">{event.icon}</span>
-                    <span>{event.category}</span>
+                  <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-sm text-slate-900 font-mono text-[9px] font-bold uppercase tracking-wider px-2.5 py-1.5 rounded-xl shadow-sm border border-emerald-500/10 flex items-center gap-1.5 max-w-[85%]">
+                    <span className="text-emerald-700 shrink-0">{event.icon}</span>
+                    <span className="truncate">{event.category}</span>
                   </div>
 
                   {/* Date Stamp Tag */}
@@ -180,7 +182,7 @@ const Events: React.FC = () => {
             <img 
               src={activeImage.src} 
               alt={activeImage.alt} 
-              className="max-w-full max-h-[80vh] rounded-2xl object-contain shadow-2xl border border-white/10"
+              className="max-w-full max-h-[80vh] rounded-2xl object-contain shadow-2xl border border-white/10 bg-slate-900"
             />
             <p className="text-white/90 font-serif text-sm md:text-base mt-5 bg-slate-900/80 px-6 py-2.5 rounded-full shadow-md border border-white/5 text-center">
               {activeImage.alt}

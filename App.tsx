@@ -14,7 +14,7 @@ import Quality from './components/Quality';
 import PrakritvaBrand from './components/PrakritvaBrand';
 
 // 🟢 MOUNT REQUIREMENT 1: Dynamic Dummy Reviews Grid Loaded Cleanly
-import Reviews from './components/Reviews';
+//import Reviews from './components/Reviews';
 
 import Innovation from './components/Innovation';
 import Events from './components/Events';
@@ -108,9 +108,9 @@ function App() {
         </section>
 
         {/* 🟢 FIXED PLACEMENT: Reviews Section mounted clean with structural layout visibility */}
-        <section id="reviews" className="w-full bg-white relative block">
+       {/* <section id="reviews" className="w-full bg-white relative block">
           <Reviews />
-        </section>
+        </section>*/}
 
         <section id="innovation" className="section-fade">
           <Innovation />

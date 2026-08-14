@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
-import { Factory, ShieldCheck, CheckCircle, Sparkles, Truck, Box, Check } from 'lucide-react';
+import { Factory, ShieldCheck, CheckCircle, Sparkles, Truck, Box, Check, MapPin } from 'lucide-react';
 
 const GlobalPresence: React.FC = () => {
   const globalMapImg = `${import.meta.env.BASE_URL}images/global-map-clean.jpg`;
   const factoryImg = `${import.meta.env.BASE_URL}images/factory-map.jpg`;
   const [activeNode, setActiveNode] = useState<string | null>(null);
 
-  // ── POSITIONING NOTES ──────────────────────────────────────────────────
-  // top/left: percent of the image's own width/height, sampled pixel-by-
-  // pixel directly from the real /images/global-map-clean.jpg (1024×390)
-  //
-  // Note: Adjusted US 'left' from 12.11 to 14.80 to nudge it slightly right,
-  // and updated its SVG curve endpoint to match perfectly.
   const mapHotspots = [
     {
       id: 'CA',
@@ -27,19 +21,19 @@ const GlobalPresence: React.FC = () => {
       id: 'US',
       name: 'United States',
       top: 51.38,
-      left: 14.80, // Shifted to the right from 12.11
+      left: 14.80,
       size: 46,
       details: 'Premium agricultural product pipelines supplying major consumer networks.',
       compliance: 'USFDA Registered',
-      curve: 'M 51.66 56.67 Q 27 55 14.80 51.38' // Target updated to match new left position
+      curve: 'M 51.66 56.67 Q 27 55 14.80 51.38'
     },
     {
       id: 'FR',
-      name: 'France',
+      name: 'France & EU',
       top: 40.93,
       left: 34.85,
       size: 40,
-      details: 'Institutional distribution channels across major European markets.',
+      details: 'Institutional distribution channels across major European food networks.',
       compliance: 'EU Standard Verified',
       curve: 'M 51.66 56.67 Q 45 22 34.85 40.93'
     },
@@ -59,7 +53,7 @@ const GlobalPresence: React.FC = () => {
       top: 56.67,
       left: 51.66,
       size: 40,
-      details: 'Our manufacturing facility in Ranebennur, Karnataka — where every batch begins.',
+      details: 'Our primary manufacturing and brining hub in Ranebennur, Karnataka — where every batch begins.',
       compliance: 'Origin & HQ',
       image: factoryImg,
       curve: null
@@ -68,34 +62,29 @@ const GlobalPresence: React.FC = () => {
 
   const strengths = [
     {
-      title: 'Our Strategic Locations',
-      desc: 'Corporate operations in Hubballi with state-of-the-art manufacturing facilities based in Ranebennur, Karnataka, India—positioning us perfectly within raw material sourcing zones.',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
-          <circle cx="12" cy="10" r="3"/>
-        </svg>
-      )
+      title: 'Strategic Production Hub',
+      desc: 'Corporate governance based in Hubballi with 25,000 sq. ft. manufacturing infrastructure located in Ranebennur, Karnataka—directly embedded in South India’s premier gherkin-growing belts.',
+      icon: <MapPin size={24} className="text-emerald-800" />
     },
     {
-      title: 'Trusted Global Standards',
-      desc: 'Rigorous process parameters, robust safety documentation, and premium certification layers matching international trade criteria.',
-      icon: <ShieldCheck size={24} />
+      title: 'Audited Global Compliance',
+      desc: 'Rigorous chemical parameter controls, FSSC 22000 Version 6 protocols, and USFDA / STAR-K Kosher registration ensuring seamless clearance at destination ports.',
+      icon: <ShieldCheck size={24} className="text-emerald-800" />
     },
     {
-      title: 'Export-Ready Logistics',
-      desc: 'Seamless processing, integrated tracking frameworks, and dependable shipping infrastructure serving customers across the globe.',
-      icon: <Truck size={24} />
+      title: 'Maritime Freight Readiness',
+      desc: 'Standardized 240L–260L HDPE drum packaging, complete palletized load security, and rapid inland container depot (ICD) transit to major Indian seaports.',
+      icon: <Truck size={24} className="text-emerald-800" />
     },
     {
-      title: 'End-to-End Commitment',
-      desc: 'Focused on building long-term, mutually beneficial international buyer partnerships through consistent quality and complete reliance.',
-      icon: <Box size={24} />
+      title: 'Dedicated Institutional Supply',
+      desc: 'Committed to long-term multinational buyer partnerships with customized brine formulations, count calibration, and guaranteed volume stability.',
+      icon: <Box size={24} className="text-emerald-800" />
     }
   ];
 
   return (
-    <section id="global" className="py-24 bg-[#FCFBF7] overflow-hidden">
+    <section id="global" className="py-24 bg-[#FCFBF7] overflow-hidden text-left border-t border-slate-100">
       <style>{`
         @keyframes fadeInUp {
           from { opacity: 0; transform: translate(-50%, 6px); }
@@ -105,42 +94,43 @@ const GlobalPresence: React.FC = () => {
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
 
         {/* SECTION HEADER BLOCK */}
-        <div className="max-w-4xl mb-16 text-left">
-          <span className="text-emerald-700 font-bold tracking-widest uppercase text-xs mb-4 flex items-center gap-2">
+        <div className="max-w-4xl mb-16">
+          <span className="text-emerald-700 font-mono font-bold tracking-widest uppercase text-xs mb-3 flex items-center gap-2">
             <Sparkles size={14} className="text-emerald-600" />
-            GLOBAL REACH. TRUSTED QUALITY.
+            Global Maritime Corridors
           </span>
           <h2 className="text-4xl md:text-5xl font-serif text-slate-900 mb-6 leading-tight">
-            Delivering Premium Agricultural Products From India to the World
+            Delivering Premium Agricultural Products <br />
+            <span className="text-emerald-600">From Karnataka to the World</span>
           </h2>
-          <p className="text-slate-600 text-base font-light max-w-3xl leading-relaxed">
-            Proudly supplying quality-conscious customers across major international marketplaces.
-            Hover over our export hubs to inspect operational metrics.
+          <p className="text-slate-600 text-base md:text-lg font-light max-w-3xl leading-relaxed">
+            Supplying international food networks and private label brands across key global trade corridors. 
+            Hover over our nodes below to view regional compliance clearances.
           </p>
         </div>
 
         {/* INFRASTRUCTURE STATISTICS GRID */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16 text-left">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {[
-            { value: "Hubballi", label: "Corporate Office", icon: <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> },
-            { value: "Ranebennur", label: "Manufacturing Facility", icon: <Factory size={22} /> },
-            { value: "Premium", label: "Quality Grade", icon: <ShieldCheck size={22} /> },
-            { value: "100%", label: "Consistent Trust", icon: <CheckCircle size={22} /> }
+            { value: "Hubballi", label: "Corporate Office", icon: <MapPin size={22} /> },
+            { value: "Ranebennur", label: "Brining & Processing Plant", icon: <Factory size={22} /> },
+            { value: "FSSC 22000", label: "Quality Benchmark", icon: <ShieldCheck size={22} /> },
+            { value: "100%", label: "Traceable Sourcing", icon: <CheckCircle size={22} /> }
           ].map((stat, idx) => (
-            <div key={idx} className="bg-[#F7FAF4] p-8 rounded-[2.5rem] border border-emerald-100/60 shadow-sm">
+            <div key={idx} className="bg-[#F7FAF4] p-8 rounded-[2.5rem] border border-emerald-100/60 shadow-sm hover:border-emerald-200 transition-all duration-300">
               <div className="w-12 h-12 bg-emerald-100/60 text-emerald-800 rounded-2xl flex items-center justify-center mb-5">
                 {stat.icon}
               </div>
               <h3 className="text-2xl md:text-3xl font-serif font-bold text-slate-800 tracking-tight">{stat.value}</h3>
-              <p className="text-slate-500 text-sm mt-1">{stat.label}</p>
+              <p className="text-slate-500 text-xs md:text-sm font-light mt-1">{stat.label}</p>
             </div>
           ))}
         </div>
 
-        {/* FIXED IMAGE CONTAINER BLOCK LAYER */}
+        {/* MAP CONTAINER BLOCK */}
         <div className="mb-24 relative bg-white rounded-[3rem] shadow-xl border border-slate-100 p-3 md:p-5 text-center">
 
-          {/* Floating corridor counter chip */}
+          {/* Corridor badge */}
           <div className="absolute bottom-7 md:bottom-9 left-7 md:left-9 z-30 flex items-center gap-2 bg-slate-950/90 backdrop-blur-md text-white pl-3 pr-4 py-2 rounded-full shadow-lg border border-emerald-500/20">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -152,11 +142,13 @@ const GlobalPresence: React.FC = () => {
           </div>
 
           <div className="relative inline-block w-full h-auto">
-
             <img
               src={globalMapImg}
               alt="Sri Mookambika Agro Foods Global Export Network Map"
               className="w-full h-auto block select-none rounded-[2rem]"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
             />
 
             {/* ROUTE HIGHLIGHT OVERLAY */}
@@ -258,8 +250,8 @@ const GlobalPresence: React.FC = () => {
           </div>
         </div>
 
-        {/* VALUE CAPACITIES SECTION FOOTER */}
-        <div className="text-left">
+        {/* VALUE CAPACITIES SECTION */}
+        <div>
           <div className="flex items-center gap-3 mb-10">
             <div className="w-1.5 h-6 bg-emerald-700 rounded-full" />
             <h3 className="text-3xl font-serif text-slate-900 tracking-tight">
