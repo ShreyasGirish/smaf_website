@@ -7,11 +7,7 @@ import {
   Utensils,
   Leaf,
   Download,
-  Maximize2,
-  X,
-  Eye,
-  LockOpen,
-  CheckCircle2
+  X
 } from 'lucide-react';
 
 const PrakritvaBrand: React.FC = () => {
@@ -20,22 +16,18 @@ const PrakritvaBrand: React.FC = () => {
   const gherkinPickleImg = `${import.meta.env.BASE_URL}images/gherkinpickle.jpg`;
   const babyPickleImg = `${import.meta.env.BASE_URL}images/babypickle.jpg`;
   const kokumBottleImg = `${import.meta.env.BASE_URL}images/kokumjuice.jpg`;
-  const vinegarBottleImg = `${import.meta.env.BASE_URL}images/vinegar.jpg`;
+  const kokumJeeraImg = `${import.meta.env.BASE_URL}images/new-product.jpg`;
   const abcPowderImg = `${import.meta.env.BASE_URL}images/abcpowder.jpg`;
   const rosellaPowderImg = `${import.meta.env.BASE_URL}images/rosellapowder.jpg`;
-  const newProductImg = `${import.meta.env.BASE_URL}images/new-product.jpg`;
-  const vegetablePowdersImg = `${import.meta.env.BASE_URL}images/prakritva2.jpg`;
 
-  // Interactive Reveal Engine States
-  const [isRevealed, setIsRevealed] = useState(false);
-  const [activeModalImg, setActiveModalImg] = useState<string | null>(null);
+  const [activeModalImg, setActiveModalImg] = useState<{ src: string; title: string } | null>(null);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Freeze background window scrolling when product layout lightbox is active
+  // Freeze background window scrolling when lightbox is active
   useEffect(() => {
     if (activeModalImg) {
       document.body.style.overflow = "hidden";
@@ -67,18 +59,11 @@ const PrakritvaBrand: React.FC = () => {
         .group:hover .animate-led-border {
           animation-duration: 1.5s;
         }
-        @keyframes pulse-slow {
-          0%, 100% { opacity: 0.15; transform: scale(1); }
-          50% { opacity: 0.3; transform: scale(1.03); }
-        }
-        .animate-pulse-slow {
-          animation: pulse-slow 4s ease-in-out infinite;
-        }
       `}</style>
 
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
 
-        {/* BRAND HEADER WITH SEAMLESS LOGO INTEGRATION */}
+        {/* BRAND HEADER */}
         <div className="max-w-3xl mx-auto text-center mb-24">
           <div className="inline-flex items-center justify-center gap-2 bg-amber-100/80 text-amber-900 px-4 py-2 rounded-full text-[10px] font-mono font-bold uppercase tracking-widest mb-8 border border-amber-200 shadow-sm mx-auto">
             <Sparkles size={14} className="text-amber-600" />
@@ -156,7 +141,8 @@ const PrakritvaBrand: React.FC = () => {
                     <img
                       src={p.img}
                       alt={p.name}
-                      className="relative z-10 w-full h-full max-h-[320px] object-contain transform group-hover:scale-105 transition duration-700 ease-out"
+                      className="relative z-10 w-full h-full max-h-[320px] object-contain transform group-hover:scale-105 transition duration-700 ease-out cursor-zoom-in"
+                      onClick={() => setActiveModalImg({ src: p.img, title: p.name })}
                     />
                   </div>
                   <div className="p-8 md:p-10 relative z-20 bg-white">
@@ -188,7 +174,7 @@ const PrakritvaBrand: React.FC = () => {
             </div>
             <div>
               <h3 className="text-3xl font-serif text-slate-900">Natural Botanical Beverages</h3>
-              <p className="text-amber-800/80 text-xs md:text-sm font-light mt-0.5">Cold-crafted botanical elixirs for hydration and metabolic support</p>
+              <p className="text-amber-800/80 text-xs md:text-sm font-light mt-0.5">Cold-crafted botanical concentrates and elixirs for hydration and digestive wellness</p>
             </div>
           </div>
 
@@ -214,7 +200,8 @@ const PrakritvaBrand: React.FC = () => {
                     <img 
                       src={kokumBottleImg} 
                       alt="Kokum Zest"
-                      className="relative z-10 w-full h-full max-h-[320px] object-contain transform group-hover:scale-105 transition duration-700 ease-out" 
+                      className="relative z-10 w-full h-full max-h-[320px] object-contain transform group-hover:scale-105 transition duration-700 ease-out cursor-zoom-in" 
+                      onClick={() => setActiveModalImg({ src: kokumBottleImg, title: "Prakritva — Kokum Zest" })}
                     />
                   </div>
                   <div className="p-8 md:p-10 relative z-20 bg-white">
@@ -236,26 +223,27 @@ const PrakritvaBrand: React.FC = () => {
               </div>
             </div>
 
-            {/* Natural Vinegar Elixir */}
+            {/* Kokum Jeera Sharbat Concentrate */}
             <div className="bg-white rounded-[2.5rem] overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 flex flex-col justify-between group">
               <div>
                 <div className="w-full h-[340px] sm:h-[400px] relative overflow-hidden bg-[#FBF9F5] p-6 flex items-center justify-center">
                   <img 
-                    src={vinegarBottleImg} 
+                    src={kokumJeeraImg} 
                     alt=""
                     className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-40 scale-125 pointer-events-none transition-transform duration-700 group-hover:scale-150" 
                     aria-hidden="true"
                   />
                   <img 
-                    src={vinegarBottleImg} 
-                    alt="Natural Vinegar Elixir"
-                    className="relative z-10 w-full h-full max-h-[320px] object-contain transform group-hover:scale-105 transition duration-700 ease-out" 
+                    src={kokumJeeraImg} 
+                    alt="Kokum Jeera Sharbat Concentrate"
+                    className="relative z-10 w-full h-full max-h-[320px] object-contain transform group-hover:scale-105 transition duration-700 ease-out cursor-zoom-in" 
+                    onClick={() => setActiveModalImg({ src: kokumJeeraImg, title: "Prakritva — Kokum Jeera Sharbat Concentrate" })}
                   />
                 </div>
                 <div className="p-8 md:p-10 relative z-20 bg-white">
-                  <h4 className="text-2xl font-serif text-slate-900 mb-2">Natural Vinegar Elixir</h4>
+                  <h4 className="text-2xl font-serif text-slate-900 mb-2">Kokum Jeera Sharbat Concentrate</h4>
                   <p className="text-slate-500 text-xs md:text-sm font-light leading-relaxed">
-                    Naturally fermented crop vinegar curated for metabolic health and gut wellness. Formulated without synthetic additives or artificial stabilizers.
+                    Infused with sun-cured regional kokum extract and dry-roasted cumin seeds. A rich 60% fruit-base botanical concentrate crafted for authentic cooling digestion.
                   </p>
                 </div>
               </div>
@@ -264,14 +252,14 @@ const PrakritvaBrand: React.FC = () => {
                   FSSAI Licensed
                 </span>
                 <span className="text-amber-900 bg-amber-50 border border-amber-200/60 px-3 py-1 rounded-full uppercase tracking-wider">
-                  Pure Fermentation
+                  60% Fruit Base
                 </span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* 3. WELLNESS POWDERS (FIXED ASYMMETRICAL CROPPING & SIZES) */}
+        {/* 3. WELLNESS POWDERS */}
         <div className="mb-28">
           <div className="flex items-center gap-4 mb-12">
             <div className="w-12 h-12 bg-amber-900 text-white rounded-2xl flex items-center justify-center shadow-md">
@@ -289,13 +277,15 @@ const PrakritvaBrand: React.FC = () => {
                 name: 'ABC Vitality Powder',
                 sub: 'Apple, Beetroot, Carrot Blend',
                 img: abcPowderImg,
-                badge: 'Daily Vitality'
+                badge: 'Daily Vitality',
+                desc: 'Concentrated synergistic blend of crisp apples, rich beetroot, and nutrient-packed carrots designed for daily stamina and micronutrient replenishment.'
               },
               {
                 name: 'Rosella Immunity Powder',
                 sub: 'Hibiscus Sabdariffa Extract',
                 img: rosellaPowderImg,
-                badge: 'Natural Vitamin C'
+                badge: 'Natural Vitamin C',
+                desc: 'Rich in natural Vitamin C and bio-active antioxidants to support daily immunity and cellular defense. Sun-dehydrated under precise sanitary parameters.'
               }
             ].map((p, i) => (
               <div 
@@ -303,7 +293,6 @@ const PrakritvaBrand: React.FC = () => {
                 className="bg-white rounded-[2.5rem] overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 flex flex-col justify-between group"
               >
                 <div>
-                  {/* Standardized Pouch Image Frame */}
                   <div className="w-full h-[340px] sm:h-[400px] relative overflow-hidden bg-[#FBF9F5] p-6 flex items-center justify-center">
                     <img 
                       src={p.img} 
@@ -314,7 +303,8 @@ const PrakritvaBrand: React.FC = () => {
                     <img 
                       src={p.img} 
                       alt={p.name}
-                      className="relative z-10 w-full h-full max-h-[300px] object-contain transform group-hover:scale-105 transition duration-700 ease-out" 
+                      className="relative z-10 w-full h-full max-h-[300px] object-contain transform group-hover:scale-105 transition duration-700 ease-out cursor-zoom-in" 
+                      onClick={() => setActiveModalImg({ src: p.img, title: p.name })}
                     />
                   </div>
                   <div className="p-8 md:p-10 relative z-20 bg-white">
@@ -323,9 +313,7 @@ const PrakritvaBrand: React.FC = () => {
                     </span>
                     <h4 className="text-2xl font-serif text-slate-900 mb-2">{p.name}</h4>
                     <p className="text-slate-500 text-xs md:text-sm font-light leading-relaxed">
-                      {p.name.includes('ABC') 
-                        ? 'Concentrated synergistic blend of crisp apples, rich beetroot, and nutrient-packed carrots designed for daily stamina and micronutrient replenishment.' 
-                        : 'Rich in natural Vitamin C and bio-active antioxidants to support daily immunity and cellular defense. Sun-dehydrated under precise sanitary parameters.'}
+                      {p.desc}
                     </p>
                   </div>
                 </div>
@@ -343,127 +331,7 @@ const PrakritvaBrand: React.FC = () => {
           </div>
         </div>
 
-        {/* 4. INTERACTIVE PRODUCT REVEAL HATCH */}
-        <div className="mb-28">
-          <div className="text-center mb-12">
-            <span className="text-amber-800 font-mono font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2">
-              <Sparkles size={14} className="text-amber-600" />
-              Advanced Line Additions
-            </span>
-            <h3 className="text-3xl md:text-5xl font-serif mt-3 mb-4 text-slate-900 tracking-tight">
-              The Horizon of Natural Flavors
-            </h3>
-            <p className="text-slate-600 max-w-2xl mx-auto text-sm md:text-base font-light">
-              Explore our newest value-added pipeline formulations developed on our certified lines.
-            </p>
-          </div>
-
-          <div className="max-w-6xl mx-auto">
-            {!isRevealed ? (
-              <div 
-                onClick={() => setIsRevealed(true)}
-                className="bg-slate-900 rounded-[3.5rem] border border-amber-200/40 min-h-[440px] relative overflow-hidden flex flex-col items-center justify-center text-center p-8 select-none cursor-pointer group/hatch shadow-2xl transition-all duration-500 hover:scale-[1.005]"
-              >
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.1)_0%,transparent_70%)] animate-pulse-slow" />
-                <div className="w-16 h-16 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-full flex items-center justify-center mb-5 animate-bounce shadow-lg group-hover/hatch:scale-105 transition-transform">
-                  <Eye size={24} />
-                </div>
-                <span className="text-[10px] font-mono font-bold tracking-[0.3em] text-amber-400 uppercase">
-                  Protected Formulation Array
-                </span>
-                <h4 className="text-2xl font-serif text-white mt-2 max-w-md transition-colors group-hover/hatch:text-amber-300">
-                  Tap to Reveal New Line Additions
-                </h4>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch animate-fade-in">
-                
-                {/* REVEAL ITEM 1 */}
-                <div className="bg-slate-900 rounded-[3rem] border border-emerald-500/30 overflow-hidden flex flex-col justify-between shadow-2xl relative">
-                  <div className="w-full h-[340px] relative bg-slate-950 flex items-center justify-center p-6">
-                    <img
-                      src={newProductImg}
-                      alt=""
-                      className="w-full h-full object-cover absolute inset-0 blur-3xl opacity-30 scale-125 pointer-events-none"
-                      aria-hidden="true"
-                    />
-                    <img
-                      src={newProductImg}
-                      alt="Kokum Jeera Sharbat Concentrate"
-                      className="w-full h-full max-h-[300px] object-contain relative z-10 transition-transform duration-500 hover:scale-[1.03]"
-                    />
-                    <button 
-                      onClick={() => setActiveModalImg(newProductImg)}
-                      className="absolute bottom-5 right-5 bg-slate-900/90 hover:bg-slate-900 text-white px-3.5 py-2 rounded-xl border border-white/10 shadow-md transition active:scale-95 z-20 flex items-center gap-2 text-xs font-mono font-bold cursor-pointer"
-                    >
-                      <Maximize2 size={12} className="text-emerald-400" />
-                      <span>Enlarge</span>
-                    </button>
-                  </div>
-                  
-                  <div className="p-8 flex-grow flex flex-col justify-between bg-white/[0.02] border-t border-white/10 text-white">
-                    <div className="space-y-3">
-                      <div className="inline-flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-[9px] font-mono font-bold uppercase tracking-wider">
-                        <LockOpen size={10} /> Botanical Concentrate
-                      </div>
-                      <h4 className="text-2xl font-serif text-white">Kokum Jeera Sharbat Concentrate</h4>
-                      <p className="text-slate-400 text-xs font-light leading-relaxed">
-                        Infused with sun-cured regional kokum extract and dry-roasted cumin seeds for an authentic, balanced digestif concentrate.
-                      </p>
-                    </div>
-                    <div className="border-t border-white/10 pt-4 mt-6 font-mono text-[9px] text-slate-500 uppercase tracking-widest flex justify-between">
-                      <span>Ready to Deploy</span>
-                      <span className="text-emerald-400">60% Fruit Base</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* REVEAL ITEM 2 */}
-                <div className="bg-slate-900 rounded-[3rem] border border-emerald-500/30 overflow-hidden flex flex-col justify-between shadow-2xl relative">
-                  <div className="w-full h-[340px] relative bg-slate-950 flex items-center justify-center p-6">
-                    <img
-                      src={vegetablePowdersImg}
-                      alt=""
-                      className="w-full h-full object-cover absolute inset-0 blur-3xl opacity-30 scale-125 pointer-events-none"
-                      aria-hidden="true"
-                    />
-                    <img
-                      src={vegetablePowdersImg}
-                      alt="Advanced Vegetable Powders Portfolio"
-                      className="w-full h-full max-h-[300px] object-contain relative z-10 transition-transform duration-500 hover:scale-[1.03]"
-                    />
-                    <button 
-                      onClick={() => setActiveModalImg(vegetablePowdersImg)}
-                      className="absolute bottom-5 right-5 bg-slate-900/90 hover:bg-slate-900 text-white px-3.5 py-2 rounded-xl border border-white/10 shadow-md transition active:scale-95 z-20 flex items-center gap-2 text-xs font-mono font-bold cursor-pointer"
-                    >
-                      <Maximize2 size={12} className="text-emerald-400" />
-                      <span>Enlarge</span>
-                    </button>
-                  </div>
-                  
-                  <div className="p-8 flex-grow flex flex-col justify-between bg-white/[0.02] border-t border-white/10 text-white">
-                    <div className="space-y-3">
-                      <div className="inline-flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-[9px] font-mono font-bold uppercase tracking-wider">
-                        <LockOpen size={10} /> Dehydrated Array
-                      </div>
-                      <h4 className="text-2xl font-serif text-white">Advanced Vegetable Powders</h4>
-                      <p className="text-slate-400 text-xs font-light leading-relaxed">
-                        Precision-dehydrated Cucumber, Spinach, Carrot, Beetroot, and Tomato powders processed for long shelf-life formulations and export bulk orders.
-                      </p>
-                    </div>
-                    <div className="border-t border-white/10 pt-4 mt-6 font-mono text-[9px] text-slate-500 uppercase tracking-widest flex justify-between">
-                      <span>Ready to Deploy</span>
-                      <span className="text-emerald-400">FSSC 22000 Line</span>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* 5. BROCHURE & SOURCING ACTION HUB */}
+        {/* 4. BROCHURE & SOURCING ACTION HUB */}
         <div className="bg-gradient-to-br from-amber-50 to-white rounded-[3.5rem] p-10 md:p-16 text-center border border-amber-200 shadow-sm">
           <h4 className="text-3xl md:text-5xl font-serif mb-4 text-slate-900 leading-tight">
             Explore the Complete Prakritva Range
@@ -516,12 +384,12 @@ const PrakritvaBrand: React.FC = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <img 
-              src={activeModalImg} 
-              alt="Prakritva Product Overview" 
+              src={activeModalImg.src} 
+              alt={activeModalImg.title} 
               className="max-w-full max-h-[82vh] rounded-2xl object-contain shadow-2xl border border-white/10 bg-white p-4"
             />
             <p className="text-white/90 font-serif text-sm mt-4 bg-slate-900/90 px-6 py-2 rounded-full shadow-md border border-white/5 text-center">
-              {activeModalImg === newProductImg ? 'Prakritva — Kokum Jeera Sharbat Concentrate' : 'Prakritva — Dehydrated Vegetable Powders Range'}
+              {activeModalImg.title}
             </p>
           </div>
         </div>,

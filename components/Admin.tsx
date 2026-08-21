@@ -296,7 +296,8 @@ const Admin = ({ onClose }: AdminProps) => {
                 <select name="test_category" value={labForm.test_category} onChange={handleLabChange} className="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm focus:border-emerald-500 outline-none transition h-[45px]">
                   <option>Heavy Metals</option>
                   <option>Microbiological</option>
-                  <option>Water Quality</option>
+                  <option>Media</option>
+                  <option>Product</option>
                 </select>
               </div>
             </div>

@@ -62,7 +62,7 @@ interface BatchSyncMetrics {
 const LabAssistant = () => {
   const [isOpen,          setIsOpen]          = useState(false);
   const [showAdminPortal, setShowAdminPortal] = useState(false);
-  const [showLogin,        setShowLogin]        = useState(false);
+  const [showLogin,       setShowLogin]       = useState(false);
   const [adminKey,        setAdminKey]        = useState('');
   const [keyError,        setKeyError]        = useState(false);
 
@@ -83,20 +83,28 @@ const LabAssistant = () => {
       // 1. Fetch latest log from barrel_logs table
       const { data: bLogs, error: bErr } = await supabase
         .from('barrel_logs')
-        .select('*')
-        .order('batch_code', { ascending: false }) 
-        .limit(1);
+        .select('*');
 
       if (bErr) throw bErr;
       if (bLogs && bLogs.length > 0) {
+        // Sort chronologically using created_at or numeric ID
+        const sortedBarrels = [...bLogs].sort((a, b) => {
+          if (a.created_at && b.created_at) {
+            return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+          }
+          if (a.id && b.id) return Number(b.id) - Number(a.id);
+          return String(b.batch_code).localeCompare(String(a.batch_code), undefined, { numeric: true });
+        });
+
+        const latestBarrel = sortedBarrels[0];
         setBarrelData({
-          batch_code: String(bLogs[0].batch_code ?? ''),
-          ph_value: String(bLogs[0].ph_value ?? ''),
-          acidity: String(bLogs[0].acidity ?? ''),
-          salt_density: String(bLogs[0].salt_density ?? ''),
-          calcium_index: String(bLogs[0].calcium_index ?? ''),
-          so2_stabilizer: String(bLogs[0].so2_stabilizer ?? ''),
-          created_at: bLogs[0].created_at ?? null,
+          batch_code: String(latestBarrel.batch_code ?? ''),
+          ph_value: String(latestBarrel.ph_value ?? ''),
+          acidity: String(latestBarrel.acidity ?? ''),
+          salt_density: String(latestBarrel.salt_density ?? ''),
+          calcium_index: String(latestBarrel.calcium_index ?? ''),
+          so2_stabilizer: String(latestBarrel.so2_stabilizer ?? ''),
+          created_at: latestBarrel.created_at ?? null,
         });
       } else {
         setBarrelData(null);
@@ -105,34 +113,58 @@ const LabAssistant = () => {
       // 2. Fetch latest sync file metadata log from batch_sync_logs table
       const { data: sLogs, error: sErr } = await supabase
         .from('batch_sync_logs')
-        .select('*')
-        .order('id', { ascending: false })
-        .limit(1);
+        .select('*');
 
       if (sErr) throw sErr;
       if (sLogs && sLogs.length > 0) {
+        const sortedBatches = [...sLogs].sort((a, b) => {
+          if (a.created_at && b.created_at) {
+            return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+          }
+          if (a.id && b.id) return Number(b.id) - Number(a.id);
+          return 0;
+        });
+
+        const latestBatch = sortedBatches[0];
         setBatchData({
-          production_lot: String(sLogs[0].production_lot ?? ''),
-          harvest_season: String(sLogs[0].harvest_season ?? '2026-2027'),
-          sync_status: String(sLogs[0].sync_status ?? 'Processing'),
-          barrel_count: String(sLogs[0].barrel_count ?? '10'),
-          processing_type: String(sLogs[0].processing_type ?? 'Vinegar'),
-          data_source_url: String(sLogs[0].data_source_url ?? ''),
-          created_at: sLogs[0].created_at ?? null,
+          production_lot: String(latestBatch.production_lot ?? ''),
+          harvest_season: String(latestBatch.harvest_season ?? '2026-2027'),
+          sync_status: String(latestBatch.sync_status ?? 'Processing'),
+          barrel_count: String(latestBatch.barrel_count ?? '10'),
+          processing_type: String(latestBatch.processing_type ?? 'Vinegar'),
+          data_source_url: String(latestBatch.data_source_url ?? ''),
+          created_at: latestBatch.created_at ?? null,
         });
       } else {
         setBatchData(null);
       }
 
-      // 3. Fetch independent external lab report
+      // 3. Fetch latest external lab report (with DD-MM-YYYY string parsing)
       const { data: labData, error: labErr } = await supabase
         .from('lab_reports')
-        .select('*')
-        .order('test_id', { ascending: false })
-        .limit(1);
+        .select('*');
 
       if (labErr) throw labErr;
-      setLabReport(labData && labData.length > 0 ? labData[0] : null);
+      if (labData && labData.length > 0) {
+        const sortedLabs = [...labData].sort((a, b) => {
+          const parseCustomDate = (item: any) => {
+            if (item.created_at) return new Date(item.created_at).getTime();
+            if (item.test_id && typeof item.test_id === 'string' && item.test_id.includes('-')) {
+              const parts = item.test_id.split('-').map(Number);
+              if (parts.length === 3) {
+                const [d, m, y] = parts;
+                return new Date(y, m - 1, d).getTime();
+              }
+            }
+            return 0;
+          };
+          return parseCustomDate(b) - parseCustomDate(a);
+        });
+
+        setLabReport(sortedLabs[0]);
+      } else {
+        setLabReport(null);
+      }
 
       setLastRefreshed(new Date());
     } catch (err: any) {
@@ -185,7 +217,17 @@ const LabAssistant = () => {
   // ── derived variables ──────────────────────────────────────────────────────
   const barrelAgo = timeSince(barrelData?.created_at);
   const batchAgo  = timeSince(batchData?.created_at);
-  const labAgo    = timeSince(labReport?.created_at ?? labReport?.inserted_at ?? labReport?.logged_at);
+  
+  // Safe date resolution for lab report
+  const getLabDate = () => {
+    if (labReport?.created_at) return labReport.created_at;
+    if (labReport?.test_id && typeof labReport.test_id === 'string' && labReport.test_id.includes('-')) {
+      const [d, m, y] = labReport.test_id.split('-').map(Number);
+      return new Date(y, m - 1, d).toISOString();
+    }
+    return null;
+  };
+  const labAgo = timeSince(getLabDate());
 
   return (
     <>
@@ -345,7 +387,7 @@ const LabAssistant = () => {
               </div>
             </section>
 
-            {/* CONSOLIDATED SECTION 2: CURRENT 10 BARREL REPORT (BULK METADATA + SPREADSHEET BUTTON) */}
+            {/* CONSOLIDATED SECTION 2: CURRENT 10 BARREL REPORT */}
             <section className="mb-5">
               <div className="flex items-center justify-between mb-2">
                 <h4 className="text-[9px] font-mono text-slate-400 uppercase tracking-widest">Current 10 Barrel Report</h4>
@@ -363,7 +405,6 @@ const LabAssistant = () => {
                   </div>
                 ) : (
                   <>
-                    {/* Bulk Data Attributes */}
                     <div className="space-y-3">
                       <Row label="Current Batch No"    value={fmt(batchData.production_lot)} accent="white" />
                       <Row label="Harvest Season"      value={fmt(batchData.harvest_season)} accent="white" />
@@ -371,7 +412,6 @@ const LabAssistant = () => {
                       <Row label="Processing Medium"   value={fmt(batchData.processing_type)} accent="emerald" />
                     </div>
 
-                    {/* Integrated Excel spreadsheet download button directly inside the layout wrapper */}
                     {batchData.data_source_url && (
                       <div className="pt-2 border-t border-slate-800">
                         <a
@@ -385,7 +425,7 @@ const LabAssistant = () => {
                     )}
                     
                     {batchData.created_at && (
-                      <p className="text-[9px] font-mono text-slate-500 pt-1 flex items-center gap-1 text-[9px]">
+                      <p className="text-[9px] font-mono text-slate-500 pt-1 flex items-center gap-1">
                         <Clock size={9} /> Synchronized: {fmtDate(batchData.created_at)}
                       </p>
                     )}
@@ -416,9 +456,9 @@ const LabAssistant = () => {
                     <Row label="Certificate ID"       value={labReport.report_reference} mono              />
                     <Row label="Testing Vector Class" value={labReport.test_category}     accent="emerald" upper />
 
-                    {labReport.created_at && (
+                    {(labReport.created_at || labReport.test_id) && (
                       <p className="text-[9px] font-mono text-slate-500 pt-2 flex items-center gap-1 border-t border-slate-800">
-                        <Clock size={9} /> Issued: {fmtDate(labReport.created_at)}
+                        <Clock size={9} /> Issued: {labReport.test_id || fmtDate(labReport.created_at)}
                       </p>
                     )}
 

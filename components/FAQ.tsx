@@ -14,12 +14,12 @@ const FAQ: React.FC = () => {
     {
       category: 'Procurement & Logistics',
       question: 'What are your standard Minimum Order Quantities (MOQ) and Incoterms supported?',
-      answer: 'Our standard export MOQ is one 20ft Full Container Load (FCL), which accommodates approximately 80 HDPE food-grade barrels (240L / 260L). We support standard maritime Incoterms including FOB (Mormugao / Chennai / Nhava Sheva Ports) and CIF / CFR to any major global destination port.'
+      answer: 'Our standard export MOQ is one 20ft Full Container Load (FCL), which accommodates approximately 80 HDPE food-grade barrels (240L / 260L). We support standard maritime Incoterms including FOB (Mangalore / Chennai / Nhava Sheva Ports) and CIF / CFR to any major global destination port.'
     },
     {
       category: 'Packaging & Specifications',
       question: 'What barrel sizes, cut styles, and curing media options are available?',
-      answer: 'We supply whole calibrated gherkins (from 300/450 micro-count up to 5/10 grades), sliced coins, and spears. Preservative media options include Natural Vinegar (NV), Acetic Acid (AA), and natural lactic fermentation brine calibrated to buyer pH and acidity parameters.'
+      answer: 'We supply whole calibrated gherkins (from 300/450 micro-count up to 5/10 grades), sliced coins, and spears. Preservative media options include Natural Vinegar (NV), Acetic Acid (AA), and natural lactic fermentation brine calibrated to buyer pH and acidity parameters. Packaging options include 260 ltrs/240 ltrs HDPE Drums for Retail Manufacturers and 15 ltrs Pails for institutional markets.'
     },
     {
       category: 'Regulatory & Clearances',
@@ -29,12 +29,12 @@ const FAQ: React.FC = () => {
     {
       category: 'Production & Lead Times',
       question: 'What is your typical production lead time from PO confirmation to port dispatch?',
-      answer: 'Standard export order turnaround is 3 to 5 weeks from purchase order confirmation and specification sign-off. Year-round cured brine inventories allow us to service urgent off-season shipments without disruption.'
+      answer: 'From seed to export typically takes 5-6 months as the sowing plan is designed against the orders. Standard export order turnaround is 3 to 5 weeks from purchase order confirmation and specification sign-off. Year-round cured brine inventories allow us to service urgent off-season shipments without disruption.'
     },
     {
       category: 'Private Label & Retail',
-      question: 'Do you offer private labeling, retail packing, and custom spice infusions?',
-      answer: 'Yes. Beyond bulk industrial drum supply, we offer private label packaging in glass jars and retail pouches through our certified lines, as well as customized Indian spice blends, baby corn, and botanical vinegar formulations.'
+      question: 'Do you offer private labeling, retail packing, and custom recipies?',
+      answer: 'Yes. Beyond bulk industrial drum supply, we offer private label packaging in glass jars and retail pouches through our certified lines as well as customized products.'
     }
   ];
 
