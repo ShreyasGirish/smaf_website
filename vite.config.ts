@@ -6,7 +6,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
 
   return {
-    base: '/smaf_website/',
+    base: '/',
 
     server: {
       port: 3000,
