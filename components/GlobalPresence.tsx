@@ -1,12 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Factory, ShieldCheck, CheckCircle, Sparkles, Truck, Box, Check, MapPin } from 'lucide-react';
+
+interface MapHotspot {
+  id: string;
+  name: string;
+  top: number;
+  left: number;
+  size: number;
+  details: string;
+  compliance: string;
+  image?: string;
+  curve: string | null;
+}
 
 const GlobalPresence: React.FC = () => {
   const globalMapImg = `${import.meta.env.BASE_URL}images/global-map-clean.jpg`;
   const factoryImg = `${import.meta.env.BASE_URL}images/factory-map.jpg`;
-  const [activeNode, setActiveNode] = useState<string | null>(null);
 
-  const mapHotspots = [
+  const [activeNode, setActiveNode] = useState<string | null>(null);
+  const [mapImageFailed, setMapImageFailed] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const mapHotspots: MapHotspot[] = [
     {
       id: 'CA',
       name: 'Canada',
@@ -63,7 +78,7 @@ const GlobalPresence: React.FC = () => {
   const strengths = [
     {
       title: 'Strategic Production Hub',
-      desc: 'Corporate governance based in Hubballi with 25,000 sq. ft. manufacturing infrastructure located in Ranebennur, Karnataka—directly embedded in South India’s premier gherkin-growing belts.',
+      desc: 'Corporate governance based in Hubballi with 25,000 sq. ft. manufacturing infrastructure located in Ranebennur, Karnataka—directly embedded in South India\u2019s premier gherkin-growing belts.',
       icon: <MapPin size={24} className="text-emerald-800" />
     },
     {
@@ -83,12 +98,42 @@ const GlobalPresence: React.FC = () => {
     }
   ];
 
+  // Close the open tooltip on outside click / tap and on Escape, so touch
+  // users aren't stuck with a tooltip they can't dismiss.
+  useEffect(() => {
+    const handlePointerDown = (e: MouseEvent | TouchEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setActiveNode(null);
+      }
+    };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setActiveNode(null);
+    };
+    document.addEventListener('mousedown', handlePointerDown);
+    document.addEventListener('touchstart', handlePointerDown);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handlePointerDown);
+      document.removeEventListener('touchstart', handlePointerDown);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+  const toggleNode = (id: string) => {
+    setActiveNode((current) => (current === id ? null : id));
+  };
+
   return (
     <section id="global" className="py-24 bg-[#FCFBF7] overflow-hidden text-left border-t border-slate-100">
+      {/* Scoped keyframe name to avoid colliding with other sections' global <style> blocks */}
       <style>{`
-        @keyframes fadeInUp {
+        @keyframes smaf-tooltip-in {
           from { opacity: 0; transform: translate(-50%, 6px); }
           to { opacity: 1; transform: translate(-50%, 0); }
+        }
+        @keyframes smaf-tooltip-in-right {
+          from { opacity: 0; transform: translate(-88%, 6px); }
+          to { opacity: 1; transform: translate(-88%, 0); }
         }
       `}</style>
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
@@ -104,8 +149,8 @@ const GlobalPresence: React.FC = () => {
             <span className="text-emerald-600">From Karnataka to the World</span>
           </h2>
           <p className="text-slate-600 text-base md:text-lg font-light max-w-3xl leading-relaxed">
-            Supplying international food networks and private label brands across key global trade corridors. 
-            Hover over our nodes below to view regional compliance clearances.
+            Supplying international food networks and private label brands across key global trade corridors.
+            Tap or hover a node below to view regional compliance clearances.
           </p>
         </div>
 
@@ -128,7 +173,7 @@ const GlobalPresence: React.FC = () => {
         </div>
 
         {/* MAP CONTAINER BLOCK */}
-        <div className="mb-24 relative bg-white rounded-[3rem] shadow-xl border border-slate-100 p-3 md:p-5 text-center">
+        <div ref={containerRef} className="mb-24 relative bg-white rounded-[3rem] shadow-xl border border-slate-100 p-3 md:p-5 text-center">
 
           {/* Corridor badge */}
           <div className="absolute bottom-7 md:bottom-9 left-7 md:left-9 z-30 flex items-center gap-2 bg-slate-950/90 backdrop-blur-md text-white pl-3 pr-4 py-2 rounded-full shadow-lg border border-emerald-500/20">
@@ -142,22 +187,37 @@ const GlobalPresence: React.FC = () => {
           </div>
 
           <div className="relative inline-block w-full h-auto">
-            <img
-              src={globalMapImg}
-              alt="Sri Mookambika Agro Foods Global Export Network Map"
-              className="w-full h-auto block select-none rounded-[2rem]"
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-              }}
-            />
+            {mapImageFailed ? (
+              // Graceful fallback: if the map image 404s, keep the section
+              // usable instead of leaving hotspots floating over blank space.
+              <div
+                className="w-full aspect-[16/10] rounded-[2rem] bg-gradient-to-br from-emerald-50 via-[#F7FAF4] to-emerald-100 flex flex-col items-center justify-center gap-2 border border-emerald-100"
+                role="img"
+                aria-label="Sri Mookambika Agro Foods global export network"
+              >
+                <Sparkles size={22} className="text-emerald-500" />
+                <p className="text-slate-500 text-sm font-light">Global network map is loading…</p>
+              </div>
+            ) : (
+              <img
+                src={globalMapImg}
+                alt="Sri Mookambika Agro Foods global export network across Canada, the United States, France, Japan and India"
+                className="w-full h-auto block select-none rounded-[2rem]"
+                loading="lazy"
+                decoding="async"
+                draggable={false}
+                onError={() => setMapImageFailed(true)}
+              />
+            )}
 
             {/* ROUTE HIGHLIGHT OVERLAY */}
             <svg
               viewBox="0 0 100 100"
               preserveAspectRatio="none"
               className="absolute inset-0 w-full h-full pointer-events-none z-10"
+              aria-hidden="true"
             >
-              {mapHotspots.filter(n => n.curve).map((node) => (
+              {mapHotspots.filter((n) => n.curve).map((node) => (
                 <path
                   key={node.id}
                   d={node.curve as string}
@@ -179,6 +239,11 @@ const GlobalPresence: React.FC = () => {
             {/* MAP HOTSPOTS */}
             {mapHotspots.map((node) => {
               const isCurrent = activeNode === node.id;
+              // Flip the tooltip's alignment for nodes past the map's
+              // midpoint so it never clips off the right edge (Japan at
+              // left: 66% was the case that broke with a fixed 240px card).
+              const tooltipFlips = node.left > 55;
+
               return (
                 <div
                   key={node.id}
@@ -190,10 +255,16 @@ const GlobalPresence: React.FC = () => {
                     height: `${node.size}px`,
                     transform: 'translate(-50%, -50%)'
                   }}
-                  onMouseEnter={() => setActiveNode(node.id)}
-                  onMouseLeave={() => setActiveNode(null)}
                 >
-                  <div className="relative w-full h-full cursor-pointer">
+                  <button
+                    type="button"
+                    className="relative w-full h-full cursor-pointer bg-transparent border-0 p-0 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+                    onMouseEnter={() => setActiveNode(node.id)}
+                    onMouseLeave={() => setActiveNode((current) => (current === node.id ? null : current))}
+                    onClick={() => toggleNode(node.id)}
+                    aria-expanded={isCurrent}
+                    aria-label={`${node.name}: ${node.compliance}`}
+                  >
                     <span
                       className="absolute inset-0 rounded-full transition-all duration-300 ease-out"
                       style={{
@@ -210,19 +281,34 @@ const GlobalPresence: React.FC = () => {
                     >
                       <Check size={9} strokeWidth={3.5} className="text-white" />
                     </span>
-                  </div>
+                  </button>
 
                   {/* TOOLTIP CARD */}
                   {isCurrent && (
-                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 w-[240px] bg-slate-950/95 text-white rounded-2xl shadow-2xl border border-emerald-500/30 backdrop-blur-md z-50 pointer-events-none text-left overflow-hidden animate-[fadeInUp_250ms_ease-out]">
+                    <div
+                      role="tooltip"
+                      className={`absolute bottom-full mb-4 w-[240px] max-w-[70vw] bg-slate-950/95 text-white rounded-2xl shadow-2xl border border-emerald-500/30 backdrop-blur-md z-50 text-left overflow-hidden ${
+                        tooltipFlips ? 'right-0' : 'left-1/2'
+                      }`}
+                      style={{
+                        transform: tooltipFlips ? 'translate(12%, 0)' : 'translate(-50%, 0)',
+                        animation: `${tooltipFlips ? 'smaf-tooltip-in-right' : 'smaf-tooltip-in'} 250ms ease-out`
+                      }}
+                    >
                       <div className="h-1 w-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600" />
-                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-8 border-transparent border-t-slate-950/95" />
+                      <div
+                        className={`absolute top-full border-8 border-transparent border-t-slate-950/95 ${
+                          tooltipFlips ? 'right-6' : 'left-1/2 -translate-x-1/2'
+                        }`}
+                      />
 
                       {node.image && (
                         <img
                           src={node.image}
                           alt={`${node.name} facility`}
                           className="w-full h-24 object-cover"
+                          loading="lazy"
+                          decoding="async"
                         />
                       )}
 
@@ -246,7 +332,6 @@ const GlobalPresence: React.FC = () => {
                 </div>
               );
             })}
-
           </div>
         </div>
 

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Admin from './components/Admin.tsx';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Stats from './components/Stats';
@@ -9,63 +8,47 @@ import Sustainability from './components/Sustainability';
 import Products from './components/Products';
 import Facility from './components/Facility';
 import Quality from './components/Quality';
-
-// ✦ Prakritva Brand repositioned to align perfectly with the updated sequence requirements
 import PrakritvaBrand from './components/PrakritvaBrand';
-
-// 🟢 MOUNT REQUIREMENT 1: Dynamic Dummy Reviews Grid Loaded Cleanly
-//import Reviews from './components/Reviews';
-
 import Innovation from './components/Innovation';
 import Events from './components/Events';
 import GlobalPresence from './components/GlobalPresence';
 import Investors from './components/Investors';
+import FAQ from './components/FAQ';
 import Leadership from './components/Leadership';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-
-// 🟢 MOUNT REQUIREMENT 2: Standalone Floating Lab Telemetry Assistant Widget
-import LabAssistant from './components/LabAssistant.tsx';
+import StickyCTA from './components/StickyCTA';
+import LabAssistant from './components/LabAssistant';
+import NotFound from './components/NotFound';
 
 function App() {
-  // Tracks the active URL route string natively
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
   useEffect(() => {
-    // Listen for browser navigation changes smoothly
     const handleLocationChange = () => {
       setCurrentPath(window.location.pathname);
     };
 
     window.addEventListener('popstate', handleLocationChange);
-    
-    const observerOptions = {
-      threshold: 0.05, // Lowered threshold guarantees activation on smaller viewports
-      rootMargin: '0px 0px -5% 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-
-    // Dynamic safe selector checks for standard fading classes across nodes
-    const sections = document.querySelectorAll('.section-fade');
-    sections.forEach(section => observer.observe(section));
-
     return () => {
-      observer.disconnect();
       window.removeEventListener('popstate', handleLocationChange);
     };
   }, []);
 
+  // Normalize base paths for local dev, GitHub Pages, and production domains
+  const basePath = import.meta.env.BASE_URL || '/';
+  const normalizedPath = currentPath.replace(new RegExp(`^${basePath}`), '/');
+  const validPaths = ['/', '', '/index.html'];
+  const is404 = !validPaths.includes(normalizedPath);
+
+  if (is404) {
+    return <NotFound />;
+  }
+
   return (
     <div className="min-h-screen bg-white selection:bg-emerald-600 selection:text-white overflow-x-hidden">
       
-      {/* 1. Global Navigation Module */}
+      {/* Global Navigation */}
       <Header />
       
       {/* Main Structural Flow Stack */}
@@ -74,83 +57,83 @@ function App() {
           <Hero />
         </section>
         
-        <div className="section-fade">
+        <div>
           <Stats />
         </div>
         
-        <section id="about" className="section-fade">
+        <section id="about">
           <About />
         </section>
 
-        <section id="why-smaf" className="section-fade">
+        <section id="why-smaf">
           <WhyChooseSMAF />
         </section>
 
-        <section id="sustainability" className="section-fade">
+        <section id="sustainability">
           <Sustainability />
         </section>
         
-        <section id="products" className="section-fade">
+        <section id="products">
           <Products />
         </section>
         
-        <section id="facility" className="section-fade">
+        <section id="facility">
           <Facility />
         </section>
         
-        <section id="quality" className="section-fade">
+        <section id="quality">
           <Quality />
         </section>
 
-        {/* ✦ REPOSITIONED: Prakritva section mounted immediately after Quality and before Reviews */}
-        <section id="brand" className="section-fade">
+        <section id="brand">
           <PrakritvaBrand />
         </section>
 
-        {/* 🟢 FIXED PLACEMENT: Reviews Section mounted clean with structural layout visibility */}
-       {/* <section id="reviews" className="w-full bg-white relative block">
-          <Reviews />
-        </section>*/}
-
-        <section id="innovation" className="section-fade">
+        <section id="innovation">
           <Innovation />
         </section>
 
-        <section id="events" className="section-fade">
+        <section id="events">
           <Events />
         </section>
 
-        <section id="global" className="section-fade">
+        <section id="global">
           <GlobalPresence />
         </section>
 
-        <section id="investors" className="section-fade">
+        <section id="investors">
           <Investors />
         </section>
+  
+        <section id="faq">
+          <FAQ />
+        </section>
 
-        <section id="leadership" className="section-fade">
+        <section id="leadership">
           <Leadership />
         </section>
         
-        {/* Pinned Contact section with fallback layout stability */}
         <section id="contact" className="w-full relative block">
           <Contact />
         </section>
       </main>
       
-      {/* Footer Area */}
+      {/* Footer */}
       <Footer />
       
-      {/* Scroll to Top UI Trigger */}
+      {/* Scroll to Top Trigger */}
       <button 
-        onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         aria-label="Scroll to top"
-        className="fixed bottom-8 right-24 z-40 bg-emerald-600 shadow-2xl p-4 rounded-full text-white hover:bg-emerald-700 transition-all duration-300 hidden md:flex items-center justify-center transform hover:scale-110 active:scale-95 border border-white/20"
+        className="fixed bottom-8 right-24 z-40 bg-emerald-600 shadow-2xl p-4 rounded-full text-white hover:bg-emerald-700 transition-all duration-300 hidden md:flex items-center justify-center transform hover:scale-110 active:scale-95 border border-white/20 cursor-pointer"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6"/></svg>
       </button>
 
-      {/* 🔬 Translucent Glowing Lab Assistant Module */}
+      {/* Sticky Mobile CTA Bar */}
+      <StickyCTA />
+
+      {/* Floating Lab Assistant */}
       <LabAssistant />
 
     </div>

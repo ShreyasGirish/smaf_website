@@ -88,7 +88,7 @@ const Contact: React.FC = () => {
                     </div>
                     <div className="w-full">
                       <p className="text-emerald-400 text-[10px] uppercase font-mono font-bold tracking-widest mb-1">
-                        Processing Hub & Brining Plant
+                        Processing Hub
                       </p>
                       <p className="text-xs leading-relaxed text-emerald-100/80 font-light">
                         R S No. 64/1, 64/2 Hunasekatte Road,<br />
