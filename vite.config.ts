@@ -6,8 +6,8 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
 
   return {
-    // 🟢 Exact GitHub Pages repo path
-    base: '/smaf_website/',
+    // 🟢 Root path for custom domain
+    base: '/',
 
     server: {
       port: 3000,
