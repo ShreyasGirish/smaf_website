@@ -6,8 +6,8 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
 
   return {
-    // 🟢 Enables relative asset paths for GitHub Pages sub-directories
-    base: './',
+    // 🟢 Exact GitHub Pages repo path
+    base: '/smaf_website/',
 
     server: {
       port: 3000,
