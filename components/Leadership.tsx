@@ -30,7 +30,7 @@ const Leadership = () => {
       image: `${import.meta.env.BASE_URL}images/prakash-nayak.jpg`,
       icon: <Briefcase size={24} />,
       experience: 'HR, Regulatory & Corporate Affairs Lead',
-      bio: 'HR, Statutory, and Regulatory Professional with over 25 years of distinguished industry experience. Holding a Masters in Social Welfare (MSW), he specializes in strategic human capital development, industrial relations, fair-labor audits, APEDA/DGFT trade compliance, and seamless gherkin export administration across corporate partner ecosystems.',
+      bio: 'HR, Statutory, and Regulatory Professional with over 25 years of distinguished industry experience. Holding a Masters in Social Work (MSW), he specializes in strategic human capital development, industrial relations, fair-labor audits, APEDA/DGFT trade compliance, and seamless gherkin export administration across corporate partner ecosystems.',
       highlights: [
         'HR & Industrial Relations',
         'MSW (Social Welfare Frameworks)',
